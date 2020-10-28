@@ -22,10 +22,10 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        margin: EdgeInsets.only(top : 50),
+        margin: EdgeInsets.only(top: 50),
         width: 80,
         height: 80,
-        decoration: BoxDecoration (
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           color: Colors.white,
           boxShadow: [
@@ -37,23 +37,23 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
             ),
           ],
         ),
-        child: RawMaterialButton (
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return MyAccount ();
-            }));
-          },
-          shape: new CircleBorder(),
-          elevation: 0.0,
-          child: ClipRRect (
-            borderRadius: BorderRadius.circular(40),
-            child: Image.asset(
+        child: RawMaterialButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MyAccount();
+              }));
+            },
+            shape: new CircleBorder(),
+            elevation: 0.0,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(40),
+              child: Image.asset(
                 'assets/profile.png',
-            width: 80,
-            height: 80,
-            fit: BoxFit.fill,),
-          )
-        ),
+                width: 80,
+                height: 80,
+                fit: BoxFit.fill,
+              ),
+            )),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Padding(
@@ -76,7 +76,9 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                         });
                       },
                       child: SvgPicture.asset(
-                        widget.isSelected == 0 ? 'assets/svg/home-06.svg' : 'assets/svg/home-01.svg',
+                        widget.isSelected == 0
+                            ? 'assets/svg/home-06.svg'
+                            : 'assets/svg/home-01.svg',
                         width: iconWidth,
                         height: iconHeight,
                       ),
@@ -107,7 +109,9 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                         });
                       },
                       child: SvgPicture.asset(
-                        widget.isSelected == 1 ? 'assets/svg/search-08.svg' : 'assets/svg/search-03.svg',
+                        widget.isSelected == 1
+                            ? 'assets/svg/search-08.svg'
+                            : 'assets/svg/search-03.svg',
                         width: iconWidth,
                         height: iconHeight,
                       ),
@@ -142,7 +146,9 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                         });
                       },
                       child: SvgPicture.asset(
-                        widget.isSelected == 2 ? 'assets/svg/love-07.svg' : 'assets/svg/love-02.svg',
+                        widget.isSelected == 2
+                            ? 'assets/svg/love-07.svg'
+                            : 'assets/svg/love-02.svg',
                         width: iconWidth,
                         height: iconHeight,
                       ),
@@ -169,14 +175,17 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                       onTap: () {
                         setState(() {
                           widget.isSelected = 3;
-                          Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return MyCart ();
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return MyCart();
                           }));
                           // _myPage.jumpToPage(3);
                         });
                       },
                       child: SvgPicture.asset(
-                        widget.isSelected == 3 ? 'assets/svg/cart-09.svg' : 'assets/svg/cart-04.svg',
+                        widget.isSelected == 3
+                            ? 'assets/svg/cart-09.svg'
+                            : 'assets/svg/cart-04.svg',
                         width: iconWidth,
                         height: iconHeight,
                       ),
@@ -202,7 +211,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         notchMargin: 0.0,
       ),
       backgroundColor: Colors.white,
-      appBar: homeAppBar(true , context, false , 'HODHOT MART' , searchAction()),
+      appBar: homeAppBar(true, context, false, 'HODHOD MART', searchAction()),
       body: PageView(
         controller: _myPage,
         onPageChanged: (int) {

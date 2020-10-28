@@ -16,49 +16,58 @@ class SignIn extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
-              padding: const EdgeInsets.only(top : 80.0 , bottom: 20),
-              child: Column (
+              padding: const EdgeInsets.only(top: 80.0, bottom: 20),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Column (
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text ('Sign In',
-                      style: TextStyle (
-                        color: Colors.black.withOpacity(0.6),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
+                      Text(
+                        'Sign In',
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.6),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.1,
                       ),
-                      SizedBox (height: MediaQuery.of(context).size.height * 0.1,),
-                      Text ('Enter your mobile number',
-                        style: TextStyle (
+                      Text(
+                        'Enter your mobile number',
+                        style: TextStyle(
                           color: Colors.black.withOpacity(0.6),
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
-                      SizedBox (height: MediaQuery.of(context).size.height * 0.05,),
-                      Container (
-                        padding: EdgeInsets.only(left: 10 , right: 5),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 10, right: 5),
                         height: 50,
                         width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration (
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: greyBorder),
                         ),
-                        child: Row (
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Icon (
+                            Icon(
                               Icons.arrow_drop_down,
-                            size: 20,
-                            color: Colors.red,),
-                            CountryCodePicker (),
-                            SizedBox (width: 10,),
-                            SizedBox (
-                              child: Container (
+                              size: 20,
+                              color: Colors.red,
+                            ),
+                            CountryCodePicker(),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            SizedBox(
+                              child: Container(
                                 width: 2,
                                 height: 30,
                                 color: greyBorder,
@@ -67,55 +76,57 @@ class SignIn extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox (height: MediaQuery.of(context).size.height * 0.05,),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
                       Padding(
-                        padding: const EdgeInsets.only(left : 15.0 , right: 15),
-                        child: Center (
+                        padding: const EdgeInsets.only(left: 15.0, right: 15),
+                        child: Center(
                           child: RichText(
-                            text : TextSpan (
+                            text: TextSpan(
                               children: [
-                                TextSpan (
-                                  text : 'By creating an account you agree to our ',
-                                  style: TextStyle (
+                                TextSpan(
+                                  text:
+                                      'By creating an account you agree to our ',
+                                  style: TextStyle(
                                     color: kTextColor,
                                     fontSize: textSize,
                                   ),
                                 ),
-                                TextSpan (
+                                TextSpan(
                                   text: 'Terms ',
-                                  style: TextStyle (
+                                  style: TextStyle(
                                     color: kTextPurpleColor,
                                     fontSize: textSize,
                                   ),
                                 ),
-                                TextSpan (
-                                  text : 'of ',
-                                  style: TextStyle (
+                                TextSpan(
+                                  text: 'of ',
+                                  style: TextStyle(
                                     color: kTextColor,
                                     fontSize: textSize,
                                   ),
                                 ),
-                                TextSpan (
-                                  text : 'Service ',
-                                  style: TextStyle (
+                                TextSpan(
+                                  text: 'Service ',
+                                  style: TextStyle(
                                     color: kTextPurpleColor,
                                     fontSize: textSize,
                                   ),
                                 ),
-                                TextSpan (
-                                  text : 'and ',
-                                  style: TextStyle (
+                                TextSpan(
+                                  text: 'and ',
+                                  style: TextStyle(
                                     color: kTextColor,
                                     fontSize: textSize,
                                   ),
                                 ),
-                                TextSpan (
-                                  text : 'Privacy Policy',
-                                  style: TextStyle (
+                                TextSpan(
+                                  text: 'Privacy Policy',
+                                  style: TextStyle(
                                     color: kTextPurpleColor,
                                     fontSize: textSize,
                                   ),
-
                                 ),
                               ],
                             ),
@@ -124,7 +135,9 @@ class SignIn extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox (height: MediaQuery.of(context).size.height * 0.05,),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
                       FlatButton(
                         onPressed: () {
                           Navigator.push(
@@ -148,14 +161,14 @@ class SignIn extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
-                              gradient: LinearGradient (
-                                colors: [
-                                  signInStartColor ,
-                                  signInEndColor
-                                ],
-                                begin: const FractionalOffset(0.0, 0.0),
-                                end: const FractionalOffset(1.7, 0.0),
-                              ),
+                              // gradient: LinearGradient (
+                              //   colors: [
+                              //     signInStartColor ,
+                              //     signInEndColor
+                              //   ],
+                              //   begin: const FractionalOffset(0.0, 0.0),
+                              //   end: const FractionalOffset(1.7, 0.0),
+                              // ),
                             ),
                             child: Center(
                               child: Text(
@@ -176,24 +189,29 @@ class SignIn extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container (
+                          Container(
                             height: 1,
                             width: MediaQuery.of(context).size.width * 0.32,
-                            decoration: BoxDecoration (
+                            decoration: BoxDecoration(
                               color: Colors.grey,
                             ),
                           ),
-                          SizedBox (width: 20,),
+                          SizedBox(
+                            width: 20,
+                          ),
                           Text(
                             'or',
-                            style: TextStyle (
+                            style: TextStyle(
                               color: Color(0xFFA83835),
-                            ),),
-                          SizedBox (width: 20,),
-                          Container (
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
                             height: 1,
                             width: MediaQuery.of(context).size.width * 0.32,
-                            decoration: BoxDecoration (
+                            decoration: BoxDecoration(
                               color: Colors.grey,
                             ),
                           ),
@@ -202,11 +220,11 @@ class SignIn extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      Center (
-                        child: Text (
-                            'Sign in with Facebook & Instagram',
+                      Center(
+                        child: Text(
+                          'Sign in with Facebook & Instagram',
                           textAlign: TextAlign.center,
-                          style: TextStyle (
+                          style: TextStyle(
                             color: kTextColor,
                             fontSize: 13,
                           ),
@@ -216,8 +234,7 @@ class SignIn extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.04,
                       ),
                       FlatButton(
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                         child: Container(
                           height: 50,
                           width: MediaQuery.of(context).size.width * 0.8,
@@ -227,10 +244,8 @@ class SignIn extends StatelessWidget {
                           ),
                           child: SignInButton(
                             Buttons.Facebook,
-                            onPressed: () {
-
-                            },
-                            shape: RoundedRectangleBorder (
+                            onPressed: () {},
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
                           ),
@@ -258,9 +273,8 @@ class SignIn extends StatelessWidget {
                           height: 50,
                           width: MediaQuery.of(context).size.width * 0.8,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                              border: Border.all(color: instaTextColor)
-                          ),
+                              borderRadius: BorderRadius.circular(25),
+                              border: Border.all(color: instaTextColor)),
                           child: Center(
                             child: Text(
                               'Sign In with Instagram',

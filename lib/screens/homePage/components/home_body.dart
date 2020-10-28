@@ -15,201 +15,375 @@ class HomeBody extends StatefulWidget {
 
 class _HomeBodyState extends State<HomeBody> {
   List<CategoryRepository> categoriesArray = [
-    CategoryRepository(name: 'Electronic', image: 'Electronic.png' ,
+    CategoryRepository(
+        name: 'Electronic',
+        image: 'Electronic.png',
         subCategoriesList: [
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,
-          children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-            SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(
+              name: 'Electronic',
+              image: 'Electronic.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+              ]),
+          SubCategoryRepository(
+              name: 'Fashion',
+              image: 'Fashion.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+              ]),
+          SubCategoryRepository(
+              name: 'Kitchen',
+              image: 'Kitchen.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+              ]),
+          SubCategoryRepository(name: 'Toys', image: 'Toys.png', children: [
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
           ]),
-          SubCategoryRepository(name: 'Fashion', image: 'Fashion.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(
+              name: 'Make up',
+              image: 'Make up.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
               ]),
-          SubCategoryRepository(name: 'Kitchen', image: 'Kitchen.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-              ]),
-          SubCategoryRepository(name: 'Toys', image: 'Toys.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-              ]),
-          SubCategoryRepository(name: 'Make up', image: 'Make up.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-              ]),
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(
+              name: 'Electronic',
+              image: 'Electronic.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
               ]),
         ]),
-    CategoryRepository(name: 'Fashion', image: 'Fashion.png',
+    CategoryRepository(
+        name: 'Fashion',
+        image: 'Fashion.png',
         subCategoriesList: [
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(
+              name: 'Electronic',
+              image: 'Electronic.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
               ]),
-          SubCategoryRepository(name: 'Fashion', image: 'Fashion.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(
+              name: 'Fashion',
+              image: 'Fashion.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
               ]),
-          SubCategoryRepository(name: 'Kitchen', image: 'Kitchen.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(
+              name: 'Kitchen',
+              image: 'Kitchen.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
               ]),
-          SubCategoryRepository(name: 'Toys', image: 'Toys.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(name: 'Toys', image: 'Toys.png', children: [
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+            SubCategoryChildRepository(
+                image: 'Electronic.png', name: 'Electronic'),
+          ]),
+          SubCategoryRepository(
+              name: 'Make up',
+              image: 'Make up.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
               ]),
-          SubCategoryRepository(name: 'Make up', image: 'Make up.png',
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-              ]),
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,
-              children: [SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
-                SubCategoryChildRepository (image: 'Electronic.png' , name: 'Electronic'),
+          SubCategoryRepository(
+              name: 'Electronic',
+              image: 'Electronic.png',
+              children: [
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
+                SubCategoryChildRepository(
+                    image: 'Electronic.png', name: 'Electronic'),
               ]),
         ]),
-    CategoryRepository(name: 'Kitchen', image: 'Kitchen.png',
+    CategoryRepository(
+        name: 'Kitchen',
+        image: 'Kitchen.png',
         subCategoriesList: [
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,),
+          SubCategoryRepository(
+            name: 'Electronic',
+            image: 'Electronic.png',
+          ),
           SubCategoryRepository(name: 'Fashion', image: 'Fashion.png'),
           SubCategoryRepository(name: 'Kitchen', image: 'Kitchen.png'),
           SubCategoryRepository(name: 'Toys', image: 'Toys.png'),
           SubCategoryRepository(name: 'Make up', image: 'Make up.png'),
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,),
+          SubCategoryRepository(
+            name: 'Electronic',
+            image: 'Electronic.png',
+          ),
         ]),
-    CategoryRepository(name: 'Toys', image: 'Toys.png',
+    CategoryRepository(name: 'Toys', image: 'Toys.png', subCategoriesList: [
+      SubCategoryRepository(
+        name: 'Electronic',
+        image: 'Electronic.png',
+      ),
+      SubCategoryRepository(name: 'Fashion', image: 'Fashion.png'),
+      SubCategoryRepository(name: 'Kitchen', image: 'Kitchen.png'),
+      SubCategoryRepository(name: 'Toys', image: 'Toys.png'),
+      SubCategoryRepository(name: 'Make up', image: 'Make up.png'),
+      SubCategoryRepository(
+        name: 'Electronic',
+        image: 'Electronic.png',
+      ),
+    ]),
+    CategoryRepository(
+        name: 'Make up',
+        image: 'Make up.png',
         subCategoriesList: [
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,),
+          SubCategoryRepository(
+            name: 'Electronic',
+            image: 'Electronic.png',
+          ),
           SubCategoryRepository(name: 'Fashion', image: 'Fashion.png'),
           SubCategoryRepository(name: 'Kitchen', image: 'Kitchen.png'),
           SubCategoryRepository(name: 'Toys', image: 'Toys.png'),
           SubCategoryRepository(name: 'Make up', image: 'Make up.png'),
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,),
-        ]),
-    CategoryRepository(name: 'Make up', image: 'Make up.png',
-        subCategoriesList: [
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,),
-          SubCategoryRepository(name: 'Fashion', image: 'Fashion.png'),
-          SubCategoryRepository(name: 'Kitchen', image: 'Kitchen.png'),
-          SubCategoryRepository(name: 'Toys', image: 'Toys.png'),
-          SubCategoryRepository(name: 'Make up', image: 'Make up.png'),
-          SubCategoryRepository(name: 'Electronic', image: 'Electronic.png' ,),
+          SubCategoryRepository(
+            name: 'Electronic',
+            image: 'Electronic.png',
+          ),
         ]),
   ];
-
 
   List<CollectionRepository> collectionList = [
     CollectionRepository(
       name: 'Electronic Collection',
       collectionList: [
         CollectionCardRepository(
-            name: 'Electronic 1',
+            name: 'Washing Machine from company with great features',
             price: '1200 \$',
             discount: '30 %',
-            image: 'assets/e1.jpeg',
+            image: 'assets/e1.png',
             rate: 3.5),
         CollectionCardRepository(
             name: 'Electronic 2',
             price: '1300 \$',
             discount: '30 %',
-            image: 'assets/e2.jpeg',
+            image: 'assets/e2.png',
             rate: 4.5),
         CollectionCardRepository(
             name: 'Electronic 3',
@@ -318,33 +492,39 @@ class _HomeBodyState extends State<HomeBody> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Categories(
-            categoriesArray: categoriesArray,
-            children: categoriesArray[1].subCategoriesList[1].children,
-            subCategoriesArray: categoriesArray[0].subCategoriesList,
-            collectionList: collectionList,
-          ),
-          Ads(adHeight: 200,),
-          Padding(
-            padding: const EdgeInsets.only(bottom : 15.0),
-            child: Container(
-              child: ListView(
-                primary: false,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                children: collectionList.map((CollectionRepository value) {
-                  return Collection(
-                    collectionCard: value,
-                  );
-                }).toList(),
+      child: Container(
+        color: Colors.blue[50],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Ads(
+              adHeight: 200,
+            ),
+            Categories(
+              categoriesArray: categoriesArray,
+              children: categoriesArray[1].subCategoriesList[1].children,
+              subCategoriesArray: categoriesArray[0].subCategoriesList,
+              collectionList: collectionList,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: Container(
+                color: Colors.blue[50],
+                child: ListView(
+                  primary: false,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  children: collectionList.map((CollectionRepository value) {
+                    return Collection(
+                      collectionCard: value,
+                    );
+                  }).toList(),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

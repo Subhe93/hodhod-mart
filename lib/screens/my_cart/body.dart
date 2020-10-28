@@ -4,259 +4,277 @@ import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/screens/checkout/checkout.dart';
 import 'package:hodhod_mart/screens/my_cart/cart_card.dart';
 
+import '../../constants.dart';
+import '../homePage/components/ads.dart';
+
 class MyCartBody extends StatefulWidget {
-  final List<String> cartArray = ['s','s','s','s','s'];
+  final List<String> cartArray = ['s', 's'];
 
   @override
   _MyCartBodyState createState() => _MyCartBodyState();
 }
 
 class _MyCartBodyState extends State<MyCartBody> {
+  int _value = 1;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: true,
-      top: false,
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        color: Colors.white54.withOpacity(0.5),
-        child: widget.cartArray.isNotEmpty
-            ? Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.only(bottom: 10),
-                    children: widget.cartArray.map((String value) {
-                      return Column(
-                        children: [
-                          InkWell(child: CartCard()),
-                          SizedBox (
-                            height: 1,
-                            child: Container (
-                              color: Colors.grey.withOpacity(0.7),
-                            ),
+    return Container(
+      height: MediaQuery.of(context).size.height - 70,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                child: Image.asset(
+                  'assets/ad1.png',
+                  fit: BoxFit.cover,
+                )),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              child: widget.cartArray.isNotEmpty
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: ListView(
+                            physics: ClampingScrollPhysics(),
+                            padding: EdgeInsets.only(bottom: 10),
+                            children: widget.cartArray.map((String value) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  InkWell(child: CartCard()),
+                                  Divider()
+                                ],
+                              );
+                            }).toList(),
                           ),
-                        ],
-                      );
-                    }).toList(),
-                  ),
-                ),
-                Column(
-                  children: [
-                    Container(
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.white54,
-                      child: Column (
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 1,
-                            child: Container (
-                              color: Colors.grey.withOpacity(0.7),
-                          ),
-                          ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(25.0 , 0 , 25 , 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0 , 15 , 0 , 15),
-                                      child: Row (
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.blue[50],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          1.5,
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                            suffixIcon: FlatButton(
+                                              child: Text(
+                                                'Enter',
+                                                style: TextStyle(
+                                                    color: signInStartColor),
+                                              ),
+                                              color: Colors.transparent,
+                                            ),
+                                            border: OutlineInputBorder(),
+                                            hintText: 'Enter Coupon Code'),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
                                         children: [
-                                          Text (
-                                              'Subtotal',
-                                          style: TextStyle (
+                                          Text('Total Items'),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text('2')
+                                        ],
+                                      ),
+                                      Text(
+                                        'SAR 500',
+                                        style: TextStyle(
                                             fontSize: 17,
-                                            color: kTextColor,
-                                            fontWeight: FontWeight.w500
-                                          ),),
-                                          Text (
-                                            '100.00 SR',
-                                            style: TextStyle (
-                                              fontSize: 17,
-                                              color: kTextColor,
-                                                fontWeight: FontWeight.w500
-                                            ),),
-                                        ],
+                                            color: Colors.grey[900],
+                                            fontWeight: FontWeight.w600),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0 , 15 , 0 , 15),
-                                      child: Row (
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
                                         children: [
-                                          Text (
-                                            'Estimated Tax',
-                                            style: TextStyle (
-                                                fontSize: 17,
-                                                color: kTextColor,
-                                                fontWeight: FontWeight.w500
-                                            ),),
-                                          Text (
-                                            '18.00 SR',
-                                            style: TextStyle (
-                                                fontSize: 17,
-                                                color: kTextColor,
-                                                fontWeight: FontWeight.w500
-                                            ),),
+                                          Text(
+                                            'Deliver To   ',
+                                            style: TextStyle(
+                                                color: Colors.grey[900],
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          DropdownButton(
+                                              value: _value,
+                                              items: [
+                                                DropdownMenuItem(
+                                                  child: Text("First Location"),
+                                                  value: 1,
+                                                ),
+                                                DropdownMenuItem(
+                                                  child:
+                                                      Text("Second Location"),
+                                                  value: 2,
+                                                ),
+                                                DropdownMenuItem(
+                                                    child:
+                                                        Text("Third Location"),
+                                                    value: 3),
+                                                DropdownMenuItem(
+                                                    child:
+                                                        Text("Fourth Location"),
+                                                    value: 4)
+                                              ],
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  _value = value;
+                                                });
+                                              })
                                         ],
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0 , 15 , 0 , 15),
-                                      child: Row (
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      Text(
+                                        'SAR 0',
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            color: Colors.grey[900],
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
                                         children: [
-                                          Text (
-                                            'Shipping \$ Return',
-                                            style: TextStyle (
+                                          Text(
+                                            'Total',
+                                            style: TextStyle(
                                                 fontSize: 17,
-                                                color: kTextColor,
-                                                fontWeight: FontWeight.w500
-                                            ),),
-                                          Text (
-                                            'Subtotal',
-                                            style: TextStyle (
-                                                fontSize: 17,
-                                                color: Colors.redAccent,
-                                                fontWeight: FontWeight.w500
-                                            ),),
+                                                color: Colors.grey[900],
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text('(Including VAT)',
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                              ))
                                         ],
                                       ),
+                                      Text(
+                                        'SAR 500',
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            color: Colors.grey[900],
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 35),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: FlatButton(
+                                      onPressed: () {},
+                                      color: Colors.blue,
+                                      child: Text(
+                                        'Procced to checkout',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     ),
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                              SizedBox(
-                                height: 1,
-                                child: Container (
-                                  color: Colors.grey.withOpacity(0.7),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(25.0 , 13 , 25 , 13),
-                                child: Row (
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text (
-                                      'Total Price',
-                                      style: TextStyle (
-                                          fontSize: 17,
-                                          color: kTextColor,
-                                          fontWeight: FontWeight.w500
-                                      ),),
-                                    Text (
-                                      '118.00 SR',
-                                      style: TextStyle (
-                                          fontSize: 17,
-                                          color: kTextColor,
-                                          fontWeight: FontWeight.w500
-                                      ),),
-                                  ],
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ],
+                        )
+                      ],
+                    )
+                  : Container(
+                      height: MediaQuery.of(context).size.height,
+                      child: Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(top: 150),
+                                  width: 200,
+                                  height: 200,
+                                  child: SvgPicture.asset(
+                                    'assets/svg/order.svg',
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: Text(
+                                    'Your order is empty!',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(10),
+                                  width: 250,
+                                  child: Text(
+                                    'Explore more and buy some items',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.grey.withOpacity(0.7),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 50,
+                              color: Colors.deepPurple,
+                              child: Center(
+                                  child: Text(
+                                'START SHOPPING',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              )),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return Checkout();
-                        }));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        color: Colors.deepPurple,
-                        child: Center(
-                            child: Text(
-                              'PROCEED TO CHECKOUT',
-                              style:  TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            )),
-                      ),
-                    ),
-                  ],
-                ),
-                ],
-            )
-            : Container(
-                height: MediaQuery.of(context).size.height,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: 150),
-                            width: 200,
-                            height: 200,
-                            child: SvgPicture.asset(
-                              'assets/svg/order.svg',
-                              color: Colors.grey,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: Text(
-                              'Your order is empty!',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            width: 250,
-                            child: Text(
-                              'Explore more and buy some items',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.grey.withOpacity(0.7),
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        color: Colors.deepPurple,
-                        child: Center(
-                            child: Text(
-                          'START SHOPPING',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        )),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
+InputDecoration inputDecoration() {}

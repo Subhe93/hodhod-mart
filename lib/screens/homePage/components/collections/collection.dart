@@ -10,40 +10,44 @@ class Collection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top : 30.0 , bottom: 5 ),
+      padding: const EdgeInsets.only(top: 30.0, bottom: 5),
       child: Container(
-        height: 310,
-        color: Colors.white,
+        height: 400,
+        color: Colors.blue[50],
         width: MediaQuery.of(context).size.width,
-        child: Column (
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row (
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text (
+                  Text(
                     collectionCard.name,
-                    style: TextStyle (
+                    style: TextStyle(
                       color: kTextColor,
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
-                    ),),
-                  InkWell (
-                    child: Text (
+                    ),
+                  ),
+                  InkWell(
+                    child: Text(
                       'MORE',
-                      style: TextStyle (
+                      style: TextStyle(
                         color: kTextPurpleColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
-                      ),),
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
-            CollectionList(collectionList: collectionCard.collectionList,),
+            CollectionList(
+              collectionList: collectionCard.collectionList,
+            ),
           ],
         ),
       ),
