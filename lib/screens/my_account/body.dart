@@ -28,14 +28,15 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(top: 10),
-                      height: 180,
+                      height: MediaQuery.of(context).size.height / 3.8,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                            padding:
+                                const EdgeInsets.only(top: 10.0, bottom: 10),
                             child: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
@@ -79,239 +80,170 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                         ],
                       ),
                     ),
-                    Container(
-                      height: 360,
-                      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 18,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: OutlineButton(
+                            borderSide: BorderSide(color: signInStartColor),
+                            color: Color(0xFFc68cf3),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return AccountInfo();
+                              }));
+                            },
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                      return AccountInfo ();
-                                    }));
-                                  },
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.all(10),
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Color(0xFFc68cf3),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: SvgPicture.asset(
-                                            'assets/svg/account.svg',
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'My Account',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: kTextColor,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                Text(
+                                  'My Account',
+                                  style: TextStyle(color: signInStartColor),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return MyOrders();
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.all(10),
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Color(0xFF838eff),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: SvgPicture.asset(
-                                            'assets/svg/order.svg',
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'My Order',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: kTextColor,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                SizedBox(
+                                  width: 8,
                                 ),
-                                InkWell(
-                                  onTap: () {},
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.fromLTRB(10, 30, 10, 10),
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Color(0xFF6cdca1),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: SvgPicture.asset(
-                                            'assets/svg/pass.svg',
-                                            width: 10,
-                                            height: 10,
-                                            allowDrawingOutsideViewBox: false,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 90,
-                                        child: Text(
-                                          'Password Change',
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            color: kTextColor,
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                Icon(
+                                  Icons.account_box_outlined,
+                                  color: signInStartColor,
                                 ),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                InkWell(
-                                  onTap: () {},
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.all(10),
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Color(0xFFf9c967),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: SvgPicture.asset(
-                                            'assets/svg/terms use.svg',
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Terms Use',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: kTextColor,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {},
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.fromLTRB(10, 30, 10, 10),
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Color(0xFFfd6073),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: SvgPicture.asset(
-                                            'assets/svg/privcy.svg',
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 90,
-                                        child: Text(
-                                          'Privacy Policy',
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            color: kTextColor,
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {},
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.all(10),
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Color(0xFF64cbf6),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: SvgPicture.asset(
-                                            'assets/svg/faqs.svg',
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'FAQ\'s',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: kTextColor,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 18,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: OutlineButton(
+                            borderSide: BorderSide(color: signInStartColor),
+                            color: Color(0xFF838eff),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return MyOrders();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'My Orders',
+                                  style: TextStyle(color: signInStartColor),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Icon(
+                                  Icons.check_box_outlined,
+                                  color: signInStartColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 18,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: OutlineButton(
+                            borderSide: BorderSide(color: signInStartColor),
+                            color: Color(0xFF6cdca1),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Change Password',
+                                  style: TextStyle(color: signInStartColor),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Icon(
+                                  Icons.vpn_key_outlined,
+                                  color: signInStartColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 18,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: OutlineButton(
+                            borderSide: BorderSide(color: signInStartColor),
+                            color: Color(0xFFf9c967),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Terms Of use',
+                                  style: TextStyle(color: signInStartColor),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Icon(
+                                  Icons.paste_outlined,
+                                  color: signInStartColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 18,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          child: OutlineButton(
+                            borderSide: BorderSide(color: signInStartColor),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Privacy Policy',
+                                  style: TextStyle(color: signInStartColor),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Icon(
+                                  Icons.no_encryption_outlined,
+                                  color: signInStartColor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

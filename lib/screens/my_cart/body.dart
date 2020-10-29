@@ -5,7 +5,6 @@ import 'package:hodhod_mart/screens/checkout/checkout.dart';
 import 'package:hodhod_mart/screens/my_cart/cart_card.dart';
 
 import '../../constants.dart';
-import '../homePage/components/ads.dart';
 
 class MyCartBody extends StatefulWidget {
   final List<String> cartArray = ['s', 's'];
