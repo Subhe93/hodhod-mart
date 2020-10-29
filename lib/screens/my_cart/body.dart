@@ -34,6 +34,7 @@ class _MyCartBodyState extends State<MyCartBody> {
                             height: 1,
                             child: Container (
                               color: Colors.grey.withOpacity(0.7),
+                              width: MediaQuery.of(context).size.width*0.9,
                             ),
                           ),
                         ],

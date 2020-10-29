@@ -9,7 +9,7 @@ class SubCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 140,
       width: MediaQuery.of(context).size.width,
       child: SubCategoriesList(subCategoryList: subCategoryList,),
     );

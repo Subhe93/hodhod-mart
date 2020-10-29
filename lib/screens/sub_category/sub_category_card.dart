@@ -15,20 +15,21 @@ class _SubCategoryCardState extends State<SubCategoryCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left : 15 , top : 15 , right: 10),
+      margin: EdgeInsets.only(left : 2 , top : 15 , right: 2),
       child: Column (
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom : 10.0 ),
+            padding: const EdgeInsets.only(bottom : 0.0 ),
             child: CircleAvatar (
+              backgroundColor: Colors.white,
               radius: 40,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(40),
                 child: Image.asset(
                   'assets/' + widget.subCategory.image,
-                  width: 80,
-                  height: 80,
+                  width: 55,
+                  height: 55,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -44,5 +45,35 @@ class _SubCategoryCardState extends State<SubCategoryCard> {
         ],
       ),
     );
+    // return Container(
+    //   margin: EdgeInsets.only(left : 4 , top : 15 , right: 4),
+    //   child: Column (
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: [
+    //       Padding(
+    //         padding: const EdgeInsets.only(bottom : 10.0 ),
+    //         child: CircleAvatar (
+    //           radius: 33,
+    //           child: ClipRRect(
+    //             borderRadius: BorderRadius.circular(40),
+    //             child: Image.asset(
+    //               'assets/' + widget.subCategory.image,
+    //               width: 60,
+    //               height: 60,
+    //               fit: BoxFit.fill,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       Text (
+    //         widget.subCategory.name,
+    //         style: TextStyle (
+    //           fontWeight: FontWeight.w600,
+    //           color: kTextColor,
+    //           fontSize: 14,
+    //         ),),
+    //     ],
+    //   ),
+    // );
   }
 }

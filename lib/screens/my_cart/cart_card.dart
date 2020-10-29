@@ -12,7 +12,7 @@ class _CartCardState extends State<CartCard> {
     return Container(
       child: Container (
         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        height: 170,
+        height: 140,
         child: Row (
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -30,32 +30,38 @@ class _CartCardState extends State<CartCard> {
                       )
                     ]
                 ),
-                child: Image.asset(
-                  'assets/m2.jpeg',
-                  height: 130,
-                  width: 100,
-                  fit: BoxFit.fill,),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/toy4.jpeg',
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.fill,),
+                ),
               ),
             ),
             Flexible(
               flex: 5,
               child: Container(
                 margin: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                height: 130,
+                height: 110,
                 child: Column (
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0),color:  Colors.amber),
                       width: MediaQuery.of(context).size.width * 0.6,
-                      child: Text (
-                        'Osaka Entry Fee Superday Entry Fee SuperdayEntry Fee Superday',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle (
-                            color: kTextColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16
+                      child: Center(
+                        child: Text (
+                          'Osaka Entry Fee Superday',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle (
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16
+                          ),
                         ),
                       ),
                     ),
@@ -93,6 +99,38 @@ class _CartCardState extends State<CartCard> {
                       child: Row (
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Row (
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell (
+                                child: Text (
+                                  'Edit',
+                                  style: TextStyle (
+                                    color: Colors.redAccent,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              Text (' - ',
+                                style: TextStyle (
+                                  color: Colors.redAccent,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                ),),
+                              InkWell (
+                                child: Text (
+                                  'Delete',
+                                  style: TextStyle (
+                                    color: Colors.redAccent,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox (width: MediaQuery.of(context).size.width * 0.05,),
                           Row (
                             children: [
                               InkWell (
@@ -140,38 +178,8 @@ class _CartCardState extends State<CartCard> {
                               ),
                             ],
                           ),
-                          SizedBox (width: MediaQuery.of(context).size.width * 0.05,),
-                          Row (
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell (
-                                child: Text (
-                                  'Edit',
-                                  style: TextStyle (
-                                    color: Colors.redAccent,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              Text (' - ',
-                                style: TextStyle (
-                                  color: Colors.redAccent,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                ),),
-                              InkWell (
-                                child: Text (
-                                  'Delete',
-                                  style: TextStyle (
-                                    color: Colors.redAccent,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+
+
                         ],
                       ),
                     )

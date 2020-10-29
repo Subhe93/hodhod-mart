@@ -28,7 +28,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(top: 10),
-                      height: 220,
+                      height: 180,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -52,8 +52,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 borderRadius: BorderRadius.circular(70),
                                 child: Image.asset(
                                   'assets/profile.png',
-                                  width: 140,
-                                  height: 140,
+                                  width: 100,
+                                  height: 100,
                                   fit: BoxFit.fill,
                                 ),
                               ),

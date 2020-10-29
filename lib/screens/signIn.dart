@@ -55,7 +55,10 @@ class SignIn extends StatelessWidget {
                               Icons.arrow_drop_down,
                             size: 20,
                             color: Colors.red,),
-                            CountryCodePicker (),
+                            CountryCodePicker (
+                              initialSelection: '+966',
+                              favorite: ['+966'],
+                            ),
                             SizedBox (width: 10,),
                             SizedBox (
                               child: Container (
