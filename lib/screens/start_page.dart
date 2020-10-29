@@ -20,7 +20,8 @@ class StartPage extends StatelessWidget {
             padding: EdgeInsets.all(25),
             height: 200,
             width: MediaQuery.of(context).size.width,
-            child: SvgPicture.asset('assets/svg/HodHod Mart Final Logo.svg',
+            child: SvgPicture.asset(
+              'assets/svg/HodHod Mart Final Logo.svg',
             ),
           ),
           SizedBox(
@@ -43,14 +44,14 @@ class StartPage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 color: Colors.yellow,
-                gradient: LinearGradient (
-                  colors: [
-                    signInStartColor ,
-                    signInEndColor
-                  ],
-                  begin: const FractionalOffset(0.0, 0.0),
-                  end: const FractionalOffset(1.7, 0.0),
-                ),
+                // gradient: LinearGradient (
+                //   colors: [
+                //     signInStartColor ,
+                //     signInEndColor
+                //   ],
+                //   begin: const FractionalOffset(0.0, 0.0),
+                //   end: const FractionalOffset(1.7, 0.0),
+                // ),
               ),
               child: Center(
                 child: Text(
@@ -70,24 +71,29 @@ class StartPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container (
+              Container(
                 height: 1,
                 width: MediaQuery.of(context).size.width * 0.32,
-                decoration: BoxDecoration (
+                decoration: BoxDecoration(
                   color: Colors.grey,
                 ),
               ),
-              SizedBox (width: 20,),
+              SizedBox(
+                width: 20,
+              ),
               Text(
-                  'or',
-                style: TextStyle (
+                'or',
+                style: TextStyle(
                   color: Color(0xFFA83835),
-                ),),
-              SizedBox (width: 20,),
-              Container (
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Container(
                 height: 1,
                 width: MediaQuery.of(context).size.width * 0.32,
-                decoration: BoxDecoration (
+                decoration: BoxDecoration(
                   color: Colors.grey,
                 ),
               ),
@@ -96,22 +102,21 @@ class StartPage extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          Center (
-            child: Text (
+          Center(
+            child: Text(
               'Sign in with Facebook & Instagram',
-            textAlign: TextAlign.center,
-            style: TextStyle (
-              color: kTextColor,
-              fontSize: 13,
-            ),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: kTextColor,
+                fontSize: 13,
+              ),
             ),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.03,
           ),
           FlatButton(
-            onPressed: () {
-            },
+            onPressed: () {},
             child: Container(
               height: 50,
               width: MediaQuery.of(context).size.width * 0.8,
@@ -121,10 +126,8 @@ class StartPage extends StatelessWidget {
               ),
               child: SignInButton(
                 Buttons.Facebook,
-                onPressed: () {
-
-                },
-                shape: RoundedRectangleBorder (
+                onPressed: () {},
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
               ),
@@ -152,9 +155,8 @@ class StartPage extends StatelessWidget {
               height: 50,
               width: MediaQuery.of(context).size.width * 0.8,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: instaTextColor)
-              ),
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(color: instaTextColor)),
               child: Center(
                 child: Text(
                   'Sign In with Instagram',
