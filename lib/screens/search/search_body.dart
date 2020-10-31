@@ -64,9 +64,9 @@ class _SearchBodyState extends State<SearchBody> {
                                 letterSpacing: 0.4),
                           ),
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
+                        // SizedBox(
+                        //   height: MediaQuery.of(context).size.height *0.01,
+                        // ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(

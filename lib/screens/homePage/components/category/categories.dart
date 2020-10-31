@@ -25,7 +25,7 @@ class Categories extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
-        height: 150,
+        height: 120,
         color: Colors.blue[50],
         width: MediaQuery.of(context).size.width,
         child: Column(

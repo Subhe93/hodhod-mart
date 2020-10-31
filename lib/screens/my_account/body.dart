@@ -53,8 +53,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 borderRadius: BorderRadius.circular(70),
                                 child: Image.asset(
                                   'assets/profile.png',
-                                  width: 100,
-                                  height: 100,
+                                  width: 80,
+                                  height: 80,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -106,10 +106,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 SizedBox(
                                   width: 8,
                                 ),
-                                Icon(
-                                  Icons.account_box_outlined,
-                                  color: signInStartColor,
-                                ),
+                                SvgPicture.asset("assets/svg/account_box-24px.svg",color: signInStartColor,)
                               ],
                             ),
                           ),
@@ -145,10 +142,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 SizedBox(
                                   width: 8,
                                 ),
-                                Icon(
-                                  Icons.check_box_outlined,
-                                  color: signInStartColor,
-                                ),
+                                SvgPicture.asset("assets/svg/check_box-24px (1).svg",color: signInStartColor,)
                               ],
                             ),
                           ),
@@ -175,10 +169,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 SizedBox(
                                   width: 8,
                                 ),
-                                Icon(
-                                  Icons.vpn_key_outlined,
-                                  color: signInStartColor,
-                                ),
+                                SvgPicture.asset('assets/svg/vpn_key-24px.svg',color: signInStartColor,)
                               ],
                             ),
                           ),
@@ -205,10 +196,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 SizedBox(
                                   width: 8,
                                 ),
-                                Icon(
-                                  Icons.paste_outlined,
-                                  color: signInStartColor,
-                                ),
+                               SvgPicture.asset('assets/svg/content_paste-24px.svg',color: signInStartColor,)
                               ],
                             ),
                           ),
@@ -234,10 +222,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 SizedBox(
                                   width: 8,
                                 ),
-                                Icon(
-                                  Icons.no_encryption_outlined,
-                                  color: signInStartColor,
-                                ),
+                               SvgPicture.asset('assets/svg/no_encryption-24px.svg',color: signInStartColor,)
                               ],
                             ),
                           ),

@@ -63,7 +63,9 @@ class SignIn extends StatelessWidget {
                               size: 20,
                               color: Colors.red,
                             ),
-                            CountryCodePicker(),
+                            CountryCodePicker(
+                              initialSelection: "+966",
+                            ),
                             SizedBox(
                               width: 10,
                             ),
@@ -162,14 +164,14 @@ class SignIn extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
-                              // gradient: LinearGradient (
-                              //   colors: [
-                              //     signInStartColor ,
-                              //     signInEndColor
-                              //   ],
-                              //   begin: const FractionalOffset(0.0, 0.0),
-                              //   end: const FractionalOffset(1.7, 0.0),
-                              // ),
+                              gradient: LinearGradient (
+                                colors: [
+                                  signInStartColor ,
+                                  signInEndColor
+                                ],
+                                begin: const FractionalOffset(0.0, 0.0),
+                                end: const FractionalOffset(1.7, 0.0),
+                              ),
                             ),
                             child: Center(
                               child: Text(

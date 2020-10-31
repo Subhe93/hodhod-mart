@@ -44,14 +44,14 @@ class StartPage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 color: Colors.yellow,
-                // gradient: LinearGradient (
-                //   colors: [
-                //     signInStartColor ,
-                //     signInEndColor
-                //   ],
-                //   begin: const FractionalOffset(0.0, 0.0),
-                //   end: const FractionalOffset(1.7, 0.0),
-                // ),
+                gradient: LinearGradient (
+                  colors: [
+                    signInStartColor ,
+                    signInEndColor
+                  ],
+                  begin: const FractionalOffset(0.0, 0.0),
+                  end: const FractionalOffset(1.7, 0.0),
+                ),
               ),
               child: Center(
                 child: Text(

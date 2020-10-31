@@ -14,7 +14,7 @@ class _MyCartState extends State<MyCart> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: accountAppBar(context, false, 'My Cart', true),
       body: Stack(children: [
-        MyCartBody(),
+        NewCartBody(),
       ]),
     );
   }

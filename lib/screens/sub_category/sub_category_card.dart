@@ -20,18 +20,14 @@ class _SubCategoryCardState extends State<SubCategoryCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom : 0.0 ),
-            child: CircleAvatar (
-              backgroundColor: Colors.white,
-              radius: 40,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(40),
-                child: Image.asset(
-                  'assets/' + widget.subCategory.image,
-                  width: 55,
-                  height: 55,
-                  fit: BoxFit.fill,
-                ),
+            padding: const EdgeInsets.all(  12.0 ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(40),
+              child: Image.asset(
+                'assets/' + widget.subCategory.image,
+                width: 55,
+                height: 55,
+                fit: BoxFit.fill,
               ),
             ),
           ),

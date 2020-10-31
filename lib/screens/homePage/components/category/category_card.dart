@@ -19,7 +19,7 @@ class CategoryCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
             child: CircleAvatar(
-              radius: 38,
+              radius: 28,
               backgroundColor: signInStartColor,
               child: CircleAvatar(
                 backgroundColor: Colors.white,

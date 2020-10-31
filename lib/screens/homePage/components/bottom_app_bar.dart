@@ -5,6 +5,7 @@ import 'package:hodhod_mart/screens/homePage/home_page.dart';
 import 'package:hodhod_mart/screens/my_account/my_account.dart';
 import 'package:hodhod_mart/screens/my_cart/my_cart.dart';
 import 'package:hodhod_mart/screens/search/search_page.dart';
+import 'package:hodhod_mart/screens/wishlist_screen/whishlist_screen.dart';
 
 class HomeBottomBar extends StatefulWidget {
   int isSelected = 0;
@@ -115,7 +116,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
-                        'Home',
+                        'Wishlist',
                         style: TextStyle(fontSize: 12),
                       ),
                     )
@@ -161,11 +162,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         children: <Widget>[
           HomePage(),
           SearchPage(),
-          Center(
-            child: Container(
-              child: Text('Empty Body 2'),
-            ),
-          ),
+         WhishList(),
           MyCart()
         ],
         physics: NeverScrollableScrollPhysics(),

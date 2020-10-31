@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/model/whoshlist_model.dart';
+import 'package:hodhod_mart/provider/wishList_provider.dart';
 import 'package:hodhod_mart/repositories/collection_card_repository.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../constants.dart';
 import '../../../../constants.dart';
 
-class CollectionCard extends StatelessWidget {
+class CollectionCard extends StatefulWidget {
   final CollectionCardRepository collectionCardItem;
 
   const CollectionCard({Key key, this.collectionCardItem}) : super(key: key);
 
   @override
+  _CollectionCardState createState() => _CollectionCardState();
+}
+
+class _CollectionCardState extends State<CollectionCard> {
+  @override
   Widget build(BuildContext context) {
+    bool test = true;
     return Container(
       width: 240,
       decoration: BoxDecoration(
@@ -35,7 +44,7 @@ class CollectionCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  collectionCardItem.image,
+                  widget.collectionCardItem.image,
                   width: 240,
                   height: 200,
                   fit: BoxFit.cover,
@@ -44,10 +53,30 @@ class CollectionCard extends StatelessWidget {
               Positioned(
                 top: 2,
                 right: 2,
-                child: Icon(
-                  Icons.favorite_border,
-                  color: signInStartColor,
-                  size: 30,
+                child: InkWell(
+                  onTap: (){
+                    WishListItem cartItem = WishListItem(id: 1,imageUrl: widget.collectionCardItem.image
+                    ,price:250.0,title: widget.collectionCardItem.name);
+
+                    Provider.of<WishListProvider>(context,listen: false).add(cartItem);
+
+                    WishListModel cartModel = WishListModel();
+                    cartModel.wishListItem=[];
+                    cartModel.wishListItem.add(cartItem);
+                    Provider.of<WishListProvider>(context,listen: false).saveCart();
+
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text('Item Added To WishList'),));
+                    setState(() {
+                      test =!test;
+                    });
+                    print("///"+widget.collectionCardItem.name);
+                  },
+                  child: Icon(
+                    // test?Icons.favorite:
+                    Icons.favorite_border,
+                    color: test?Colors.deepOrange:signInStartColor,
+                    size: 30,
+                  ),
                 ),
               ),
             ],
@@ -57,7 +86,7 @@ class CollectionCard extends StatelessWidget {
             child: Container(
               width: 240,
               child: Text(
-                collectionCardItem.name,
+                widget.collectionCardItem.name,
                 style: TextStyle(
                   fontSize: 15,
                   letterSpacing: 0.5,
@@ -87,7 +116,7 @@ class CollectionCard extends StatelessWidget {
                       color: Colors.black87, fontWeight: FontWeight.w500),
                   children: <TextSpan>[
                     TextSpan(
-                        text: collectionCardItem.price,
+                        text: widget.collectionCardItem.price,
                         style: TextStyle(
                             color: signInEndColor,
                             fontWeight: FontWeight.bold,

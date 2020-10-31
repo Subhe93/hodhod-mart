@@ -42,8 +42,8 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                       borderRadius: BorderRadius.circular(70),
                       child: Image.asset(
                         'assets/profile.png',
-                        width: 100,
-                        height: 100,
+                        width: 80,
+                        height: 80,
                         fit: BoxFit.fill,
                       ),
                     ),

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hodhod_mart/screens/notifiations/notification_card.dart';
 
 class NotificationsBody extends StatefulWidget {
-  final List<String> notificationsArray = [];
+  final List<String> notificationsArray = ['dsa','lk','ln','lnk',';mk'];
 
   @override
   _NotificationsBodyState createState() => _NotificationsBodyState();

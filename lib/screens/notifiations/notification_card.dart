@@ -10,7 +10,7 @@ class _NotificationCardState extends State<NotificationCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(20 , 20 , 20 , 10),
-      height: 180,
+      height: 150,
       decoration: BoxDecoration (
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
@@ -51,8 +51,7 @@ class _NotificationCardState extends State<NotificationCard> {
                     padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
                     width: MediaQuery.of(context).size.width * 0.65,
                     child: Text (
-                        'hello hellohello hellohello hellohello hellohello hellohello hellohello'
-                            ' hellohello hellohello hellohello hellohello hellohello hello',
+                        'hello hellohello hellohello hellohello hellohello hellohello hellohello',
                       maxLines: 4,
                       style: TextStyle (
                         fontSize: 15,
