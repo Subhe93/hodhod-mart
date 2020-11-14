@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/MainCategory.dart';
+import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
-import 'package:hodhod_mart/repositories/collection_repository.dart';
-import 'package:hodhod_mart/repositories/sub_category_child_repository.dart';
-import 'package:hodhod_mart/repositories/sub_category_repository.dart';
-import 'package:hodhod_mart/screens/homePage/components/category/category_list.dart';
+import 'package:hodhod_mart/screens/sub_category/sub_category_page.dart';
+import 'package:provider/provider.dart';
 
-class Categories extends StatelessWidget {
-  final List<CategoryRepository> categoriesArray;
-  final List<SubCategoryRepository> subCategoriesArray;
-  final List<SubCategoryChildRepository> children;
-  final List<CollectionRepository> collectionList;
+import 'category_card.dart';
 
-  Categories(
-      {Key key,
-      this.categoriesArray,
-      this.subCategoriesArray,
-      this.children,
-      this.collectionList})
-      : super(key: key);
+class Categories extends StatefulWidget {
+  Categories({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _CategoriesState createState() => _CategoriesState();
+}
+
+class _CategoriesState extends State<Categories> {
+  List<MainCategory> categories = [];
+  bool isloading = true;
+  @override
+  void initState() {
+    super.initState();
+    HttpServices.getCategories().then(
+        (value) => setState(() => {categories = value, isloading = false}));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +65,29 @@ class Categories extends StatelessWidget {
                 ],
               ),
             ),
-            CategoriesList(
-              categoriesArray: categoriesArray,
-              subCategoryList: subCategoriesArray,
-              children: children,
-              collectionList: collectionList,
-            ),
+            isloading
+                ? Center(child: CircularProgressIndicator())
+                : Expanded(
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: categories.length,
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return SubCategoryPage(
+                              catID: categories[index].id,
+                              categories: categories,
+                            );
+                          },
+                        )),
+                        child: CategoryCard(
+                            category: CategoryRepository(
+                                id: categories[index].id,
+                                image: categories[index].image,
+                                name: categories[index].name)),
+                      ),
+                    ),
+                  )
           ],
         ),
       ),

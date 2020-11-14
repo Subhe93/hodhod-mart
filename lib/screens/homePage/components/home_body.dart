@@ -25,47 +25,11 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
               ]),
           SubCategoryRepository(
               name: 'Fashion',
               image: 'Fashion.png',
               children: [
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
               ]),
@@ -75,44 +39,8 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
               ]),
           SubCategoryRepository(name: 'Toys', image: 'Toys.png', children: [
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
             SubCategoryChildRepository(
                 image: 'Electronic.png', name: 'Electronic'),
           ]),
@@ -122,45 +50,11 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
               ]),
           SubCategoryRepository(
               name: 'Electronic',
               image: 'Electronic.png',
               children: [
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
                 SubCategoryChildRepository(
@@ -177,47 +71,11 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
               ]),
           SubCategoryRepository(
               name: 'Fashion',
               image: 'Fashion.png',
               children: [
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
               ]),
@@ -227,44 +85,8 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
               ]),
           SubCategoryRepository(name: 'Toys', image: 'Toys.png', children: [
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
-            SubCategoryChildRepository(
-                image: 'Electronic.png', name: 'Electronic'),
             SubCategoryChildRepository(
                 image: 'Electronic.png', name: 'Electronic'),
           ]),
@@ -274,47 +96,11 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
               ]),
           SubCategoryRepository(
               name: 'Electronic',
               image: 'Electronic.png',
               children: [
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
-                SubCategoryChildRepository(
-                    image: 'Electronic.png', name: 'Electronic'),
                 SubCategoryChildRepository(
                     image: 'Electronic.png', name: 'Electronic'),
               ]),
@@ -491,7 +277,6 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
       child: Container(
         color: Colors.blue[50],
         child: Column(
@@ -500,12 +285,7 @@ class _HomeBodyState extends State<HomeBody> {
             Ads(
               adHeight: 200,
             ),
-            Categories(
-              categoriesArray: categoriesArray,
-              children: categoriesArray[1].subCategoriesList[1].children,
-              subCategoriesArray: categoriesArray[0].subCategoriesList,
-              collectionList: collectionList,
-            ),
+            Categories(),
             Padding(
               padding: const EdgeInsets.only(bottom: 15.0),
               child: Container(

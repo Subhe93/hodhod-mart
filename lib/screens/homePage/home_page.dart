@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
-import 'package:hodhod_mart/screens/homePage/components/bottom_app_bar.dart';
-import 'package:hodhod_mart/screens/homePage/components/home_body.dart';
+import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 
+import 'package:hodhod_mart/screens/homePage/components/home_body.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,6 +11,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return HomeBody ();
+    return HomeBody();
   }
 }

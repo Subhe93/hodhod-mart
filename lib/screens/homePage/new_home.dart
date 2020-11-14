@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hodhod_mart/networking_http/services_http.dart';
+import 'package:hodhod_mart/screens/homePage/components/category/categories.dart';
 
 class NewHome extends StatefulWidget {
   NewHome({Key key}) : super(key: key);
@@ -98,9 +100,3 @@ class _NewHomeState extends State<NewHome> {
     );
   }
 }
-//  onTap: () {
-//                         setState(() {
-//                           widget.isSelected = 0;
-//                           _myPage.jumpToPage(0);
-//                         });
-//                       },

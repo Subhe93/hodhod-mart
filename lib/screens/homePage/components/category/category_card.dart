@@ -6,11 +6,12 @@ import '../../../../constants.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryRepository category;
-
+  
   const CategoryCard({Key key, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       margin: EdgeInsets.only(left: 15, top: 15, right: 10),
       child: Column(
@@ -26,8 +27,8 @@ class CategoryCard extends StatelessWidget {
                 radius: 35,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(35),
-                  child: Image.asset(
-                    'assets/' + category.image,
+                  child: Image.network(
+                    baseUrl + category.image,
                     width: 80,
                     height: 80,
                     fit: BoxFit.fill,

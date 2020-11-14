@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/repositories/collection_card_repository.dart';
 import 'package:hodhod_mart/screens/product/components/app_bar.dart';
 import 'package:hodhod_mart/screens/product/product_body.dart';
 
 class ProductPage extends StatefulWidget {
-  final CollectionCardRepository item;
+  final Product product;
 
-  const ProductPage({Key key, this.item}) : super(key: key);
+  const ProductPage({Key key, this.product}) : super(key: key);
   @override
   _ProductPageState createState() => _ProductPageState();
 }
@@ -14,6 +15,8 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
-    return ProductBody(item: widget.item,);
+    return ProductBody(
+      product: widget.product,
+    );
   }
 }

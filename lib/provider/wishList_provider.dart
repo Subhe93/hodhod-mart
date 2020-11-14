@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hodhod_mart/model/Banners.dart';
+
 import 'package:hodhod_mart/model/whoshlist_model.dart';
 import 'package:hodhod_mart/util/session_manager.dart';
-
 
 class WishListProvider with ChangeNotifier {
   bool loading = false;
@@ -9,6 +10,7 @@ class WishListProvider with ChangeNotifier {
   List<WishListItem> wishList = [];
   double _totalPrice = 0;
   WishListModel cartModel = WishListModel();
+  List<AdBanner> banners;
 
   getWish() async {
     try {
@@ -23,6 +25,11 @@ class WishListProvider with ChangeNotifier {
     } catch (e) {}
   }
 
+  void setBanners(List<AdBanner> images) {
+    banners = images;
+    notifyListeners();
+  }
+
   void saveCart() {
     try {
       cartModel.wishListItem = wishList;
@@ -30,13 +37,10 @@ class WishListProvider with ChangeNotifier {
     } catch (e) {}
   }
 
-
-
   void add(WishListItem wishItem) {
     int index = contains(wishItem);
 
-      wishList.add(wishItem);
-
+    wishList.add(wishItem);
 
     notifyListeners();
   }
@@ -48,9 +52,6 @@ class WishListProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-
-
   void removeAtIndex(int index) {
     _totalPrice -= wishList[index].price;
     wishList.removeAt(index);
@@ -61,7 +62,6 @@ class WishListProvider with ChangeNotifier {
   int get count {
     return wishList.length;
   }
-
 
   List<WishListItem> get basketCarts {
     return wishList;

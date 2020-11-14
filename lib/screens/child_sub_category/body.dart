@@ -1,30 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/repositories/collection_card_repository.dart';
+import 'package:hodhod_mart/model/SubCategoryProducts.dart';
+import 'package:hodhod_mart/networking_http/services_http.dart';
 
-import 'child_sub_category_card.dart';
+import 'sub_category_Item_card.dart';
 
 class ChildSubCategoryBody extends StatefulWidget {
-  final List<CollectionCardRepository> itemsList;
+  final int subCatID;
 
-  const ChildSubCategoryBody({Key key, this.itemsList}) : super(key: key);
+  const ChildSubCategoryBody({Key key, this.subCatID}) : super(key: key);
 
   @override
   _ChildSubCategoryBodyState createState() => _ChildSubCategoryBodyState();
 }
 
 class _ChildSubCategoryBodyState extends State<ChildSubCategoryBody> {
+  List<Product> products;
+  bool isloading = true;
+  @override
+  void initState() {
+    super.initState();
+    HttpServices.getSubCategoryProducts(widget.subCatID)
+        .then((value) => setState(() => {products = value, isloading = false}));
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    return GridView.count (
-      padding: EdgeInsets.only(bottom: 80),
-      crossAxisCount: 2,
-        scrollDirection: Axis.vertical,
-        childAspectRatio: 0.6,
-        children: widget.itemsList.map((CollectionCardRepository value) {
-          return ChildSubCategoryCard (item: value,);
-        }).toList(),
-    );
+    return isloading
+        ? Center(child: CircularProgressIndicator())
+        : Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, childAspectRatio: 0.6),
+              itemBuilder: (_, index) => SubCategoryItemCard(
+                item: products[index],
+              ),
+              itemCount: products.length,
+            ),
+          );
   }
 }
-

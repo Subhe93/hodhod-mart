@@ -1,75 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
-import 'package:hodhod_mart/repositories/sub_category_repository.dart';
+import 'package:hodhod_mart/model/SubCategory.dart';
 
+class SubCategoryChildCard extends StatefulWidget {
+  final SubCategory category;
 
-class SubCategoryCard extends StatefulWidget {
-  final SubCategoryRepository subCategory ;
+  const SubCategoryChildCard({
+    Key key,
+    this.category,
+  }) : super(key: key);
 
-  const SubCategoryCard({Key key, this.subCategory}) : super(key: key);
   @override
-  _SubCategoryCardState createState() => _SubCategoryCardState();
+  _SubCategoryChildCardState createState() => _SubCategoryChildCardState();
 }
 
-class _SubCategoryCardState extends State<SubCategoryCard> {
+class _SubCategoryChildCardState extends State<SubCategoryChildCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left : 2 , top : 15 , right: 2),
-      child: Column (
-        mainAxisAlignment: MainAxisAlignment.start,
+      width: MediaQuery.of(context).size.width / 2,
+      height: MediaQuery.of(context).size.width / 2,
+      child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(  12.0 ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(40),
-              child: Image.asset(
-                'assets/' + widget.subCategory.image,
-                width: 55,
-                height: 55,
-                fit: BoxFit.fill,
+          Image.network(
+            baseUrl + widget.category.image,
+            width: MediaQuery.of(context).size.width / 2,
+            height: MediaQuery.of(context).size.width / 2,
+            fit: BoxFit.fill,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width / 2,
+            height: MediaQuery.of(context).size.width / 2,
+            color: Colors.grey.withOpacity(0.2),
+          ),
+          Center(
+            child: Text(
+              widget.category.name,
+              maxLines: 2,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
               ),
             ),
-          ),
-          Text (
-            widget.subCategory.name,
-            style: TextStyle (
-              fontWeight: FontWeight.w600,
-              color: kTextColor,
-              fontSize: 14,
-            ),),
+          )
         ],
       ),
     );
-    // return Container(
-    //   margin: EdgeInsets.only(left : 4 , top : 15 , right: 4),
-    //   child: Column (
-    //     mainAxisAlignment: MainAxisAlignment.start,
-    //     children: [
-    //       Padding(
-    //         padding: const EdgeInsets.only(bottom : 10.0 ),
-    //         child: CircleAvatar (
-    //           radius: 33,
-    //           child: ClipRRect(
-    //             borderRadius: BorderRadius.circular(40),
-    //             child: Image.asset(
-    //               'assets/' + widget.subCategory.image,
-    //               width: 60,
-    //               height: 60,
-    //               fit: BoxFit.fill,
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //       Text (
-    //         widget.subCategory.name,
-    //         style: TextStyle (
-    //           fontWeight: FontWeight.w600,
-    //           color: kTextColor,
-    //           fontSize: 14,
-    //         ),),
-    //     ],
-    //   ),
-    // );
   }
 }

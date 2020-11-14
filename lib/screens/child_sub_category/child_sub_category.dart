@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/repositories/collection_card_repository.dart';
 import 'package:hodhod_mart/screens/child_sub_category/body.dart';
 import 'package:hodhod_mart/screens/child_sub_category/components/bottom_sheet.dart';
 import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
 
-class ChildSubCategory extends StatefulWidget {
-  final List<CollectionCardRepository> itemsList;
 
-  const ChildSubCategory({Key key, this.itemsList}) : super(key: key);
+class ChildSubCategory extends StatefulWidget {
+  final int subCatId;
+  const ChildSubCategory({Key key, this.subCatId}) : super(key: key);
 
   @override
   _ChildSubCategoryState createState() => _ChildSubCategoryState();
@@ -16,27 +15,32 @@ class ChildSubCategory extends StatefulWidget {
 class _ChildSubCategoryState extends State<ChildSubCategory> {
   @override
   Widget build(BuildContext context) {
+  
+
     return Scaffold(
-      appBar: homeAppBar(false , context, true , 'Sub Categories' , searchAction()),
+      appBar:
+          homeAppBar(false, context, true, 'Sub Categories', searchAction()),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           showModalBottomSheet<dynamic>(
             isScrollControlled: true,
             context: context,
-            shape: RoundedRectangleBorder (
-              borderRadius: BorderRadius.only(topRight: Radius.circular(20) , topLeft: Radius.circular(20))
-            ),
-            builder: (context){
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20))),
+            builder: (context) {
               return Wrap(
-                children : [
+                children: [
                   SafeArea(
                     bottom: true,
-                    child: Container (
+                    child: Container(
                       height: MediaQuery.of(context).size.height * 0.7,
-                      decoration: BoxDecoration (
+                      decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.only(topRight: Radius.circular(20) , topLeft: Radius.circular(20))
-                      ),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20))),
                       child: ProductBottomSheet(),
                     ),
                   ),
@@ -51,7 +55,9 @@ class _ChildSubCategoryState extends State<ChildSubCategory> {
           color: Colors.white,
         ),
       ),
-      body: ChildSubCategoryBody(itemsList: widget.itemsList,),
+      body: ChildSubCategoryBody(
+        subCatID: widget.subCatId,
+      ),
     );
   }
 }

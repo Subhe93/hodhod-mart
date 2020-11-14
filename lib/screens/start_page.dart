@@ -5,6 +5,7 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/screens/signIn.dart';
+import 'package:provider/provider.dart';
 
 class StartPage extends StatelessWidget {
   @override
@@ -44,13 +45,10 @@ class StartPage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 color: Colors.yellow,
-                gradient: LinearGradient (
-                  colors: [
-                    signInStartColor ,
-                    signInEndColor
-                  ],
+                gradient: LinearGradient(
                   begin: const FractionalOffset(0.0, 0.0),
                   end: const FractionalOffset(1.7, 0.0),
+                  colors: [signInStartColor, signInEndColor],
                 ),
               ),
               child: Center(
@@ -126,7 +124,7 @@ class StartPage extends StatelessWidget {
               ),
               child: SignInButton(
                 Buttons.Facebook,
-                onPressed: () {},
+                onPressed: () async {},
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),

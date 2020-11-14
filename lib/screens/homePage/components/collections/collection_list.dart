@@ -21,8 +21,8 @@ class _CollectionListState extends State<CollectionList> {
           context,
           MaterialPageRoute(builder: (context) {
             return ProductPage(
-              item: widget.collectionList[0],
-            );
+                // product: widget.collectionList[0],
+                );
           }),
         );
       },
