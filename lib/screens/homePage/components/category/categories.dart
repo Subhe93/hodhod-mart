@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
-import 'package:hodhod_mart/model/MainCategory.dart';
-import 'package:hodhod_mart/networking_http/services_http.dart';
-import 'package:hodhod_mart/provider/modelsProvider.dart';
+import 'package:hodhod_mart/model/Startup.dart';
+
 import 'package:hodhod_mart/repositories/category_repository.dart';
 import 'package:hodhod_mart/screens/sub_category/sub_category_page.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +9,11 @@ import 'package:provider/provider.dart';
 import 'category_card.dart';
 
 class Categories extends StatefulWidget {
+  final List<MainCategory> categories;
+
   Categories({
     Key key,
+    this.categories,
   }) : super(key: key);
 
   @override
@@ -19,31 +21,22 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  List<MainCategory> categories;
-  bool isloading;
-
-  @override
-  void initState() {
-    super.initState();
-    isloading = true;
-    // HttpServices.getCategories().then((value) => {
-    //       Provider.of<ModelsProvider>(context, listen: false)
-    //           .setCategories(value),
-    //       if (mounted)
-    //         {
-    //           setState(() => {categories = value, isloading = false})
-    //         }
-    //     });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   isloading = true;
+  //   // HttpServices.getCategories().then((value) => {
+  //   //       Provider.of<ModelsProvider>(context, listen: false)
+  //   //           .setCategories(value),
+  //   //       if (mounted)
+  //   //         {
+  //   //           setState(() => {categories = value, isloading = false})
+  //   //         }
+  //   //     });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    HttpServices.getCategories().then((value) => {
-          if (mounted)
-            {
-              setState(() => {categories = value, isloading = false})
-            }
-        });
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
@@ -80,30 +73,26 @@ class _CategoriesState extends State<Categories> {
                 ],
               ),
             ),
-            isloading
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : Expanded(
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categories.length,
-                      itemBuilder: (context, index) => InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return SubCategoryPage(
-                              catID: categories[index].id,
-                            );
-                          },
-                        )),
-                        child: CategoryCard(
-                            category: CategoryRepository(
-                                id: categories[index].id,
-                                image: categories[index].image,
-                                name: categories[index].name)),
-                      ),
-                    ),
-                  )
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.categories.length,
+                itemBuilder: (context, index) => InkWell(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return SubCategoryPage(
+                        catID: widget.categories[index].id,
+                      );
+                    },
+                  )),
+                  child: CategoryCard(
+                      category: CategoryRepository(
+                          id: widget.categories[index].id,
+                          image: widget.categories[index].image,
+                          name: widget.categories[index].name)),
+                ),
+              ),
+            )
           ],
         ),
       ),

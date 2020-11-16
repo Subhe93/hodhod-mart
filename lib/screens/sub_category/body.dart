@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/model/MainCategory.dart';
+
+import 'package:hodhod_mart/model/Startup.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
 import 'package:hodhod_mart/screens/homePage/components/ads.dart';
@@ -34,9 +35,7 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Ads(
-            adHeight: 200,
-          ),
+          StaticBanners(),
           Column(
             children: [
               Container(

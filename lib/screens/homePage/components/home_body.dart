@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/model/MainCategory.dart';
-import 'package:hodhod_mart/networking_http/services_http.dart';
+
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
 import 'package:hodhod_mart/repositories/collection_card_repository.dart';
@@ -10,8 +9,12 @@ import 'package:hodhod_mart/repositories/sub_category_repository.dart';
 import 'package:hodhod_mart/screens/homePage/components/ads.dart';
 import 'package:hodhod_mart/screens/homePage/components/category/categories.dart';
 import 'package:hodhod_mart/screens/homePage/components/collections/collection.dart';
+import 'package:provider/provider.dart';
 
 class HomeBody extends StatefulWidget {
+  const HomeBody({
+    Key key,
+  }) : super(key: key);
   @override
   _HomeBodyState createState() => _HomeBodyState();
 }
@@ -284,9 +287,14 @@ class _HomeBodyState extends State<HomeBody> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Ads(
+            banners:
+                Provider.of<ModelsProvider>(context, listen: false).banners,
             adHeight: 200,
           ),
-          Categories(),
+          Categories(
+            categories:
+                Provider.of<ModelsProvider>(context, listen: false).categories,
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Container(

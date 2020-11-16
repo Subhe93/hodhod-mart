@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hodhod_mart/constants.dart';
-import 'package:hodhod_mart/model/Banners.dart';
+
+import 'package:hodhod_mart/model/Startup.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 
 class Ads extends StatefulWidget {
   final double adHeight;
+  final List<AdBanner> banners;
 
-  Ads({Key key, this.adHeight}) : super(key: key);
+  Ads({Key key, this.adHeight, this.banners}) : super(key: key);
 
   @override
   _AdsState createState() => _AdsState();
 }
 
 class _AdsState extends State<Ads> {
-  bool _isLoading;
-  List<AdBanner> _banners;
-  List<String> swiperList = ['ad1.png', 'ad2.png', 'ad3.png'];
+  bool _isLoading = false;
 
-  @override
-  void initState() {
-    _isLoading = true;
-    super.initState();
-    HttpServices.getBanners().then((value) => {
-          if (mounted)
-            {
-              setState(() => {_banners = value, _isLoading = false}),
-            }
-        });
-  }
+  List<String> swiperList = ['ad1.png', 'ad2.png', 'ad3.png'];
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +34,11 @@ class _AdsState extends State<Ads> {
                   fit: BoxFit.fill,
                 )
               : Image.network(
-                  baseUrl + _banners[index].image,
+                  baseUrl + widget.banners[index].image,
                   fit: BoxFit.fill,
                 );
         },
-        itemCount: _isLoading ? 3 : _banners.length,
+        itemCount: _isLoading ? 3 : widget.banners.length,
         pagination: SwiperPagination(
           builder: DotSwiperPaginationBuilder(
               color: Colors.amber, activeColor: kTextPurpleColor),

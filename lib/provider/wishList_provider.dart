@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hodhod_mart/model/Banners.dart';
+
+import 'package:hodhod_mart/model/Startup.dart';
 
 import 'package:hodhod_mart/model/whoshlist_model.dart';
 import 'package:hodhod_mart/util/session_manager.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/model/MainCategory.dart';
 import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
 import 'package:hodhod_mart/screens/sub_category/body.dart';
 

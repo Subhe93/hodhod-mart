@@ -1,10 +1,9 @@
-import 'package:hodhod_mart/model/MainCategory.dart';
+import 'package:hodhod_mart/model/Startup.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
-import 'package:hodhod_mart/model/Banners.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 
 class HttpServices {
@@ -23,22 +22,22 @@ class HttpServices {
     }
   }
 
-  static Future<List<AdBanner>> getBanners() async {
-    // Dio dio = new Dio();
-    try {
-      var response = await http.get(baseUrl + "banners");
-      print(response);
-      if (response.statusCode == 200) {
-        List<AdBanner> banners = adBannerFromJson(response.body);
-        return banners;
-      } else {
-        throw Exception('Error');
-      }
-    } catch (e) {
-      print(e);
-      return [];
-    }
-  }
+  // static Future<List<AdBanner>> getBanners() async {
+  //   // Dio dio = new Dio();
+  //   try {
+  //     var response = await http.get(baseUrl + "banners");
+  //     print(response);
+  //     if (response.statusCode == 200) {
+  //       List<AdBanner> banners = adBannerFromJson(response.body);
+  //       return banners;
+  //     } else {
+  //       throw Exception('Error');
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     return [];
+  //   }
+  // }
 
   static Future<List<MainCategory>> getCategories() async {
     //Dio dio = new Dio();
@@ -53,6 +52,21 @@ class HttpServices {
     } catch (e) {
       print(e.toString());
       return [];
+    }
+  }
+
+  static Future<Startup> getStartup() async {
+    try {
+      final response = await http.get(baseUrl + "bannersAndCategories");
+      print(response);
+      if (response.statusCode == 200) {
+        return startupFromJson(response.body);
+      } else {
+        throw Exception('Error' + response.statusCode.toString());
+      }
+    } catch (e) {
+      print(e.toString());
+      return Startup();
     }
   }
 
