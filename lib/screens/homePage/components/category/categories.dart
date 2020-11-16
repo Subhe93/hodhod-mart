@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
+import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
 import 'package:hodhod_mart/screens/sub_category/sub_category_page.dart';
 import 'package:provider/provider.dart';
@@ -18,17 +19,31 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  List<MainCategory> categories = [];
-  bool isloading = true;
+  List<MainCategory> categories;
+  bool isloading;
+
   @override
   void initState() {
     super.initState();
-    HttpServices.getCategories().then(
-        (value) => setState(() => {categories = value, isloading = false}));
+    isloading = true;
+    // HttpServices.getCategories().then((value) => {
+    //       Provider.of<ModelsProvider>(context, listen: false)
+    //           .setCategories(value),
+    //       if (mounted)
+    //         {
+    //           setState(() => {categories = value, isloading = false})
+    //         }
+    //     });
   }
 
   @override
   Widget build(BuildContext context) {
+    HttpServices.getCategories().then((value) => {
+          if (mounted)
+            {
+              setState(() => {categories = value, isloading = false})
+            }
+        });
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
@@ -66,7 +81,9 @@ class _CategoriesState extends State<Categories> {
               ),
             ),
             isloading
-                ? Center(child: CircularProgressIndicator())
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
                 : Expanded(
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -76,7 +93,6 @@ class _CategoriesState extends State<Categories> {
                           builder: (context) {
                             return SubCategoryPage(
                               catID: categories[index].id,
-                              categories: categories,
                             );
                           },
                         )),

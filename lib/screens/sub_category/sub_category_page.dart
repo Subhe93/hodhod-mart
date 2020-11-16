@@ -5,10 +5,8 @@ import 'package:hodhod_mart/screens/sub_category/body.dart';
 
 class SubCategoryPage extends StatefulWidget {
   final int catID;
-  final List<MainCategory> categories;
 
-  const SubCategoryPage({Key key, this.catID, this.categories})
-      : super(key: key);
+  const SubCategoryPage({Key key, this.catID}) : super(key: key);
 
   @override
   _SubCategoryPageState createState() => _SubCategoryPageState();
@@ -22,7 +20,6 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
           homeAppBar(false, context, true, 'Sub Categories', searchAction()),
       body: SubCategoryBody(
         catID: widget.catID,
-        categories: widget.categories,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget CustomBottomAppBar(BuildContext context) {
   return BottomAppBar(
@@ -15,7 +16,7 @@ Widget CustomBottomAppBar(BuildContext context) {
             children: [
               Container(
                   height: MediaQuery.of(context).size.height / 32,
-                  child: SvgPicture.asset('assets/svg/home-01.svg')),
+                  child: Icon(FontAwesomeIcons.home)),
               Padding(
                 padding: const EdgeInsets.only(top: 3.0),
                 child: Text(
@@ -30,7 +31,7 @@ Widget CustomBottomAppBar(BuildContext context) {
             children: [
               Container(
                   height: MediaQuery.of(context).size.height / 32,
-                  child: SvgPicture.asset('assets/svg/search-03.svg')),
+                  child: Icon(FontAwesomeIcons.search)),
               Padding(
                 padding: const EdgeInsets.only(top: 3.0),
                 child: Text(
@@ -48,7 +49,7 @@ Widget CustomBottomAppBar(BuildContext context) {
             children: [
               Container(
                   height: MediaQuery.of(context).size.height / 32,
-                  child: SvgPicture.asset('assets/svg/love-02.svg')),
+                  child: Icon(FontAwesomeIcons.home)),
               Padding(
                 padding: const EdgeInsets.only(top: 3.0),
                 child: Text(
@@ -63,7 +64,7 @@ Widget CustomBottomAppBar(BuildContext context) {
             children: [
               Container(
                   height: MediaQuery.of(context).size.height / 32,
-                  child: SvgPicture.asset('assets/svg/cart-04.svg')),
+                  child: Icon(FontAwesomeIcons.cartArrowDown)),
               Padding(
                 padding: const EdgeInsets.only(top: 3.0),
                 child: Text(

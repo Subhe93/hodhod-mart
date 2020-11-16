@@ -4,7 +4,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/screens/homePage/components/bottom_app_bar.dart';
-import 'package:hodhod_mart/screens/homePage/new_home.dart';
+
 
 class SignIn extends StatelessWidget {
   @override

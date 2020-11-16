@@ -1,6 +1,6 @@
 import 'package:hodhod_mart/model/MainCategory.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
-import 'package:hodhod_mart/screens/homePage/components/category/categories.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
@@ -18,39 +18,56 @@ class HttpServices {
           SubCategoryProducts.fromJson(convert.jsonDecode(response.body));
       return items.products;
     } catch (e) {
+      print(e);
       return [];
     }
   }
 
   static Future<List<AdBanner>> getBanners() async {
+    // Dio dio = new Dio();
     try {
       var response = await http.get(baseUrl + "banners");
       print(response);
-      var banners = adBannerFromJson(response.body);
-      return banners;
+      if (response.statusCode == 200) {
+        List<AdBanner> banners = adBannerFromJson(response.body);
+        return banners;
+      } else {
+        throw Exception('Error');
+      }
     } catch (e) {
+      print(e);
       return [];
     }
   }
 
   static Future<List<MainCategory>> getCategories() async {
+    //Dio dio = new Dio();
     try {
-      var response = await http.get(baseUrl + "categories");
-      print(Categories());
-      var categories = mainCategoryFromJson(response.body);
-      return categories;
+      final response = await http.get(baseUrl + "categories");
+      print(response);
+      if (response.statusCode == 200) {
+        return mainCategoryFromJson(response.body);
+      } else {
+        throw Exception('Error' + response.statusCode.toString());
+      }
     } catch (e) {
+      print(e.toString());
       return [];
     }
   }
 
   static Future<List<SubCategory>> getSubCategoriesById(int id) async {
+    print(id);
     try {
       var response = await http.get(baseUrl + "getCategorySubs/$id");
-      print(Categories());
-      var categories = subCategoryFromJson(response.body);
-      return categories;
+      if (response.statusCode == 200) {
+        List<SubCategory> categories = subCategoryFromJson(response.body);
+        return categories;
+      } else {
+        throw Exception('error');
+      }
     } catch (e) {
+      print(e);
       return [];
     }
   }
@@ -58,7 +75,7 @@ class HttpServices {
   static Future<List<Product>> getSubCategoryProducts(int id) async {
     try {
       var response = await http.get(baseUrl + "getSubCategoryProducts/$id");
-      print(Categories());
+
       var subCategoryProductsObject =
           subCategoryProductsFromJson(response.body);
       return subCategoryProductsObject.products;

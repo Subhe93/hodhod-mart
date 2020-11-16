@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/screens/signIn.dart';
-import 'package:provider/provider.dart';
 
 class StartPage extends StatelessWidget {
   @override

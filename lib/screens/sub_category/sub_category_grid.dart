@@ -15,13 +15,16 @@ class SubCategoryChildGrid extends StatefulWidget {
 }
 
 class _SubCategoryChildGridState extends State<SubCategoryChildGrid> {
-  List<SubCategory> subCategories = [];
+  List<SubCategory> subCategories;
   bool isLoading = true;
   @override
   void initState() {
     super.initState();
     HttpServices.getSubCategoriesById(widget.subCategoryID).then((value) => {
-          setState(() => {subCategories = value, isLoading = false})
+          if (mounted)
+            {
+              setState(() => {subCategories = value, isLoading = false})
+            }
         });
   }
 

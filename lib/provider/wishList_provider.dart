@@ -10,7 +10,7 @@ class WishListProvider with ChangeNotifier {
   List<WishListItem> wishList = [];
   double _totalPrice = 0;
   WishListModel cartModel = WishListModel();
-  List<AdBanner> banners;
+  List<AdBanner> banners = [];
 
   getWish() async {
     try {

@@ -3,9 +3,6 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/Banners.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
-import 'package:hodhod_mart/provider/wishList_provider.dart';
-import 'package:hodhod_mart/screens/wishlist_screen/whishlist_screen.dart';
-import 'package:provider/provider.dart';
 
 class Ads extends StatefulWidget {
   final double adHeight;
@@ -17,19 +14,19 @@ class Ads extends StatefulWidget {
 }
 
 class _AdsState extends State<Ads> {
-  bool isLoading = true;
+  bool _isLoading;
+  List<AdBanner> _banners;
   List<String> swiperList = ['ad1.png', 'ad2.png', 'ad3.png'];
-  List<AdBanner> banners = [];
+
   @override
   void initState() {
+    _isLoading = true;
     super.initState();
     HttpServices.getBanners().then((value) => {
-          setState(() => {
-                banners = value,
-                isLoading = false,
-                Provider.of<WishListProvider>(context, listen: false)
-                    .setBanners(value)
-              })
+          if (mounted)
+            {
+              setState(() => {_banners = value, _isLoading = false}),
+            }
         });
   }
 
@@ -41,17 +38,17 @@ class _AdsState extends State<Ads> {
       child: Swiper(
         autoplay: true,
         itemBuilder: (BuildContext context, int index) {
-          return isLoading
+          return _isLoading
               ? Image.asset(
                   'assets/' + swiperList[index],
                   fit: BoxFit.fill,
                 )
               : Image.network(
-                  baseUrl + banners[index].image,
+                  baseUrl + _banners[index].image,
                   fit: BoxFit.fill,
                 );
         },
-        itemCount: isLoading ? 3 : banners.length,
+        itemCount: _isLoading ? 3 : _banners.length,
         pagination: SwiperPagination(
           builder: DotSwiperPaginationBuilder(
               color: Colors.amber, activeColor: kTextPurpleColor),

@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hodhod_mart/networking_http/services_http.dart';
+import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
 import 'package:hodhod_mart/screens/homePage/home_page.dart';
 import 'package:hodhod_mart/screens/my_account/my_account.dart';
 import 'package:hodhod_mart/screens/my_cart/my_cart.dart';
 import 'package:hodhod_mart/screens/search/search_page.dart';
 import 'package:hodhod_mart/screens/wishlist_screen/whishlist_screen.dart';
+import 'package:provider/provider.dart';
 
 class HomeBottomBar extends StatefulWidget {
   int isSelected = 0;
@@ -58,8 +62,11 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     Container(
                         height: MediaQuery.of(context).size.height / 32,
                         child: widget.isSelected != 0
-                            ? SvgPicture.asset('assets/svg/home-01.svg')
-                            : SvgPicture.asset('assets/svg/home-06.svg')),
+                            ? Icon(FontAwesomeIcons.home)
+                            : Icon(
+                                FontAwesomeIcons.home,
+                                color: Colors.orange[300],
+                              )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
@@ -81,10 +88,13 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        height: MediaQuery.of(context).size.height / 32,
+                        //  height: MediaQuery.of(context).size.height / 32,
                         child: widget.isSelected != 1
-                            ? SvgPicture.asset('assets/svg/search-03.svg')
-                            : SvgPicture.asset('assets/svg/search-08.svg')),
+                            ? Icon(FontAwesomeIcons.search)
+                            : Icon(
+                                FontAwesomeIcons.search,
+                                color: Colors.orange[300],
+                              )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
@@ -109,10 +119,13 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        height: MediaQuery.of(context).size.height / 32,
+                        //  height: MediaQuery.of(context).size.height / 32,
                         child: widget.isSelected != 2
-                            ? SvgPicture.asset('assets/svg/love-02.svg')
-                            : SvgPicture.asset('assets/svg/love-07.svg')),
+                            ? Icon(FontAwesomeIcons.heart)
+                            : Icon(
+                                FontAwesomeIcons.heart,
+                                color: Colors.orange[300],
+                              )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
@@ -134,10 +147,13 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                        height: MediaQuery.of(context).size.height / 32,
+                        // height: MediaQuery.of(context).size.height / 32,
                         child: widget.isSelected != 3
-                            ? SvgPicture.asset('assets/svg/cart-04.svg')
-                            : SvgPicture.asset('assets/svg/cart-09.svg')),
+                            ? Icon(FontAwesomeIcons.cartArrowDown)
+                            : Icon(
+                                FontAwesomeIcons.cartArrowDown,
+                                color: Colors.orange[300],
+                              )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
@@ -159,12 +175,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         onPageChanged: (int) {
           print('Page Changes to index $int');
         },
-        children: <Widget>[
-          HomePage(),
-          SearchPage(),
-         WhishList(),
-          MyCart()
-        ],
+        children: <Widget>[HomePage(), SearchPage(), WhishList(), MyCart()],
         physics: NeverScrollableScrollPhysics(),
       ),
     );
