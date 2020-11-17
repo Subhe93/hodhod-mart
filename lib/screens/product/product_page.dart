@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
-import 'package:hodhod_mart/repositories/collection_card_repository.dart';
-import 'package:hodhod_mart/screens/product/components/app_bar.dart';
 import 'package:hodhod_mart/screens/product/product_body.dart';
 
 class ProductPage extends StatefulWidget {

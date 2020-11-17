@@ -41,6 +41,9 @@ dependencies:
   http: ^0.12.2
   font_awesome_flutter: ^8.4.0
   dio: ^3.0.10
+  intl_phone_number_input:
+  fluttertoast: ^7.1.1 
+ 
 
 
 dev_dependencies:

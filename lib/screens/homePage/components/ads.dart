@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hodhod_mart/constants.dart';
-
-import 'package:hodhod_mart/model/Startup.dart';
-import 'package:hodhod_mart/networking_http/services_http.dart';
+import 'package:hodhod_mart/model/AdBanners.dart';
 
 class Ads extends StatefulWidget {
   final double adHeight;
@@ -26,12 +24,13 @@ class _AdsState extends State<Ads> {
       width: MediaQuery.of(context).size.width,
       height: widget.adHeight,
       child: Swiper(
+        containerHeight: widget.adHeight,
         autoplay: true,
         itemBuilder: (BuildContext context, int index) {
           return _isLoading
               ? Image.asset(
                   'assets/' + swiperList[index],
-                  fit: BoxFit.fill,
+                  fit: BoxFit.fitHeight,
                 )
               : Image.network(
                   baseUrl + widget.banners[index].image,

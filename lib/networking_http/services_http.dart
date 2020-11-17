@@ -1,4 +1,8 @@
-import 'package:hodhod_mart/model/Startup.dart';
+import 'package:flutter/material.dart';
+import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/model/MainCategory.dart';
+import 'package:hodhod_mart/model/ResponsModels/loginResponse.dart';
+import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
 
 import 'package:http/http.dart' as http;
@@ -42,6 +46,7 @@ class HttpServices {
   static Future<List<MainCategory>> getCategories() async {
     //Dio dio = new Dio();
     try {
+      print(Manager.token);
       final response = await http.get(baseUrl + "categories");
       print(response);
       if (response.statusCode == 200) {
@@ -95,6 +100,66 @@ class HttpServices {
       return subCategoryProductsObject.products;
     } catch (e) {
       return [];
+    }
+  }
+
+  static Future<LoginResponse> login(String password, String email) async {
+    try {
+      var response = await http.post(baseUrl + "auth/login",
+          body: {"email": email, "password": password});
+      if (response.statusCode == 200) {
+        var result = LoginResponse.fromJson(convert.jsonDecode(response.body));
+        Manager.setAuthToken(result.accessToken);
+        return result;
+      } else {
+        return LoginResponse(accessToken: '');
+      }
+    } catch (e) {
+      print(e);
+      return LoginResponse(accessToken: '');
+    }
+  }
+
+  static Future<int> createAccount(
+    String password,
+    String email,
+    String firstName,
+    String lastName,
+    String phone,
+  ) async {
+    try {
+      var response = await http.post(baseUrl + "auth/signup", body: {
+        "email": email,
+        "password": password,
+        "name": firstName,
+        "last_name": lastName,
+        "password_confirmation": password,
+        "phone_number": phone,
+        "role": "User",
+      });
+
+      switch (response.statusCode) {
+        case 201:
+          {
+            var result =
+                LoginResponse.fromJson(convert.jsonDecode(response.body));
+            Manager.setAuthToken(result.accessToken);
+            return 200;
+          }
+        case 422:
+          {
+            Manager.toastMessage('Email or Phone Already Taken', Colors.red);
+            return 422;
+          }
+        default:
+          {
+            Manager.toastMessage('Something Went Wrong', Colors.red);
+            return 500;
+          }
+      }
+    } catch (e) {
+      print(e);
+      return 0;
     }
   }
 }

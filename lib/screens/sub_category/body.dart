@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/model/MainCategory.dart';
 
-import 'package:hodhod_mart/model/Startup.dart';
+import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
 import 'package:hodhod_mart/screens/homePage/components/ads.dart';
@@ -46,9 +47,8 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                     itemCount: categories.length,
                     itemBuilder: (context, index) => InkWell(
                       onTap: () => setState(() {
-                        if (mounted) {
-                          selectedCatID = categories[index].id;
-                        }
+                        selectedCatID = categories[index].id;
+                        print(selectedCatID);
                       }),
                       child: CategoryCard(
                           category: CategoryRepository(

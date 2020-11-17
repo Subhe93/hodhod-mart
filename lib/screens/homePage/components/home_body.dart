@@ -283,36 +283,41 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Ads(
-            banners:
-                Provider.of<ModelsProvider>(context, listen: false).banners,
-            adHeight: 200,
-          ),
-          Categories(
-            categories:
-                Provider.of<ModelsProvider>(context, listen: false).categories,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 15.0),
-            child: Container(
-              color: Colors.blue[50],
-              child: ListView(
-                primary: false,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                children: collectionList.map((CollectionRepository value) {
-                  return Collection(
-                    collectionCard: value,
-                  );
-                }).toList(),
+      child: Container(
+        color: Colors.blue[50],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Ads(
+              banners:
+                  Provider.of<ModelsProvider>(context, listen: false).banners,
+              adHeight: 200,
+            ),
+            Container(
+              child: Categories(
+                categories: Provider.of<ModelsProvider>(context, listen: false)
+                    .categories,
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: Container(
+                color: Colors.blue[50],
+                child: ListView(
+                  primary: false,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  children: collectionList.map((CollectionRepository value) {
+                    return Collection(
+                      collectionCard: value,
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

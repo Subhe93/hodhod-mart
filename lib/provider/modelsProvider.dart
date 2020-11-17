@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/model/AdBanners.dart';
+import 'package:hodhod_mart/model/MainCategory.dart';
 
-import 'package:hodhod_mart/model/Startup.dart';
+import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
 
 class ModelsProvider extends ChangeNotifier {
   List<MainCategory> categories = [];

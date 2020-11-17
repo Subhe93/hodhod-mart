@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:hodhod_mart/model/Startup.dart';
+import 'package:hodhod_mart/model/AdBanners.dart';
 
 import 'package:hodhod_mart/provider/modelsProvider.dart';
-import 'package:hodhod_mart/provider/wishList_provider.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
 

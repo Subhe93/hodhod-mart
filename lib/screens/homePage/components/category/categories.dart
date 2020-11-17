@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
-import 'package:hodhod_mart/model/Startup.dart';
+import 'package:hodhod_mart/model/MainCategory.dart';
 
 import 'package:hodhod_mart/repositories/category_repository.dart';
 import 'package:hodhod_mart/screens/sub_category/sub_category_page.dart';
-import 'package:provider/provider.dart';
 
 import 'category_card.dart';
 
