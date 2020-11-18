@@ -4,11 +4,14 @@ import 'package:hodhod_mart/model/MainCategory.dart';
 import 'package:hodhod_mart/model/ResponsModels/loginResponse.dart';
 import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
+import 'package:hodhod_mart/model/User.dart';
+import 'package:hodhod_mart/provider/modelsProvider.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
+import 'package:provider/provider.dart';
 
 class HttpServices {
   static const baseUrl = 'https://hodhodmart.hashtagweb.online/api/';
@@ -103,13 +106,17 @@ class HttpServices {
     }
   }
 
-  static Future<LoginResponse> login(String password, String email) async {
+  ///Register Services:
+  ///
+  ///login
+  static Future<LoginResponse> login(
+      String password, String email, BuildContext context) async {
     try {
       var response = await http.post(baseUrl + "auth/login",
           body: {"email": email, "password": password});
       if (response.statusCode == 200) {
         var result = LoginResponse.fromJson(convert.jsonDecode(response.body));
-        Manager.setAuthToken(result.accessToken);
+        Manager.setAuthToken(result.accessToken, context);
         return result;
       } else {
         return LoginResponse(accessToken: '');
@@ -121,12 +128,12 @@ class HttpServices {
   }
 
   static Future<int> createAccount(
-    String password,
-    String email,
-    String firstName,
-    String lastName,
-    String phone,
-  ) async {
+      String password,
+      String email,
+      String firstName,
+      String lastName,
+      String phone,
+      BuildContext context) async {
     try {
       var response = await http.post(baseUrl + "auth/signup", body: {
         "email": email,
@@ -143,7 +150,7 @@ class HttpServices {
           {
             var result =
                 LoginResponse.fromJson(convert.jsonDecode(response.body));
-            Manager.setAuthToken(result.accessToken);
+            Manager.setAuthToken(result.accessToken, context);
             return 200;
           }
         case 422:
@@ -160,6 +167,33 @@ class HttpServices {
     } catch (e) {
       print(e);
       return 0;
+    }
+  }
+
+  ///User info;
+  static Future<User> GetUserInfo(BuildContext context) async {
+    User result;
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+
+      var response = await http.get(baseUrl + "auth/user", headers: {
+        'Authentication': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      });
+
+      if (response.statusCode == 200) {
+        print(response.body);
+        //  result = User.fromJson(convert.jsonDecode(response.body));
+        return User();
+        // Provider.of<ModelsProvider>(context, listen: false).setUser(result);
+        return result;
+      } else {
+        return User();
+      }
+    } catch (e) {
+      print(e);
+      return User();
     }
   }
 }

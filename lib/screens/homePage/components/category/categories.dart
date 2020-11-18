@@ -3,6 +3,7 @@ import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
 
 import 'package:hodhod_mart/repositories/category_repository.dart';
+import 'package:hodhod_mart/screens/AllCategoriesPage/AllCategoriesPage.dart';
 import 'package:hodhod_mart/screens/sub_category/sub_category_page.dart';
 
 import 'category_card.dart';
@@ -60,6 +61,13 @@ class _CategoriesState extends State<Categories> {
                     ),
                   ),
                   InkWell(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return AllCategories(
+                          categories: widget.categories,
+                        );
+                      },
+                    )),
                     child: Text(
                       'MORE',
                       style: TextStyle(

@@ -2,14 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
-import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
 import 'package:hodhod_mart/screens/homePage/home_page.dart';
 import 'package:hodhod_mart/screens/my_account/my_account.dart';
 import 'package:hodhod_mart/screens/my_cart/my_cart.dart';
 import 'package:hodhod_mart/screens/search/search_page.dart';
 import 'package:hodhod_mart/screens/wishlist_screen/whishlist_screen.dart';
-import 'package:provider/provider.dart';
 
 class HomeBottomBar extends StatefulWidget {
   int isSelected = 0;
@@ -22,6 +20,13 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   var iconWidth = 25.0;
   var iconHeight = 25.0;
   var iconColor = Colors.black.withOpacity(0.6);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // HttpServices.GetUserInfo(context);
+  }
 
   @override
   Widget build(BuildContext context) {
