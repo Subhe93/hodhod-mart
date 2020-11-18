@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/screens/my_account/account_information/account_information.dart';
 import 'package:hodhod_mart/screens/my_orders/my_orders.dart';
+import 'package:hodhod_mart/screens/start_page.dart';
 
 class MyAccountBody extends StatefulWidget {
   @override
@@ -16,7 +19,6 @@ class _MyAccountBodyState extends State<MyAccountBody> {
   User user;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loading = true;
     HttpServices.GetUserInfo(context).then((value) => {
@@ -79,7 +81,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                   ),
                                 ),
                                 Text(
-                                  "     user.name",
+                                  user.name,
                                   style: TextStyle(
                                       color: kTextColor,
                                       fontSize: 18,
@@ -88,7 +90,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "user.email",
+                                    user.email,
                                     style: TextStyle(
                                         color: kTextColor.withOpacity(0.5),
                                         fontSize: 18,
@@ -112,7 +114,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                   onPressed: () {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return AccountInfo();
+                                      return AccountInfo(user: user);
                                     }));
                                   },
                                   child: Row(
@@ -269,6 +271,48 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                       ),
                                       SvgPicture.asset(
                                         'assets/svg/no_encryption-24px.svg',
+                                        color: signInStartColor,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 18,
+                                width: MediaQuery.of(context).size.width / 1.2,
+                                child: OutlineButton(
+                                  borderSide:
+                                      BorderSide(color: signInStartColor),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  onPressed: () {
+                                    setState(() {
+                                      loading = true;
+                                    });
+                                    Manager.logout(context).then((value) =>
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return StartPage();
+                                        })));
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Logout',
+                                        style:
+                                            TextStyle(color: signInStartColor),
+                                      ),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                      Icon(
+                                        Icons.logout,
                                         color: signInStartColor,
                                       )
                                     ],

@@ -178,15 +178,13 @@ class HttpServices {
       await Manager.getAuthToken().then((val) => {token = val});
 
       var response = await http.get(baseUrl + "auth/user", headers: {
-        'Authentication': 'Bearer ' + token,
+        'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
       });
 
       if (response.statusCode == 200) {
-        print(response.body);
-        //  result = User.fromJson(convert.jsonDecode(response.body));
-        return User();
-        // Provider.of<ModelsProvider>(context, listen: false).setUser(result);
+        result = User.fromJson(convert.jsonDecode(response.body));
+        Provider.of<ModelsProvider>(context, listen: false).setUser(result);
         return result;
       } else {
         return User();

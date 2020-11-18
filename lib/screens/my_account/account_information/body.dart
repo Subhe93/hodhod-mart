@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/User.dart';
+import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/my_account/add_address/add_address.dart';
 import 'package:hodhod_mart/screens/my_account/edit_account_info/edit_account_info.dart';
+import 'package:provider/provider.dart';
 
 class AccountInfoBody extends StatefulWidget {
+  final User user;
+
+  const AccountInfoBody({Key key, this.user}) : super(key: key);
   @override
   _AccountInfoBodyState createState() => _AccountInfoBodyState();
 }
@@ -50,7 +56,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                   ),
                 ),
                 Text(
-                  'HodHod Mart',
+                  widget.user.name,
                   style: TextStyle(
                       color: kTextColor,
                       fontSize: 18,
@@ -59,7 +65,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    'HodHodMart@gmail.com',
+                    widget.user.email,
                     style: TextStyle(
                         color: kTextColor.withOpacity(0.5),
                         fontSize: 18,
@@ -69,22 +75,23 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                 Container(
                   width: 75,
                   height: 30,
-                  child: FlatButton (
+                  child: FlatButton(
                     color: Colors.redAccent,
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return EditAccountInfo();
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return EditAccountInfo(user: widget.user);
                       }));
                     },
                     child: Center(
-                        child: Text (
-                          'Edit',
-                          style: TextStyle (
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 15,
-                          ),
-                        )),
+                        child: Text(
+                      'Edit',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 15,
+                      ),
+                    )),
                   ),
                 )
               ],
@@ -92,9 +99,9 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top : 15.0),
-              child: SingleChildScrollView (
-                child: Column (
+              padding: const EdgeInsets.only(top: 15.0),
+              child: SingleChildScrollView(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -103,82 +110,83 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                       color: Colors.white,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
-                        padding: EdgeInsets.fromLTRB(20 , 15 , 20 , 0),
-                          child: Column (
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'INFORMATION',
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: kTextColor,
-                                  fontSize: 17.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                        padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'INFORMATION',
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: kTextColor,
+                                fontSize: 17.0,
+                                fontWeight: FontWeight.w600,
                               ),
-                              Container (
-                                height: 50,
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.fromLTRB(0 , 15 , 0 , 15),
-                                decoration: BoxDecoration (
-                                  border: Border.all(color: Colors.grey,width: 1)
-                                ),
-                                child : Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Text (
-                                    'Julian',
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle (
-                                      fontSize: 16,
-                                      color: kTextColor,
-                                    ),
+                            ),
+                            Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey, width: 1)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Text(
+                                  widget.user.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: kTextColor,
                                   ),
                                 ),
                               ),
-                              Container (
-                                height: 50,
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.fromLTRB(0 , 0 , 0 , 15),
-                                decoration: BoxDecoration (
-                                    border: Border.all(color: Colors.grey,width: 1)
-                                ),
-                                child : Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Text (
-                                    'Julian',
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle (
-                                      fontSize: 16,
-                                      color: kTextColor,
-                                    ),
+                            ),
+                            Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey, width: 1)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Text(
+                                  widget.user.lastName,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: kTextColor,
                                   ),
                                 ),
                               ),
-                              Container (
-                                height: 50,
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.fromLTRB(0 , 0 , 0 , 10),
-                                decoration: BoxDecoration (
-                                    border: Border.all(color: Colors.grey,width: 1)
-                                ),
-                                child : Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Text (
-                                    'Julian',
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle (
-                                      fontSize: 16,
-                                      color: kTextColor,
-                                    ),
+                            ),
+                            Container(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey, width: 1)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Text(
+                                  widget.user.email,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: kTextColor,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 15),
@@ -186,8 +194,8 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                       color: Colors.white,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
-                        padding: EdgeInsets.fromLTRB(20 , 15 , 20 , 20),
-                        child: Column (
+                        padding: EdgeInsets.fromLTRB(20, 15, 20, 20),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -206,33 +214,34 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                                 Container(
                                   width: 60,
                                   height: 25,
-                                  child: FlatButton (
+                                  child: FlatButton(
                                     color: Colors.redAccent,
-                                    onPressed: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                                        return AddAddress ();
+                                    onPressed: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return AddAddress();
                                       }));
                                     },
                                     child: Center(
-                                        child: Text (
-                                          'Edit',
-                                          style: TextStyle (
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 14,
-                                          ),
-                                        )),
+                                        child: Text(
+                                      'Edit',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 14,
+                                      ),
+                                    )),
                                   ),
                                 )
                               ],
                             ),
-                            Text (
+                            Text(
                               'office no 1 office no 1 office no 1 office no 1 office no 1 office no 1 office no 1 office no 1'
-                                  ' office no 1 office no 1 office no 1 office no 1'
-                                  ' office no 1 office no 1 office no 1 office no 1 office no 1',
+                              ' office no 1 office no 1 office no 1 office no 1'
+                              ' office no 1 office no 1 office no 1 office no 1 office no 1',
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle (
+                              style: TextStyle(
                                 color: Colors.grey.withOpacity(0.8),
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500,
@@ -242,24 +251,24 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                               height: 50,
                               width: MediaQuery.of(context).size.width,
                               color: Colors.amber,
-                              child: FlatButton (
-                                onPressed: (){
+                              child: FlatButton(
+                                onPressed: () {
                                   // Navigator.push(context, MaterialPageRoute(builder: (context){
                                   //   return TrackOrder();
                                   // }));
                                 },
-                                child: Text (
+                                child: Text(
                                   'ADD NEW ADDRESS',
-                                  style: TextStyle (
+                                  style: TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
                               ),
                             ),
                           ],
-                        ),),
+                        ),
+                      ),
                     ),
-
                   ],
                 ),
               ),
@@ -271,13 +280,13 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
             color: Colors.deepPurple,
             child: Center(
                 child: Text(
-                  'DELETE ACCOUNT',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                )),
+              'DELETE ACCOUNT',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            )),
           ),
         ],
       ),

@@ -43,4 +43,11 @@ class Manager {
       return authToken;
     }
   }
+
+  static Future<bool> logout(BuildContext context) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('token', '');
+    Provider.of<ModelsProvider>(context, listen: false).setToken('');
+    return true;
+  }
 }
