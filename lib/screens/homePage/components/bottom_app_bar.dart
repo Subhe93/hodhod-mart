@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
+import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
 import 'package:hodhod_mart/screens/homePage/home_page.dart';
 import 'package:hodhod_mart/screens/my_account/my_account.dart';
 import 'package:hodhod_mart/screens/my_cart/my_cart.dart';
 import 'package:hodhod_mart/screens/search/search_page.dart';
 import 'package:hodhod_mart/screens/wishlist_screen/whishlist_screen.dart';
+import 'package:provider/provider.dart';
 
 class HomeBottomBar extends StatefulWidget {
   int isSelected = 0;
@@ -30,6 +34,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<ModelsProvider>(context, listen: true).user;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -43,7 +48,9 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         },
         child: CircleAvatar(
           radius: 50,
-          backgroundImage: AssetImage('assets/profile.png'),
+          backgroundImage: user == null
+              ? AssetImage('assets/profile.png')
+              : NetworkImage(baseUrl + user.image),
         ),
       ),
       bottomNavigationBar: BottomAppBar(

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
+import 'package:hodhod_mart/provider/modelsProvider.dart';
+
 import 'package:hodhod_mart/screens/my_account/account_information/account_information.dart';
+import 'package:hodhod_mart/screens/my_account/updatePassword.dart';
 import 'package:hodhod_mart/screens/my_orders/my_orders.dart';
 import 'package:hodhod_mart/screens/start_page.dart';
+import 'package:provider/provider.dart';
 
 class MyAccountBody extends StatefulWidget {
   @override
@@ -17,17 +21,21 @@ class MyAccountBody extends StatefulWidget {
 class _MyAccountBodyState extends State<MyAccountBody> {
   bool loading;
   User user;
+  List<Address> addresses;
+
   @override
   void initState() {
     super.initState();
     loading = true;
+
     HttpServices.GetUserInfo(context).then((value) => {
-          setState(() => {loading = false, user = value})
+          setState(() => {loading = false})
         });
   }
 
   @override
   Widget build(BuildContext context) {
+    user = Provider.of<ModelsProvider>(context, listen: true).user;
     return SafeArea(
       bottom: true,
       child: loading
@@ -71,12 +79,19 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(70),
-                                      child: Image.asset(
-                                        'assets/profile.png',
-                                        width: 80,
-                                        height: 80,
-                                        fit: BoxFit.fill,
-                                      ),
+                                      child: user.image == null
+                                          ? Image.asset(
+                                              'assets/profile.png',
+                                              width: 80,
+                                              height: 80,
+                                              fit: BoxFit.fill,
+                                            )
+                                          : Image.network(
+                                              baseUrl + user.image,
+                                              width: 80,
+                                              height: 80,
+                                              fit: BoxFit.fill,
+                                            ),
                                     ),
                                   ),
                                 ),
@@ -114,7 +129,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                   onPressed: () {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return AccountInfo(user: user);
+                                      return AccountInfo();
                                     }));
                                   },
                                   child: Row(
@@ -191,7 +206,12 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                   color: Color(0xFF6cdca1),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return UpDatePassword();
+                                    }));
+                                  },
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

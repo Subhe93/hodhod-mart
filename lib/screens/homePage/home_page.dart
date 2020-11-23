@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:hodhod_mart/networking_http/services_http.dart';
-import 'package:hodhod_mart/provider/modelsProvider.dart';
+
 import 'package:hodhod_mart/screens/homePage/components/home_body.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,22 +12,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool loading;
   @override
   void initState() {
+    loading = true;
     super.initState();
-    if (Provider.of<ModelsProvider>(context, listen: false).homeIsLoading) {
-      HttpServices.getStartup().then((value) => {
-            Provider.of<ModelsProvider>(context, listen: false)
-                .setCategories(value.categories),
-            Provider.of<ModelsProvider>(context, listen: false)
-                .setBanners(value.banners)
-          });
-    }
+    HttpServices.getHomeData(context).then((value) => {
+          setState(() => loading = false),
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Provider.of<ModelsProvider>(context).homeIsLoading
+    return loading
         ? Center(
             child: CircularProgressIndicator(),
           )

@@ -20,7 +20,7 @@ class _SubCategoryItemCardState extends State<SubCategoryItemCard> {
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return ProductPage(
-            product: widget.item,
+            id: widget.item.id,
           );
         }));
       },

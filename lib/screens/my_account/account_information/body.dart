@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/User.dart';
+import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/my_account/add_address/add_address.dart';
 import 'package:hodhod_mart/screens/my_account/edit_account_info/edit_account_info.dart';
 import 'package:provider/provider.dart';
 
-class AccountInfoBody extends StatefulWidget {
-  final User user;
+import 'addresses.dart';
 
-  const AccountInfoBody({Key key, this.user}) : super(key: key);
+class AccountInfoBody extends StatefulWidget {
+  const AccountInfoBody({Key key}) : super(key: key);
   @override
   _AccountInfoBodyState createState() => _AccountInfoBodyState();
 }
@@ -17,6 +19,9 @@ class AccountInfoBody extends StatefulWidget {
 class _AccountInfoBodyState extends State<AccountInfoBody> {
   @override
   Widget build(BuildContext context) {
+    List<Address> addresses =
+        Provider.of<ModelsProvider>(context, listen: true).addresses;
+    User user = Provider.of<ModelsProvider>(context, listen: true).user;
     return SafeArea(
       bottom: true,
       top: false,
@@ -24,7 +29,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
         children: [
           Container(
             color: Colors.white,
-            height: 270,
+            height: 220,
             width: MediaQuery.of(context).size.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -46,17 +51,24 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(70),
-                      child: Image.asset(
-                        'assets/profile.png',
-                        width: 80,
-                        height: 80,
-                        fit: BoxFit.fill,
-                      ),
+                      child: user.image == null
+                          ? Image.asset(
+                              'assets/profile.png',
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.fill,
+                            )
+                          : Image.network(
+                              baseUrl + user.image,
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.fill,
+                            ),
                     ),
                   ),
                 ),
                 Text(
-                  widget.user.name,
+                  user.name,
                   style: TextStyle(
                       color: kTextColor,
                       fontSize: 18,
@@ -65,7 +77,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    widget.user.email,
+                    user.email,
                     style: TextStyle(
                         color: kTextColor.withOpacity(0.5),
                         fontSize: 18,
@@ -80,7 +92,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return EditAccountInfo(user: widget.user);
+                        return EditAccountInfo(user: user);
                       }));
                     },
                     child: Center(
@@ -134,7 +146,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Text(
-                                  widget.user.name,
+                                  user.name,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -154,7 +166,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Text(
-                                  widget.user.lastName,
+                                  user.lastName,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -174,7 +186,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Text(
-                                  widget.user.email,
+                                  user.email,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -188,87 +200,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 15),
-                      height: 200,
-                      color: Colors.white,
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(20, 15, 20, 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'ADDRESSES',
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    color: kTextColor,
-                                    fontSize: 17.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Container(
-                                  width: 60,
-                                  height: 25,
-                                  child: FlatButton(
-                                    color: Colors.redAccent,
-                                    onPressed: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return AddAddress();
-                                      }));
-                                    },
-                                    child: Center(
-                                        child: Text(
-                                      'Edit',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 14,
-                                      ),
-                                    )),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Text(
-                              'office no 1 office no 1 office no 1 office no 1 office no 1 office no 1 office no 1 office no 1'
-                              ' office no 1 office no 1 office no 1 office no 1'
-                              ' office no 1 office no 1 office no 1 office no 1 office no 1',
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Colors.grey.withOpacity(0.8),
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Container(
-                              height: 50,
-                              width: MediaQuery.of(context).size.width,
-                              color: Colors.amber,
-                              child: FlatButton(
-                                onPressed: () {
-                                  // Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  //   return TrackOrder();
-                                  // }));
-                                },
-                                child: Text(
-                                  'ADD NEW ADDRESS',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    AddressesWidget(addresses: addresses),
                   ],
                 ),
               ),

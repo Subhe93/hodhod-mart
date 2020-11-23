@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/MainCategory.dart';
+import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/repositories/collection_repository.dart';
 import 'package:hodhod_mart/screens/homePage/components/collections/collection_list.dart';
+import 'package:hodhod_mart/screens/sub_category/sub_category_page.dart';
 
 class Collection extends StatelessWidget {
-  final CollectionRepository collectionCard;
+  final List<Product> products;
+  final MainCategory category;
 
-  const Collection({Key key, this.collectionCard}) : super(key: key);
+  const Collection({Key key, this.products, this.category}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +29,7 @@ class Collection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    collectionCard.name,
+                    category.name,
                     style: TextStyle(
                       color: kTextColor,
                       fontSize: 15,
@@ -33,6 +37,13 @@ class Collection extends StatelessWidget {
                     ),
                   ),
                   InkWell(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return SubCategoryPage(
+                          catID: category.id,
+                        );
+                      },
+                    )),
                     child: Text(
                       'MORE',
                       style: TextStyle(
@@ -46,7 +57,7 @@ class Collection extends StatelessWidget {
               ),
             ),
             CollectionList(
-              collectionList: collectionCard.collectionList,
+              products: products,
             ),
           ],
         ),

@@ -21,6 +21,29 @@ class AdBanner {
   DateTime createdAt;
   DateTime updatedAt;
 
+  AdBanner copyWith({
+    int id,
+    String title,
+    String subtitle,
+    String buttonText,
+    String buttonLink,
+    String status,
+    String image,
+    DateTime createdAt,
+    DateTime updatedAt,
+  }) =>
+      AdBanner(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        subtitle: subtitle ?? this.subtitle,
+        buttonText: buttonText ?? this.buttonText,
+        buttonLink: buttonLink ?? this.buttonLink,
+        status: status ?? this.status,
+        image: image ?? this.image,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+      );
+
   factory AdBanner.fromJson(Map<String, dynamic> json) => AdBanner(
         id: json["id"],
         title: json["title"],

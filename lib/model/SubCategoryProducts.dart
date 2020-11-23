@@ -43,6 +43,7 @@ class Product {
     this.price,
     this.createdAt,
     this.updatedAt,
+    this.mainImage,
   });
 
   int id;
@@ -58,10 +59,52 @@ class Product {
   String shortDescription;
   String description;
   String status;
-  List<String> imagePath;
+  String imagePath;
   int price;
   DateTime createdAt;
   DateTime updatedAt;
+  String mainImage;
+
+  Product copyWith({
+    int id,
+    int subCatagoryId,
+    int providerId,
+    String name,
+    String brand,
+    String discount,
+    String discountDescription,
+    String offer,
+    String offerDescription,
+    String tags,
+    String shortDescription,
+    String description,
+    String status,
+    String imagePath,
+    int price,
+    DateTime createdAt,
+    DateTime updatedAt,
+    String mainImage,
+  }) =>
+      Product(
+        id: id ?? this.id,
+        subCatagoryId: subCatagoryId ?? this.subCatagoryId,
+        providerId: providerId ?? this.providerId,
+        name: name ?? this.name,
+        brand: brand ?? this.brand,
+        discount: discount ?? this.discount,
+        discountDescription: discountDescription ?? this.discountDescription,
+        offer: offer ?? this.offer,
+        offerDescription: offerDescription ?? this.offerDescription,
+        tags: tags ?? this.tags,
+        shortDescription: shortDescription ?? this.shortDescription,
+        description: description ?? this.description,
+        status: status ?? this.status,
+        imagePath: imagePath ?? this.imagePath,
+        price: price ?? this.price,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        mainImage: mainImage ?? this.mainImage,
+      );
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
@@ -77,10 +120,11 @@ class Product {
         shortDescription: json["short_description"],
         description: json["description"],
         status: json["status"],
-        imagePath: List<String>.from(json["image_path"].map((x) => x)),
+        imagePath: json["image_path"],
         price: json["price"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+        mainImage: json["main_image"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -97,9 +141,10 @@ class Product {
         "short_description": shortDescription,
         "description": description,
         "status": status,
-        "image_path": List<dynamic>.from(imagePath.map((x) => x)),
+        "image_path": imagePath,
         "price": price,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
+        "main_image": mainImage,
       };
 }
