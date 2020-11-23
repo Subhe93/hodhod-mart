@@ -29,7 +29,10 @@ class _MyAccountBodyState extends State<MyAccountBody> {
     loading = true;
 
     HttpServices.GetUserInfo(context).then((value) => {
-          setState(() => {loading = false})
+          if (mounted)
+            {
+              setState(() => {loading = false})
+            }
         });
   }
 

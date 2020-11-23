@@ -18,7 +18,10 @@ class _HomePageState extends State<HomePage> {
     loading = true;
     super.initState();
     HttpServices.getHomeData(context).then((value) => {
-          setState(() => loading = false),
+          if (mounted)
+            {
+              setState(() => loading = false),
+            }
         });
   }
 

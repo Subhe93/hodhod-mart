@@ -36,7 +36,9 @@ class _SubCategoryItemCardState extends State<SubCategoryItemCard> {
             Flexible(
               flex: 3,
               child: Image.network(
-                baseUrl + widget.item.imagePath[0],
+                widget.item.mainImage != ""
+                    ? baseUrl + widget.item.mainImage
+                    : 'https://picsum.photos/200/300.jpg',
                 width: (MediaQuery.of(context).size.width / 2) - 2,
                 height: MediaQuery.of(context).size.width / 1.2,
                 fit: BoxFit.contain,

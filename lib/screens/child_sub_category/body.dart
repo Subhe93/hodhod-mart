@@ -19,8 +19,12 @@ class _ChildSubCategoryBodyState extends State<ChildSubCategoryBody> {
   @override
   void initState() {
     super.initState();
-    HttpServices.getSubCategoryProducts(widget.subCatID)
-        .then((value) => setState(() => {products = value, isloading = false}));
+    HttpServices.getSubCategoryProducts(widget.subCatID).then((value) => {
+          if (mounted)
+            {
+              setState(() => {products = value, isloading = false})
+            }
+        });
   }
 
   @override

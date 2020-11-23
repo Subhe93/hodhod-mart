@@ -39,7 +39,6 @@ class Product {
     this.shortDescription,
     this.description,
     this.status,
-    this.imagePath,
     this.price,
     this.createdAt,
     this.updatedAt,
@@ -59,7 +58,6 @@ class Product {
   String shortDescription;
   String description;
   String status;
-  String imagePath;
   int price;
   DateTime createdAt;
   DateTime updatedAt;
@@ -79,7 +77,6 @@ class Product {
     String shortDescription,
     String description,
     String status,
-    String imagePath,
     int price,
     DateTime createdAt,
     DateTime updatedAt,
@@ -99,7 +96,6 @@ class Product {
         shortDescription: shortDescription ?? this.shortDescription,
         description: description ?? this.description,
         status: status ?? this.status,
-        imagePath: imagePath ?? this.imagePath,
         price: price ?? this.price,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
@@ -120,7 +116,6 @@ class Product {
         shortDescription: json["short_description"],
         description: json["description"],
         status: json["status"],
-        imagePath: json["image_path"],
         price: json["price"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
@@ -141,7 +136,6 @@ class Product {
         "short_description": shortDescription,
         "description": description,
         "status": status,
-        "image_path": imagePath,
         "price": price,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),

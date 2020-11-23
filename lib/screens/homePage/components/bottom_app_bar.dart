@@ -25,12 +25,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   var iconHeight = 25.0;
   var iconColor = Colors.black.withOpacity(0.6);
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // HttpServices.GetUserInfo(context);
-  }
+  
 
   @override
   Widget build(BuildContext context) {

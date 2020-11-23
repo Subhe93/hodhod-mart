@@ -22,12 +22,25 @@ class ProductBody extends StatefulWidget {
 class _ProductBodyState extends State<ProductBody> {
   ProductDetails product;
   bool loading;
+  List<List<Attribute>> attributes;
+  List<String> attributesNames;
   @override
   void initState() {
     loading = true;
+    attributes = [];
+    attributesNames = [];
     super.initState();
     HttpServices.getProductDetails(widget.id, context).then((value) => {
-          setState(() => {loading = false, product = value})
+          if (mounted)
+            {
+              setState(() => {loading = false, product = value}),
+              if (value.attributes != null)
+                {
+                  attributesNames = value.attributes.keys.toList(),
+                  print(attributesNames),
+                  attributes = value.attributes.values.toList(),
+                }
+            }
         });
   }
 
@@ -343,6 +356,22 @@ class _ProductBodyState extends State<ProductBody> {
                               ),
                             ),
                             Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 165 * attributes.length.toDouble(),
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView.builder(
+                                  itemCount: attributes.length,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) =>
+                                      AttributeCollection(
+                                    attributesCollection: attributes[index],
+                                    title: attributesNames[index],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
                               padding:
                                   const EdgeInsets.only(top: 10.0, bottom: 10),
                               child: SizedBox(
@@ -533,6 +562,73 @@ class _ProductBodyState extends State<ProductBody> {
                 ],
               ),
             ),
+    );
+  }
+}
+
+class AttributeCollection extends StatelessWidget {
+  final List<Attribute> attributesCollection;
+  final String title;
+  const AttributeCollection({Key key, this.attributesCollection, this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 20,
+            child: Text(
+              title,
+              style: TextStyle(color: Colors.grey, fontSize: 16),
+            ),
+          ),
+        ),
+        Container(
+          height: 120,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: attributesCollection.length,
+            itemBuilder: (context, index) =>
+                AttributeCard(attribute: attributesCollection[index]),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class AttributeCard extends StatelessWidget {
+  final Attribute attribute;
+
+  const AttributeCard({Key key, this.attribute}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 100,
+        width: 100,
+        decoration: BoxDecoration(border: Border.all(width: 0.5)),
+        child: Column(
+          children: [
+            Text(
+              attribute.value,
+              style: TextStyle(color: signInStartColor, fontSize: 16),
+            ),
+            Expanded(
+              child: Image.network(
+                baseUrl + attribute.image,
+                fit: BoxFit.scaleDown,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -406,7 +406,7 @@ class HttpServices {
       var response = await http.post(baseUrl + "getProductData", headers: {
         'Authorization': 'Bearer ' + token,
       }, body: {
-        'id': id.toString()
+        'id': "10"
       });
       if (response.statusCode == 200) {
         var result = ProductDetails.fromJson(response.body);

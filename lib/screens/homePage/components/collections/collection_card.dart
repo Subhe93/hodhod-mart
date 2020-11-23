@@ -36,8 +36,8 @@ class _CollectionCardState extends State<CollectionCard> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  widget.product.imagePath != ""
-                      ? baseUrl + widget.product.imagePath
+                  widget.product.mainImage != ""
+                      ? baseUrl + widget.product.mainImage
                       : 'https://picsum.photos/200/300.jpg',
                   width: 240,
                   height: 200,
