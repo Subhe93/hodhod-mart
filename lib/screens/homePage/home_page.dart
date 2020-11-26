@@ -12,25 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool loading;
-  @override
-  void initState() {
-    loading = true;
-    super.initState();
-    HttpServices.getHomeData(context).then((value) => {
-          if (mounted)
-            {
-              setState(() => loading = false),
-            }
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : HomeBody();
+    return HomeBody();
   }
 }

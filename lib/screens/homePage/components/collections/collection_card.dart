@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/model/whoshlist_model.dart';
-import 'package:hodhod_mart/provider/wishList_provider.dart';
 
 import 'package:provider/provider.dart';
 
@@ -48,30 +47,6 @@ class _CollectionCardState extends State<CollectionCard> {
                 top: 2,
                 right: 2,
                 child: InkWell(
-                  onTap: () {
-                    WishListItem cartItem = WishListItem(
-                        id: 1,
-                        imageUrl: 'https://picsum.photos/200/300.jpg',
-                        price: 250.0,
-                        title: widget.product.name);
-
-                    Provider.of<WishListProvider>(context, listen: false)
-                        .add(cartItem);
-
-                    WishListModel cartModel = WishListModel();
-                    cartModel.wishListItem = [];
-                    cartModel.wishListItem.add(cartItem);
-                    Provider.of<WishListProvider>(context, listen: false)
-                        .saveCart();
-
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Item Added To WishList'),
-                    ));
-                    setState(() {
-                      test = !test;
-                    });
-                    print("///" + widget.product.name);
-                  },
                   child: Icon(
                     // test?Icons.favorite:
                     Icons.favorite_border,

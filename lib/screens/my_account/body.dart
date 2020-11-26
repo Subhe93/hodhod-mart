@@ -316,7 +316,7 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                       loading = true;
                                     });
                                     Manager.logout(context).then((value) =>
-                                        Navigator.push(context,
+                                        Navigator.pushReplacement(context,
                                             MaterialPageRoute(
                                                 builder: (context) {
                                           return StartPage();

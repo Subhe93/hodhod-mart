@@ -24,7 +24,18 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   var iconWidth = 25.0;
   var iconHeight = 25.0;
   var iconColor = Colors.black.withOpacity(0.6);
-
+ bool loading;
+  @override
+  void initState() {
+    loading = true;
+    super.initState();
+    HttpServices.getHomeData(context).then((value) => {
+          if (mounted)
+            {
+              setState(() => loading = false),
+            }
+        });
+  }
   
 
   @override
@@ -177,7 +188,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
       ),
       backgroundColor: Colors.white,
       appBar: homeAppBar(true, context, false, 'HODHOD MART', searchAction()),
-      body: PageView(
+      body: loading?Center(child: CircularProgressIndicator()):PageView(
         controller: _myPage,
         onPageChanged: (int) {
           print('Page Changes to index $int');

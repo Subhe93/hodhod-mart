@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/presentation/my_flutter_app_icons.dart';
 
-Widget productAppBar(BuildContext context) {
+Widget productAppBar(BuildContext context, int product_id) {
   double containerHeight = 40;
   double containerWidth = 40;
   double imageRadius = 20;
@@ -63,7 +64,9 @@ Widget productAppBar(BuildContext context) {
                   borderRadius: BorderRadius.circular(imageRadius),
                 ),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    HttpServices.addItemToWishlist(product_id, context);
+                  },
                   icon: Icon(
                     MyFlutterApp.love_02,
                     color: appBarIconsColor,

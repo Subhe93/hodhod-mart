@@ -137,16 +137,16 @@ class ProductDetails {
 }
 
 class Attribute {
-  Attribute({
-    this.id,
-    this.attributeId,
-    this.productId,
-    this.value,
-    this.image,
-    this.attributeValueKey,
-    this.createdAt,
-    this.updatedAt,
-  });
+  Attribute(
+      {this.id,
+      this.attributeId,
+      this.productId,
+      this.value,
+      this.image,
+      this.attributeValueKey,
+      this.createdAt,
+      this.updatedAt,
+      this.selected = false});
 
   int id;
   int attributeId;
@@ -156,6 +156,7 @@ class Attribute {
   String attributeValueKey;
   DateTime createdAt;
   DateTime updatedAt;
+  bool selected;
 
   Attribute copyWith({
     int id,

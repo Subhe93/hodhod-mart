@@ -1,15 +1,19 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
-import 'package:hodhod_mart/model/ProductsDetails.dart';
+import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/model/ResponsModels/homePage.dart';
 import 'package:hodhod_mart/model/ResponsModels/loginResponse.dart';
 import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
 import 'package:hodhod_mart/model/ResponsModels/userInfo.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
 import 'package:hodhod_mart/model/User.dart';
+import 'package:hodhod_mart/model/whoshlist_model.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -69,6 +73,13 @@ class HttpServices {
     }
   }
 
+  ///
+/////
+/////
+  ///
+  ///
+  ///
+  ///
   static Future<Startup> getStartup() async {
     try {
       final response = await http.get(baseUrl + "bannersAndCategories");
@@ -406,7 +417,7 @@ class HttpServices {
       var response = await http.post(baseUrl + "getProductData", headers: {
         'Authorization': 'Bearer ' + token,
       }, body: {
-        'id': "10"
+        'id': id.toString()
       });
       if (response.statusCode == 200) {
         var result = ProductDetails.fromJson(response.body);
@@ -420,6 +431,197 @@ class HttpServices {
       Manager.toastMessage('Something Went Wrong ', Colors.red);
       print(e);
       return ProductDetails();
+    }
+  }
+
+  ////
+  ///
+  ///
+  ///Cart Items
+  static Future<List<CartItem>> getCartProducts(BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.get(baseUrl + "cart", headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 200) {
+        final results = cartItemsFromJson(response.body);
+        Provider.of<ModelsProvider>(context, listen: false)
+            .setCartItems(results);
+        return results;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return [];
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return [];
+    }
+  }
+
+  ////
+  ///
+  ///
+  ///Cart Items
+  static Future<bool> deleteItemFromCart(int id, BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.delete(baseUrl + "cart/$id", headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 204) {
+        Provider.of<ModelsProvider>(context, listen: false)
+            .removeItemFromCart(id);
+
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return false;
+    }
+  }
+
+  ////
+  ///
+  ///
+  ///Cart Items
+  static Future<bool> addItemToCart(
+      String options, int id, int quantity, BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.post(
+          baseUrl + 'cart?product_id=$id&options=$options&quantity=$quantity',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+          });
+      if (response.statusCode == 201) {
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return false;
+    }
+  }
+
+/////
+  ///
+  ///
+  ///
+  static Future<bool> updateCartItem(
+      int id, int productID, int quantity, BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.put(
+          baseUrl + "cart/$id?product_id=$productID&options&quantity=$quantity",
+          headers: {
+            'Authorization': 'Bearer ' + token,
+          });
+      if (response.statusCode == 201) {
+        HttpServices.getCartProducts(context);
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return false;
+    }
+  }
+
+  //////
+  ///
+  ///
+  ///Add Product to wishList
+  static Future<bool> addItemToWishlist(
+      int productID, BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.post(baseUrl + "wishlist", body: {
+        'product_id': productID.toString()
+      }, headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 201) {
+        Manager.toastMessage('Added to wishlist', signInStartColor);
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return false;
+    }
+  }
+
+  //////
+  ///
+  ///
+  ///Add Product to wishList
+  static Future<bool> getWishList(BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.get(baseUrl + "wishlist", headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 200) {
+        var results = wishListItemFromJson(response.body);
+        Provider.of<ModelsProvider>(context, listen: false)
+            .setWishListItems(results);
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return false;
+    }
+  }
+
+  ////
+  ///
+  ///
+  ///Cart Items
+  static Future<bool> deleteItemFromWishList(
+      int id, BuildContext context, int index) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.delete(baseUrl + "wishlist/$id", headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 204) {
+        Provider.of<ModelsProvider>(context, listen: false)
+            .removeFromWishlist(index);
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return false;
     }
   }
 }
