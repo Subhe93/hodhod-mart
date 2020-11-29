@@ -10,6 +10,7 @@ import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/model/ResponsModels/homePage.dart';
 import 'package:hodhod_mart/model/ResponsModels/loginResponse.dart';
 import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
+import 'package:hodhod_mart/model/ResponsModels/searchResponse.dart';
 import 'package:hodhod_mart/model/ResponsModels/userInfo.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
 import 'package:hodhod_mart/model/User.dart';
@@ -421,7 +422,7 @@ class HttpServices {
       });
       if (response.statusCode == 200) {
         var result = ProductDetails.fromJson(response.body);
-        print(response.body);
+
         return result;
       } else {
         Manager.toastMessage('Something Went Wrong ', Colors.red);
@@ -519,13 +520,13 @@ class HttpServices {
   ///
   ///
   ///
-  static Future<bool> updateCartItem(
-      int id, int productID, int quantity, BuildContext context) async {
+  static Future<bool> updateCartItem(int id, int productID, int quantity,
+      BuildContext context, String options) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
       var response = await http.put(
-          baseUrl + "cart/$id?product_id=$productID&options&quantity=$quantity",
+          baseUrl + "cart/$id?options=$options&quantity=$quantity",
           headers: {
             'Authorization': 'Bearer ' + token,
           });
@@ -622,6 +623,78 @@ class HttpServices {
       Manager.toastMessage('Something Went Wrong ', Colors.red);
       print(e);
       return false;
+    }
+  }
+
+  //////
+  ///
+  ///
+  ///Add Product to wishList
+  static Future<bool> checkout(
+      String cardNumber,
+      String expYear,
+      String expMonth,
+      String paymentMethod,
+      String currency,
+      String cvc,
+      BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      var response = await http.post(baseUrl + "order", body: {
+        'payment_method': paymentMethod,
+        'number': cardNumber,
+        'exp_year': expYear,
+        'exp_month': expMonth,
+        'currency': currency,
+        'cvc': cvc
+      }, headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 201) {
+        Manager.toastMessage('Checkout Done', signInStartColor);
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return false;
+    }
+  }
+
+  //////
+  ///
+  ///
+  ///Add Product to wishList
+  static Future<SearchResponse> search(
+      String keyword, String cat, BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+      if (cat == "0") {
+        cat = "";
+      }
+      var response = await http.post(baseUrl + "searchProducts", body: {
+        'category': cat,
+        'search': keyword
+      }, headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 200) {
+        var result = SearchResponse.fromJson(convert.jsonDecode(response.body));
+
+        return result;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return SearchResponse();
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+      print(e);
+      return SearchResponse();
     }
   }
 }

@@ -15,8 +15,8 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          homeAppBar(false, context, true, 'Sub Categories', searchAction()),
+      appBar: homeAppBar(
+          true, false, context, true, 'Sub Categories', searchAction()),
       body: SubCategoryBody(
         catID: widget.catID,
       ),

@@ -88,49 +88,44 @@ class _WishListCardState extends State<WishListCard> {
                                 SizedBox(
                                   height: 8,
                                 ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Transform(
-                                            transform: Matrix4.identity()
-                                              ..scale(0.9),
-                                            child: Chip(
-                                              backgroundColor: signInEndColor,
-                                              label: Text(
-                                                'Always in stock',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12,
-                                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Transform(
+                                          transform: Matrix4.identity()
+                                            ..scale(0.9),
+                                          child: Chip(
+                                            backgroundColor: signInEndColor,
+                                            label: Text(
+                                              'Always in stock',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12,
                                               ),
                                             ),
                                           ),
-                                          Transform(
-                                            transform: Matrix4.identity()
-                                              ..scale(0.9),
-                                            child: Chip(
-                                              backgroundColor: signInStartColor,
-                                              label: Text(
-                                                'fast delivery',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 10,
-                                                ),
+                                        ),
+                                        Transform(
+                                          transform: Matrix4.identity()
+                                            ..scale(0.9),
+                                          child: Chip(
+                                            backgroundColor: signInStartColor,
+                                            label: Text(
+                                              'fast delivery',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10,
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                      Text(
-                                          widget.item.price.toString() + " \$"),
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(widget.item.price.toString() + " \$"),
+                                  ],
                                 )
                               ],
                             )

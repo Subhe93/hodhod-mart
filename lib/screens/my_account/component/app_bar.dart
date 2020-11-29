@@ -47,21 +47,6 @@ Widget accountAppBar(
             //           width: 30,
             //         ),
             // ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, right: 10),
-              child: showLogout
-                  ? IconButton(
-                      icon: Icon(
-                        Icons.exit_to_app,
-                        color: appBarIconsColor,
-                        size: 30,
-                      ),
-                      onPressed: () {},
-                    )
-                  : SizedBox(
-                      width: 1,
-                    ),
-            ),
           ],
         ),
       ],

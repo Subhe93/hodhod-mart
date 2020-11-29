@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -29,16 +31,49 @@ class _EditOrderState extends State<EditOrder> {
   CartItem items;
   int quantity;
   bool loading;
-  // List<List<Attribute>> attributes;
-  // List<String> attributesNames;
+  List<int> options;
+  ProductDetails product;
+
+  List<List<Attribute>> attributes;
+  List<String> attributesNames;
+
   @override
   void initState() {
-    loading = false;
+    loading = true;
     quantity = widget.item.quantity;
-    // added = false;
-    // attributes = [];
-    // attributesNames = [];
+
     super.initState();
+    options = [];
+    HttpServices.getProductDetails(widget.item.productId, context)
+        .then((value) => {
+              if (mounted)
+                {
+                  setState(() => {loading = false, product = value}),
+
+                  ///this code to convert the dictionary to lists to be able to display them
+                  if (value.attributes != null)
+                    {
+                      attributesNames = value.attributes.keys.toList(),
+                      attributes = value.attributes.values.toList(),
+                    },
+
+                  ////
+                  ///
+                  ///sorry for the messy code
+                  ///this loop to decode the options and set the hilight the the selected ones
+                  for (var value in json.decode(widget.item.options))
+                    {
+                      for (var i = 0; i < attributes.length; i++)
+                        {
+                          for (var j = 0; j < attributes[i].length; j++)
+                            {
+                              if (value == attributes[i][j].id)
+                                {attributes[i][j].selected = true}
+                            }
+                        }
+                    }
+                }
+            });
   }
 
   @override
@@ -183,188 +218,35 @@ class _EditOrderState extends State<EditOrder> {
                                       )
                                     ],
                                   ),
-                                  // Container(
-                                  //   width: MediaQuery.of(context).size.width,
-                                  //   height: 25,
-                                  //   child: ListView(
-                                  //     scrollDirection: Axis.horizontal,
-                                  //     children: [
-                                  //       Padding(
-                                  //         padding: const EdgeInsets.all(5.0),
-                                  //         child: Container(
-                                  //           width: 15,
-                                  //           height: 15,
-                                  //           color: Colors.black,
-                                  //         ),
-                                  //       ),
-                                  //       Padding(
-                                  //         padding: const EdgeInsets.all(5.0),
-                                  //         child: Container(
-                                  //           width: 15,
-                                  //           height: 15,
-                                  //           color: Colors.blue,
-                                  //         ),
-                                  //       ),
-                                  //       Padding(
-                                  //         padding: const EdgeInsets.all(5.0),
-                                  //         child: Container(
-                                  //           width: 15,
-                                  //           height: 15,
-                                  //           color: Colors.red,
-                                  //         ),
-                                  //       ),
-                                  //     ],
-                                  //   ),
-                                  // ),
-                                  // SizedBox(
-                                  //   height: 5,
-                                  // ),
-                                  // Column(
-                                  //   mainAxisAlignment: MainAxisAlignment.start,
-                                  //   children: [
-                                  //     Row(
-                                  //       crossAxisAlignment:
-                                  //           CrossAxisAlignment.center,
-                                  //       mainAxisAlignment:
-                                  //           MainAxisAlignment.spaceBetween,
-                                  //       children: [
-                                  //         Text(
-                                  //           'Size',
-                                  //           style: TextStyle(
-                                  //               color: Colors.grey,
-                                  //               fontSize: 16),
-                                  //         ),
-                                  //         Row(
-                                  //           crossAxisAlignment:
-                                  //               CrossAxisAlignment.center,
-                                  //           mainAxisAlignment:
-                                  //               MainAxisAlignment.end,
-                                  //           children: [
-                                  //             Padding(
-                                  //               padding: const EdgeInsets.only(
-                                  //                   top: 8.0),
-                                  //               child: SvgPicture.asset(
-                                  //                   'assets/svg/ruler.svg',
-                                  //                   width: 30,
-                                  //                   height: 40,
-                                  //                   alignment:
-                                  //                       Alignment.topRight),
-                                  //             ),
-                                  //             SizedBox(
-                                  //               width: 5,
-                                  //             ),
-                                  //             Text(
-                                  //               'Size Chart',
-                                  //               style: TextStyle(
-                                  //                 color: Colors.red
-                                  //                     .withOpacity(0.8),
-                                  //               ),
-                                  //             ),
-                                  //           ],
-                                  //         )
-                                  //       ],
-                                  //     ),
-                                  //     SizedBox(
-                                  //       height: 5,
-                                  //     ),
-                                  //     Container(
-                                  //       width:
-                                  //           MediaQuery.of(context).size.width,
-                                  //       height: 50,
-                                  //       child: ListView(
-                                  //         scrollDirection: Axis.horizontal,
-                                  //         children: [
-                                  //           Padding(
-                                  //             padding:
-                                  //                 const EdgeInsets.all(5.0),
-                                  //             child: Container(
-                                  //               width: 75,
-                                  //               height: 10,
-                                  //               child: Center(
-                                  //                 child: Text('S'),
-                                  //               ),
-                                  //               decoration: BoxDecoration(
-                                  //                   border: Border.all(
-                                  //                       color: Colors.black26)),
-                                  //             ),
-                                  //           ),
-                                  //           Padding(
-                                  //             padding:
-                                  //                 const EdgeInsets.all(5.0),
-                                  //             child: Container(
-                                  //               width: 75,
-                                  //               height: 10,
-                                  //               child: Center(
-                                  //                 child: Text('M'),
-                                  //               ),
-                                  //               decoration: BoxDecoration(
-                                  //                   border: Border.all(
-                                  //                       color: Colors.black26)),
-                                  //             ),
-                                  //           ),
-                                  //           Padding(
-                                  //             padding:
-                                  //                 const EdgeInsets.all(5.0),
-                                  //             child: Container(
-                                  //               width: 75,
-                                  //               height: 10,
-                                  //               child: Center(
-                                  //                 child: Text('L'),
-                                  //               ),
-                                  //               decoration: BoxDecoration(
-                                  //                   border: Border.all(
-                                  //                       color: Colors.black26)),
-                                  //             ),
-                                  //           ),
-                                  //           Padding(
-                                  //             padding:
-                                  //                 const EdgeInsets.all(5.0),
-                                  //             child: Container(
-                                  //               width: 75,
-                                  //               height: 10,
-                                  //               child: Center(
-                                  //                 child: Text('XL'),
-                                  //               ),
-                                  //               decoration: BoxDecoration(
-                                  //                   border: Border.all(
-                                  //                       color: Colors.black26)),
-                                  //             ),
-                                  //           ),
-                                  //         ],
-                                  //       ),
-                                  //     ),
-                                  //   ],
-                                  // ),
                                 ],
                               ),
                             ),
-                            true
+                            attributes.length == 0
                                 ? Container(
                                     height: 20,
                                     child: Center(
                                       child: Text('No Options for this item'),
                                     ),
                                   )
-                                : Container(),
-                            // : Padding(
-                            //     padding: const EdgeInsets.only(
-                            //         left: 8.0, right: 8, bottom: 8),
-                            //     child: Container(
-                            //       height:
-                            //           180 * attributes.length.toDouble(),
-                            //       width: MediaQuery.of(context).size.width,
-                            //       child: ListView.builder(
-                            //         itemCount: attributes.length,
-                            //         physics: NeverScrollableScrollPhysics(),
-                            //         itemBuilder: (context, index) =>
-                            //             AttributeCollection(
-                            //           attributesCollection:
-                            //               attributes[index],
-                            //           title: attributesNames[index],
-                            //         ),
-                            //       ),
-                            //     ),
-                            //   ),
+                                : Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8, bottom: 8),
+                                    child: Container(
+                                      height:
+                                          180 * attributes.length.toDouble(),
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView.builder(
+                                        itemCount: attributes.length,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, index) =>
+                                            AttributeCollection(
+                                          attributes[index],
+                                          attributesNames[index],
+                                          index,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 10.0, bottom: 10),
@@ -375,47 +257,6 @@ class _EditOrderState extends State<EditOrder> {
                                   width: MediaQuery.of(context).size.width,
                                   color: Colors.grey.withOpacity(0.3),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 15, right: 15, bottom: 5.0, top: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Return Policy',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.black),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text:
-                                              "Choose to return or exchange for different size available within ",
-                                          style: TextStyle(color: Colors.grey),
-                                        ),
-                                        TextSpan(
-                                          text: "15 days",
-                                          style:
-                                              TextStyle(color: instaTextColor),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  // 'Choose to return or exchange for different size available within ' + '',
-                                  // maxLines: 10,
-                                  // style: TextStyle (
-                                  //     fontSize: 15,
-                                  //     color: kTextColor,
-                                  // ),
-                                ],
                               ),
                             ),
                             Padding(
@@ -521,12 +362,6 @@ class _EditOrderState extends State<EditOrder> {
                                       ],
                                     ),
                                   ),
-                                  // 'Choose to return or exchange for different size available within ' + '',
-                                  // maxLines: 10,
-                                  // style: TextStyle (
-                                  //     fontSize: 15,
-                                  //     color: kTextColor,
-                                  // ),
                                   Container(
                                     height: 70,
                                     child: Padding(
@@ -616,20 +451,34 @@ class _EditOrderState extends State<EditOrder> {
                                 ),
                               ),
                             ),
+                            SizedBox(
+                              height: 60,
+                            )
                           ],
                         ),
                       ),
                     ),
                   ),
-                  productAppBar(context,widget.item.productId),
+                  productAppBar(context, widget.item.productId),
                   Positioned(
                     bottom: 0,
                     child: InkWell(
                       onTap: () => {
                         setState(() => loading = true),
-                        HttpServices.updateCartItem(widget.item.id,
-                                widget.item.productId, quantity, context)
-                            .then((value) => {setState(() => loading = false)})
+                        for (var i = 0; i < attributes.length; i++)
+                          {
+                            for (var sub in attributes[i])
+                              {
+                                if (sub.selected) {options.add(sub.id)}
+                              }
+                          },
+                        HttpServices.updateCartItem(
+                          widget.item.id,
+                          widget.item.productId,
+                          quantity,
+                          context,
+                          options.toString(),
+                        ).then((value) => {setState(() => loading = false)})
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -688,6 +537,73 @@ class _EditOrderState extends State<EditOrder> {
       builder: (BuildContext context) {
         return alert;
       },
+    );
+  }
+
+  Widget AttributeCard(Attribute attribute, int collectionIndex) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        onTap: () => {
+          for (int i = 0; i < attributes[collectionIndex].length; i++)
+            {attributes[collectionIndex][i].selected = false},
+          setState(() => {
+                attribute.selected
+                    ? attribute.selected = false
+                    : attribute.selected = true,
+              })
+        },
+        child: Container(
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+              border: Border.all(
+                  width: attribute.selected ? 2 : 0.5,
+                  color: attribute.selected ? signInStartColor : Colors.grey)),
+          child: Column(
+            children: [
+              Text(
+                attribute.value,
+                style: TextStyle(color: signInStartColor, fontSize: 16),
+              ),
+              Expanded(
+                child: Image.network(
+                  baseUrl + attribute.image,
+                  fit: BoxFit.scaleDown,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget AttributeCollection(
+      List<Attribute> attributesCollection, String title, int collectionIndex) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
+          child: Container(
+            height: 20,
+            child: Text(
+              title,
+              style: TextStyle(color: Colors.grey, fontSize: 16),
+            ),
+          ),
+        ),
+        Container(
+          height: 120,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: attributesCollection.length,
+            itemBuilder: (context, index) =>
+                AttributeCard(attributesCollection[index], collectionIndex),
+          ),
+        ),
+      ],
     );
   }
 }

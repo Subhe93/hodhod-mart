@@ -24,7 +24,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   var iconWidth = 25.0;
   var iconHeight = 25.0;
   var iconColor = Colors.black.withOpacity(0.6);
- bool loading;
+  bool loading;
   @override
   void initState() {
     loading = true;
@@ -36,7 +36,6 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
             }
         });
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -187,15 +186,23 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         ),
       ),
       backgroundColor: Colors.white,
-      appBar: homeAppBar(true, context, false, 'HODHOD MART', searchAction()),
-      body: loading?Center(child: CircularProgressIndicator()):PageView(
-        controller: _myPage,
-        onPageChanged: (int) {
-          print('Page Changes to index $int');
-        },
-        children: <Widget>[HomePage(), SearchPage(), WhishList(), MyCart()],
-        physics: NeverScrollableScrollPhysics(),
-      ),
+      appBar:
+          homeAppBar(true, true, context, false, 'HODHOD MART', searchAction()),
+      body: loading
+          ? Center(child: CircularProgressIndicator())
+          : PageView(
+              controller: _myPage,
+              onPageChanged: (int) {
+                print('Page Changes to index $int');
+              },
+              children: <Widget>[
+                HomePage(),
+                SearchPage(),
+                WhishList(),
+                MyCart()
+              ],
+              physics: NeverScrollableScrollPhysics(),
+            ),
     );
   }
 }

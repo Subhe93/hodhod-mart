@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 
@@ -31,17 +32,27 @@ class _ChildSubCategoryBodyState extends State<ChildSubCategoryBody> {
   Widget build(BuildContext context) {
     return isloading
         ? Center(child: CircularProgressIndicator())
-        : Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 0.6),
-              itemBuilder: (_, index) => SubCategoryItemCard(
-                item: products[index],
-              ),
-              itemCount: products.length,
-            ),
-          );
+        : products.isEmpty
+            ? Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                child: Center(
+                  child: Text(
+                    'No Products To Show',
+                    style: TextStyle(color: signInStartColor, fontSize: 20),
+                  ),
+                ))
+            : Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 0.6),
+                  itemBuilder: (_, index) => SubCategoryItemCard(
+                    item: products[index],
+                  ),
+                  itemCount: products.length,
+                ),
+              );
   }
 }

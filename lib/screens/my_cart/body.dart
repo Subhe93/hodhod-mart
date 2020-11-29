@@ -6,6 +6,7 @@ import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/checkout/checkout.dart';
 import 'package:hodhod_mart/screens/my_cart/cart_card.dart';
 import 'package:hodhod_mart/screens/my_cart/edit_order.dart';
+import 'package:hodhod_mart/screens/realCheckout/checkout_r.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';

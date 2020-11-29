@@ -3,7 +3,6 @@ import 'package:hodhod_mart/screens/child_sub_category/body.dart';
 import 'package:hodhod_mart/screens/child_sub_category/components/bottom_sheet.dart';
 import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
 
-
 class ChildSubCategory extends StatefulWidget {
   final int subCatId;
   const ChildSubCategory({Key key, this.subCatId}) : super(key: key);
@@ -15,11 +14,9 @@ class ChildSubCategory extends StatefulWidget {
 class _ChildSubCategoryState extends State<ChildSubCategory> {
   @override
   Widget build(BuildContext context) {
-  
-
     return Scaffold(
-      appBar:
-          homeAppBar(false, context, true, 'Sub Categories', searchAction()),
+      appBar: homeAppBar(
+          true, false, context, true, 'Sub Categories', searchAction()),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<dynamic>(

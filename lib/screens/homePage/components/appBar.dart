@@ -24,8 +24,8 @@ Widget logOutAction() {
   );
 }
 
-Widget homeAppBar(bool notification, BuildContext context, bool padding,
-    String title, IconButton action) {
+Widget homeAppBar(bool search, bool notification, BuildContext context,
+    bool padding, String title, IconButton action) {
   return PreferredSize(
     preferredSize: padding ? Size.fromHeight(80) : Size.fromHeight(50),
     child: AppBar(
@@ -70,7 +70,7 @@ Widget homeAppBar(bool notification, BuildContext context, bool padding,
       leading: notification
           ? IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context){
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return Notifications();
                 }));
               },
@@ -91,7 +91,12 @@ Widget homeAppBar(bool notification, BuildContext context, bool padding,
               ),
             ),
       actions: [
-        action,
+        search
+            ? action
+            : Container(
+                height: 0,
+                width: 50,
+              ),
       ],
     ),
   );

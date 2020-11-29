@@ -26,7 +26,7 @@ class _ProductBodyState extends State<ProductBody> {
   bool addingItemToCart;
   bool added;
   bool addingToWishList;
-  var options = new Map();
+  List<int> options;
   List<List<Attribute>> attributes;
   List<String> attributesNames;
   @override
@@ -35,7 +35,8 @@ class _ProductBodyState extends State<ProductBody> {
     loadingScreen = true;
     addingItemToCart = false;
     quantity = 0;
-    added = false;
+    options = [];
+
     attributes = [];
     attributesNames = [];
     super.initState();
@@ -191,6 +192,46 @@ class _ProductBodyState extends State<ProductBody> {
                                         ),
                                       ),
                                     ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(product.description),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Theme(
+                                    data:
+                                        ThemeData(accentColor: signInEndColor),
+                                    child: ExpansionTile(
+                                      expandedAlignment: Alignment.centerLeft,
+                                      title: Text(
+                                        'Offers and Discounts',
+                                        style: TextStyle(color: signInEndColor),
+                                      ),
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Discount Description',
+                                              style: TextStyle(fontSize: 17),
+                                            ),
+                                            Text(product.discountDescription),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text('Offer Description',
+                                                style: TextStyle(fontSize: 17)),
+                                            Text(product.offerDescription),
+                                            SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   Row(
                                     crossAxisAlignment:
@@ -487,7 +528,7 @@ class _ProductBodyState extends State<ProductBody> {
                               color: Colors.deepPurple,
                               child: Center(
                                   child: Text(
-                                added ? 'Added to Cart' : 'Add To Cart',
+                                'Add To Cart',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -503,21 +544,22 @@ class _ProductBodyState extends State<ProductBody> {
     );
   }
 
+//validation and processing selected attributes
   void addToCart() {
     if (quantity > 0) {
       for (var i = 0; i < attributes.length; i++) {
         for (var sub in attributes[i]) {
           if (sub.selected) {
-            options[attributesNames[i]] = sub.id;
+            options.add(sub.id);
           }
         }
       }
-      ;
+
       setState(
         () => addingItemToCart = true,
       );
       HttpServices.addItemToCart(
-              json.encode(options), product.id, quantity, context)
+              options.toString(), product.id, quantity, context)
           .then((value) => {
                 addingItemToCart = false,
                 added = value,
