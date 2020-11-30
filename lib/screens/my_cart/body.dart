@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
@@ -151,46 +152,46 @@ class _NewCartBodyState extends State<NewCartBody> {
                         SizedBox(
                           height: 15,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Deliver To   ',
-                                  style: TextStyle(
-                                      color: Colors.grey[900],
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                DropdownButton(
-                                    value: _value,
-                                    items: [
-                                      DropdownMenuItem(
-                                        child: Text("First Location"),
-                                        value: 1,
-                                      ),
-                                      DropdownMenuItem(
-                                        child: Text("Second Location"),
-                                        value: 2,
-                                      ),
-                                      DropdownMenuItem(
-                                          child: Text("Third Location"),
-                                          value: 3),
-                                      DropdownMenuItem(
-                                          child: Text("Fourth Location"),
-                                          value: 4)
-                                    ],
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _value = value;
-                                      });
-                                    })
-                              ],
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     Row(
+                        //       children: [
+                        //         Text(
+                        //           'Deliver To   ',
+                        //           style: TextStyle(
+                        //               color: Colors.grey[900],
+                        //               fontWeight: FontWeight.w500),
+                        //         ),
+                        //         DropdownButton(
+                        //             value: _value,
+                        //             items: [
+                        //               DropdownMenuItem(
+                        //                 child: Text("First Location"),
+                        //                 value: 1,
+                        //               ),
+                        //               DropdownMenuItem(
+                        //                 child: Text("Second Location"),
+                        //                 value: 2,
+                        //               ),
+                        //               DropdownMenuItem(
+                        //                   child: Text("Third Location"),
+                        //                   value: 3),
+                        //               DropdownMenuItem(
+                        //                   child: Text("Fourth Location"),
+                        //                   value: 4)
+                        //             ],
+                        //             onChanged: (value) {
+                        //               setState(() {
+                        //                 _value = value;
+                        //               });
+                        //             })
+                        //       ],
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(
-                          height: 15,
+                          height: 30,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -223,19 +224,24 @@ class _NewCartBodyState extends State<NewCartBody> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 35),
+                        SizedBox(height: 50),
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: FlatButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return Checkout();
-                                  },
-                                ),
-                              );
+                              if (cart.isEmpty) {
+                                Manager.toastMessage(
+                                    'Your Cart is empty', signInEndColor);
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return Checkout();
+                                    },
+                                  ),
+                                );
+                              }
                             },
                             color: Colors.blue,
                             child: Text(

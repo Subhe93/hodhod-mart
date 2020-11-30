@@ -130,7 +130,7 @@ class _SearchBodyState extends State<SearchBody> {
                           onTap: () => {
                             setState(() => {loading = true}),
                             HttpServices.search(_search.text.trim(),
-                                    _value.toString(), context)
+                                    _value.toString(), "1", context)
                                 .then((value) => {
                                       setState(() => {loading = false}),
                                       Navigator.push(
@@ -139,6 +139,9 @@ class _SearchBodyState extends State<SearchBody> {
                                           builder: (context) {
                                             return SearchResults(
                                               searchResults: value,
+                                              searchKeyWord:
+                                                  _search.text.trim(),
+                                              catID: _value,
                                             );
                                           },
                                         ),

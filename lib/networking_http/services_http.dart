@@ -646,14 +646,17 @@ class HttpServices {
         'number': cardNumber,
         'exp_year': expYear,
         'exp_month': expMonth,
-        'currency': currency,
+        'currency': 'sar',
         'cvc': cvc
       }, headers: {
         'Authorization': 'Bearer ' + token,
       });
-      if (response.statusCode == 201) {
+      if (response.statusCode == 201 || response.statusCode == 200) {
         Manager.toastMessage('Checkout Done', signInStartColor);
         return true;
+      } else if (response.statusCode == 402) {
+        Manager.toastMessage('Your Card Number is not Valid ', Colors.red);
+        return false;
       } else {
         Manager.toastMessage('Something Went Wrong ', Colors.red);
         return false;
@@ -670,7 +673,7 @@ class HttpServices {
   ///
   ///Add Product to wishList
   static Future<SearchResponse> search(
-      String keyword, String cat, BuildContext context) async {
+      String keyword, String cat, String page, BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
@@ -679,7 +682,8 @@ class HttpServices {
       }
       var response = await http.post(baseUrl + "searchProducts", body: {
         'category': cat,
-        'search': keyword
+        'search': keyword,
+        'page': page
       }, headers: {
         'Authorization': 'Bearer ' + token,
       });

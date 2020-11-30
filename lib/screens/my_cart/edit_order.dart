@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 class EditOrder extends StatefulWidget {
   final CartItem item;
   final int index;
-  List<String> swiperList = ['ad1.png', 'ad2.png', 'ad3.png'];
 
   EditOrder({
     Key key,
@@ -39,6 +38,8 @@ class _EditOrderState extends State<EditOrder> {
 
   @override
   void initState() {
+    attributes = [];
+    attributesNames = [];
     loading = true;
     quantity = widget.item.quantity;
 
@@ -61,14 +62,17 @@ class _EditOrderState extends State<EditOrder> {
                   ///
                   ///sorry for the messy code
                   ///this loop to decode the options and set the hilight the the selected ones
-                  for (var value in json.decode(widget.item.options))
+                  if (widget.item.options != null)
                     {
-                      for (var i = 0; i < attributes.length; i++)
+                      for (var value in json.decode(widget.item.options))
                         {
-                          for (var j = 0; j < attributes[i].length; j++)
+                          for (var i = 0; i < attributes.length; i++)
                             {
-                              if (value == attributes[i][j].id)
-                                {attributes[i][j].selected = true}
+                              for (var j = 0; j < attributes[i].length; j++)
+                                {
+                                  if (value == attributes[i][j].id)
+                                    {attributes[i][j].selected = true}
+                                }
                             }
                         }
                     }

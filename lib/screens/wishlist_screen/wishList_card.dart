@@ -61,7 +61,7 @@ class _WishListCardState extends State<WishListCard> {
                               width: 6,
                             ),
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 SizedBox(
@@ -74,13 +74,17 @@ class _WishListCardState extends State<WishListCard> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        widget.item.name,
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 3,
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Text(
+                                          widget.item.name,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 3,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -89,8 +93,7 @@ class _WishListCardState extends State<WishListCard> {
                                   height: 8,
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Row(
                                       children: [
@@ -100,7 +103,10 @@ class _WishListCardState extends State<WishListCard> {
                                           child: Chip(
                                             backgroundColor: signInEndColor,
                                             label: Text(
-                                              'Always in stock',
+                                              widget.item.discount == ''
+                                                  ? 'No discount'
+                                                  : 'Discount  ' +
+                                                      widget.item.discount,
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 12,
@@ -114,7 +120,10 @@ class _WishListCardState extends State<WishListCard> {
                                           child: Chip(
                                             backgroundColor: signInStartColor,
                                             label: Text(
-                                              'fast delivery',
+                                              widget.item.offer == ''
+                                                  ? 'No Offers'
+                                                  : 'Offer  ' +
+                                                      widget.item.offer,
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 10,
