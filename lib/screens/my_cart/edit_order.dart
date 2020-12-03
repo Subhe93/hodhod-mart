@@ -70,7 +70,7 @@ class _EditOrderState extends State<EditOrder> {
                             {
                               for (var j = 0; j < attributes[i].length; j++)
                                 {
-                                  if (value == attributes[i][j].id)
+                                  if (value['id'] == attributes[i][j].id)
                                     {attributes[i][j].selected = true}
                                 }
                             }

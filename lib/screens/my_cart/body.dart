@@ -90,20 +90,12 @@ class _NewCartBodyState extends State<NewCartBody> {
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) => Column(
                             children: [
-                              InkWell(
-                                  onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) {
-                                        return EditOrder(
-                                          item: cart[index],
-                                        );
-                                      },
-                                    ));
-                                  },
-                                  child: CartCard(
-                                    item: cart[index],
-                                  )),
-                              Divider()
+                              CartCard(
+                                item: cart[index],
+                              ),
+                              Divider(
+                                height: 10,
+                              )
                             ],
                           ),
                         ),

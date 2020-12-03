@@ -48,7 +48,6 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
         Provider.of<ModelsProvider>(context, listen: false).categories;
 
     return SingleChildScrollView(
-      primary: false,
       scrollDirection: Axis.vertical,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

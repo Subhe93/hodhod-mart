@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/repositories/sub_category_child_repository.dart';
-import 'package:hodhod_mart/screens/child_sub_category/child_sub_category.dart';
+import 'package:hodhod_mart/screens/child_sub_category/sub_category_page.dart';
 import 'package:hodhod_mart/screens/sub_category/sub_category_card.dart';
 
 class SubCategoryChildGrid extends StatefulWidget {
@@ -25,7 +25,7 @@ class _SubCategoryChildGridState extends State<SubCategoryChildGrid> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
+      height: 300,
       child: GridView.builder(
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

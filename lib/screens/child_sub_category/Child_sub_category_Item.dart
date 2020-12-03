@@ -85,13 +85,6 @@ class _SubCategoryItemCardState extends State<SubCategoryItemCard> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            Text(
-                              '${widget.item.price}',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
                           ],
                         ),
                         Icon(

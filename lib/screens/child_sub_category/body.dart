@@ -3,7 +3,7 @@ import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 
-import 'sub_category_Item_card.dart';
+import 'Child_sub_category_Item.dart';
 
 class ChildSubCategoryBody extends StatefulWidget {
   final int subCatID;

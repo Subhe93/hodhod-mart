@@ -454,7 +454,7 @@ class HttpServices {
         'Authorization': 'Bearer ' + token,
       });
       if (response.statusCode == 200) {
-        final results = cartItemsFromJson(response.body);
+        final results = cartItemFromJson(response.body);
         Provider.of<ModelsProvider>(context, listen: false)
             .setCartItems(results);
         return results;
