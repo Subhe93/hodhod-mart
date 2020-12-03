@@ -28,6 +28,14 @@ class ModelsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isLoggedin() {
+    if (token == '') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   void removeFromWishlist(index) {
     wishlistItems.removeAt(index);
     notifyListeners();

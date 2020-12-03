@@ -11,7 +11,7 @@ class _MyOrdersState extends State<MyOrders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: accountAppBar(context, false , 'MY ORDER' , false),
+      appBar: accountAppBar(context, false, 'MY ORDER', true),
       body: MyOrdersBody(),
     );
   }

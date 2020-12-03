@@ -5,6 +5,7 @@ import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/screens/homePage/components/bottom_app_bar.dart';
+import 'package:hodhod_mart/screens/start_page.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -218,7 +219,7 @@ class _SignInState extends State<SignIn> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) {
-                                                  return HomeBottomBar();
+                                                  return StartPage();
                                                 },
                                               ),
                                             )

@@ -6,8 +6,10 @@ import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/presentation/my_flutter_app_icons.dart';
+import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'dart:convert';
 import 'package:hodhod_mart/screens/product/components/app_bar.dart';
+import 'package:provider/provider.dart';
 
 class ProductBody extends StatefulWidget {
   final int id;
@@ -521,7 +523,13 @@ class _ProductBodyState extends State<ProductBody> {
                       : Positioned(
                           bottom: 0,
                           child: InkWell(
-                            onTap: () => {addToCart()},
+                            onTap: () => {
+                              Provider.of<ModelsProvider>(context,
+                                          listen: false)
+                                      .isLoggedin()
+                                  ? addToCart()
+                                  : Manager.openRegisterSheet(context)
+                            },
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: 50,
@@ -617,7 +625,10 @@ class _ProductBodyState extends State<ProductBody> {
                   ),
                   child: IconButton(
                     onPressed: () {
-                      addToCart();
+                      Provider.of<ModelsProvider>(context, listen: false)
+                              .isLoggedin()
+                          ? addToCart()
+                          : Manager.openRegisterSheet(context);
                     },
                     icon: Icon(
                       MyFlutterApp.cart_04,
@@ -643,13 +654,21 @@ class _ProductBodyState extends State<ProductBody> {
                         ),
                         child: IconButton(
                           onPressed: () {
-                            setState(() {
-                              addingToWishList = true;
-                            });
-                            HttpServices.addItemToWishlist(product.id, context)
-                                .then((value) => {
-                                      setState(() => {addingToWishList = false})
-                                    });
+                            if (!Provider.of<ModelsProvider>(context,
+                                    listen: false)
+                                .isLoggedin()) {
+                              Manager.openRegisterSheet(context);
+                            } else {
+                              setState(() {
+                                addingToWishList = true;
+                              });
+                              HttpServices.addItemToWishlist(
+                                      product.id, context)
+                                  .then((value) => {
+                                        setState(
+                                            () => {addingToWishList = false})
+                                      });
+                            }
                           },
                           icon: Icon(
                             MyFlutterApp.love_02,

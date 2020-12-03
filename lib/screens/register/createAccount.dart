@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/screens/homePage/components/bottom_app_bar.dart';
+import 'package:hodhod_mart/screens/start_page.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../constants.dart';
@@ -226,7 +227,7 @@ class _CareateAccountState extends State<CareateAccount> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return HomeBottomBar();
+                                        return StartPage();
                                       },
                                     ),
                                   )

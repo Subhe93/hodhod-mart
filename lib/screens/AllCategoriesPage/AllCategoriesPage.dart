@@ -19,8 +19,8 @@ class _AllCategoriesState extends State<AllCategories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: homeAppBar(
-            true, false, context, true, 'Sub Categories', searchAction()),
+        appBar: homeAppBar(true, false, context, true, 'Sub Categories',
+            searchAction(context)),
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

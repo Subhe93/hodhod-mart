@@ -32,36 +32,44 @@ class SearchResultItem extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Text(item.name,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Container(
+                        child: Text(item.name,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.4)),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      width: MediaQuery.of(context).size.width / 1.8,
+                      child: Text(
+                        item.shortDescription,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, letterSpacing: 0.4)),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(5.0),
-                    width: MediaQuery.of(context).size.width / 1.8,
-                    child: Text(
-                      item.shortDescription,
-                      maxLines: 2,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600, letterSpacing: 0.4),
+                            fontWeight: FontWeight.w600, letterSpacing: 0.4),
+                      ),
                     ),
-                  ),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.height *0.01,
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'SAR ${item.price}',
-                      style: TextStyle(color: Colors.green[900]),
+                    // SizedBox(
+                    //   height: MediaQuery.of(context).size.height *0.01,
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'SAR ${item.price}',
+                        style: TextStyle(color: Colors.green[900]),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             ],
           ),

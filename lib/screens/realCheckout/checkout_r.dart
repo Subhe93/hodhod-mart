@@ -52,7 +52,7 @@ class _CheckoutState extends State<Checkout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: homeAppBar(
-          false, false, context, false, 'HODHOD MART', searchAction()),
+          false, false, context, false, 'HODHOD MART', searchAction(context)),
       body: SafeArea(
         child: loading
             ? Center(

@@ -6,6 +6,7 @@ import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
+import 'package:hodhod_mart/model/Order.dart';
 import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/model/ResponsModels/homePage.dart';
 import 'package:hodhod_mart/model/ResponsModels/loginResponse.dart';
@@ -438,11 +439,17 @@ class HttpServices {
   ////
   ///
   ///
-  ///Cart Items
+  ///Get Cart Items
   static Future<List<CartItem>> getCartProducts(BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
+
+      if (token == "") {
+        Provider.of<ModelsProvider>(context, listen: false).setCartItems([]);
+        return [];
+      }
+
       var response = await http.get(baseUrl + "cart", headers: {
         'Authorization': 'Bearer ' + token,
       });
@@ -465,7 +472,7 @@ class HttpServices {
   ////
   ///
   ///
-  ///Cart Items
+  ///Delete Cart Items
   static Future<bool> deleteItemFromCart(int id, BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
@@ -492,11 +499,11 @@ class HttpServices {
   ////
   ///
   ///
-  ///Cart Items
+  ///Add Cart Items
   static Future<bool> addItemToCart(
       String options, int id, int quantity, BuildContext context) async {
     try {
-      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      String token = "";
       await Manager.getAuthToken().then((val) => {token = val});
       var response = await http.post(
           baseUrl + 'cart?product_id=$id&options=$options&quantity=$quantity',
@@ -519,7 +526,7 @@ class HttpServices {
 /////
   ///
   ///
-  ///
+  ///Upadte Cart Item
   static Future<bool> updateCartItem(int id, int productID, int quantity,
       BuildContext context, String options) async {
     try {
@@ -575,10 +582,16 @@ class HttpServices {
   //////
   ///
   ///
-  ///Add Product to wishList
+  ///Get Product wishList
   static Future<bool> getWishList(BuildContext context) async {
     try {
-      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      String token = "";
+      await Manager.getAuthToken().then((val) => {token = val});
+      if (token == "") {
+        Provider.of<ModelsProvider>(context, listen: false)
+            .setWishListItems([]);
+        return false;
+      }
       await Manager.getAuthToken().then((val) => {token = val});
       var response = await http.get(baseUrl + "wishlist", headers: {
         'Authorization': 'Bearer ' + token,
@@ -602,7 +615,7 @@ class HttpServices {
   ////
   ///
   ///
-  ///Cart Items
+  ///Delete itme from wishlist
   static Future<bool> deleteItemFromWishList(
       int id, BuildContext context, int index) async {
     try {
@@ -699,6 +712,34 @@ class HttpServices {
       Manager.toastMessage('Something Went Wrong ', Colors.red);
       print(e);
       return SearchResponse();
+    }
+  }
+
+  ///
+  ///
+  ///
+  ///Get user Orders
+
+  static Future<List<Order>> getUserOrders(BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+
+      var response = await http.get(baseUrl + "order", headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 200) {
+        var results = orderFromJson(response.body);
+        return results;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return [];
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+
+      print(e);
+      return [];
     }
   }
 }

@@ -20,11 +20,13 @@ class _WishListBodyState extends State<WishListBody> {
 
   @override
   void initState() {
-    loading = true;
-    // TODO: implement initState
     super.initState();
+    loading = true;
     HttpServices.getWishList(context).then((value) => {
-          setState(() => {loading = false})
+          if (mounted)
+            {
+              setState(() => {loading = false})
+            }
         });
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hodhod_mart/Manager/Manage.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
@@ -23,19 +24,6 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   PageController _myPage = PageController(initialPage: 0);
   var iconWidth = 25.0;
   var iconHeight = 25.0;
-  var iconColor = Colors.black.withOpacity(0.6);
-  bool loading;
-  @override
-  void initState() {
-    loading = true;
-    super.initState();
-    HttpServices.getHomeData(context).then((value) => {
-          if (mounted)
-            {
-              setState(() => loading = false),
-            }
-        });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +32,21 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MyAccount(),
-            ),
-          );
+          if (Provider.of<ModelsProvider>(context, listen: false)
+              .isLoggedin()) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyAccount(),
+              ),
+            );
+          } else {
+            Manager.openRegisterSheet(context);
+          }
         },
         child: CircleAvatar(
           radius: 50,
-          backgroundImage: user == null
+          backgroundImage: (user == null || user.image == null)
               ? AssetImage('assets/profile.png')
               : NetworkImage(baseUrl + user.image),
         ),
@@ -186,23 +179,16 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         ),
       ),
       backgroundColor: Colors.white,
-      appBar:
-          homeAppBar(true, true, context, false, 'HODHOD MART', searchAction()),
-      body: loading
-          ? Center(child: CircularProgressIndicator())
-          : PageView(
-              controller: _myPage,
-              onPageChanged: (int) {
-                print('Page Changes to index $int');
-              },
-              children: <Widget>[
-                HomePage(),
-                SearchPage(),
-                WhishList(),
-                MyCart()
-              ],
-              physics: NeverScrollableScrollPhysics(),
-            ),
+      appBar: homeAppBar(
+          true, false, context, false, 'HODHOD MART', searchAction(context)),
+      body: PageView(
+        controller: _myPage,
+        onPageChanged: (int) {
+          print('Page Changes to index $int');
+        },
+        children: <Widget>[HomePage(), SearchPage(), WhishList(), MyCart()],
+        physics: NeverScrollableScrollPhysics(),
+      ),
     );
   }
 }

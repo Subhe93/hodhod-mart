@@ -20,33 +20,17 @@ Widget accountAppBar(
           ),
         ),
       ),
-      // leading: Padding(
-      //   padding: const EdgeInsets.only(top: 10.0, left: 10),
-      //   child: IconButton(
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //     icon: Icon(
-      //       Icons.arrow_back,
-      //       color: appBarIconsColor,
-      //       size: 30,
-      //     ),
-      //   ),
-      // ),
+      leading: Padding(
+          padding: const EdgeInsets.only(top: 10.0, left: 10),
+          child: Container(
+            width: 45,
+          )),
       actions: [
         Row(
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 20.0, right: 0, bottom: 10),
-            //   child: showCart
-            //       ? SvgPicture.asset(
-            //           'assets/svg/cart-04.svg',
-            //           color: kTextColor,
-            //         )
-            //       : SizedBox(
-            //           width: 30,
-            //         ),
-            // ),
+            Container(
+              width: 45,
+            )
           ],
         ),
       ],

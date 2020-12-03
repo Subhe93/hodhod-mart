@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/screens/notifiations/notifications.dart';
+import 'package:hodhod_mart/screens/search/search_page.dart';
 
-Widget searchAction() {
+Widget searchAction(BuildContext context) {
   return IconButton(
     icon: Icon(
       Icons.search,
       color: appBarIconsColor,
       size: 30,
     ),
-    onPressed: () {},
+    onPressed: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return SearchPage();
+      }));
+    },
   );
 }
 
@@ -80,15 +85,8 @@ Widget homeAppBar(bool search, bool notification, BuildContext context,
                 size: 30,
               ),
             )
-          : IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: appBarIconsColor,
-                size: 20,
-              ),
+          : Container(
+              width: 45,
             ),
       actions: [
         search

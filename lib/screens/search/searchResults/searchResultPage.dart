@@ -45,7 +45,7 @@ class _SearchResultsState extends State<SearchResults> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: homeAppBar(
-          false, false, context, false, 'HODHOD MART', searchAction()),
+          false, false, context, false, 'HODHOD MART', searchAction(context)),
       body: SafeArea(
           child: Column(
         children: [

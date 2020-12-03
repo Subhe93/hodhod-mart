@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
 
 import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
+import 'package:hodhod_mart/model/SubCategory.dart';
+import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
 import 'package:hodhod_mart/screens/homePage/components/ads.dart';
@@ -25,6 +27,21 @@ class SubCategoryBody extends StatefulWidget {
 
 class _SubCategoryBodyState extends State<SubCategoryBody> {
   var selectedCatID = 0;
+  List<SubCategory> subCategories;
+  bool loading;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loading = true;
+    HttpServices.getSubCategoriesById(widget.catID).then((value) => {
+          if (mounted)
+            {
+              setState(() => {subCategories = value, loading = false})
+            }
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<MainCategory> categories =
@@ -46,10 +63,22 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                     scrollDirection: Axis.horizontal,
                     itemCount: categories.length,
                     itemBuilder: (context, index) => InkWell(
-                      onTap: () => setState(() {
-                        selectedCatID = categories[index].id;
-                        print(selectedCatID);
-                      }),
+                      onTap: () => {
+                        setState(() {
+                          selectedCatID = categories[index].id;
+                          loading = true;
+                        }),
+                        HttpServices.getSubCategoriesById(selectedCatID)
+                            .then((value) => {
+                                  if (mounted)
+                                    {
+                                      setState(() => {
+                                            subCategories = value,
+                                            loading = false
+                                          })
+                                    }
+                                })
+                      },
                       child: CategoryCard(
                           category: CategoryRepository(
                               id: categories[index].id,
@@ -59,9 +88,15 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                   )),
             ],
           ),
-          SubCategoryChildGrid(
-            subCategoryID: (selectedCatID == 0) ? widget.catID : selectedCatID,
-          ),
+          loading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SubCategoryChildGrid(
+                  subCategoryID:
+                      (selectedCatID == 0) ? widget.catID : selectedCatID,
+                  subCategories: subCategories,
+                ),
         ],
       ),
     );

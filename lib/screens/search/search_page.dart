@@ -13,6 +13,8 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
-    return SearchBody();
+    return Scaffold(
+      body: SafeArea(child: SearchBody()),
+    );
   }
 }

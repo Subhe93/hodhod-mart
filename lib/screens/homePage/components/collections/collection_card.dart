@@ -63,6 +63,8 @@ class _CollectionCardState extends State<CollectionCard> {
               width: 240,
               child: Text(
                 widget.product.name,
+                maxLines: 2,
+                overflow: TextOverflow.fade,
                 style: TextStyle(
                   fontSize: 15,
                   letterSpacing: 0.5,
@@ -107,7 +109,9 @@ class _CollectionCardState extends State<CollectionCard> {
                 Chip(
                   backgroundColor: signInEndColor,
                   label: Text(
-                    'Always in stock',
+                    widget.product.status == 'active'
+                        ? 'Always in stock'
+                        : 'Not available',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 10,
@@ -117,16 +121,16 @@ class _CollectionCardState extends State<CollectionCard> {
                 SizedBox(
                   width: 1.5,
                 ),
-                Chip(
-                  backgroundColor: signInStartColor,
-                  label: Text(
-                    'fast delivery',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                    ),
-                  ),
-                ),
+                // Chip(
+                //   backgroundColor: signInStartColor,
+                //   label: Text(
+                //     'fast delivery',
+                //     style: TextStyle(
+                //       color: Colors.white,
+                //       fontSize: 10,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           )

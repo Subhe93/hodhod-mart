@@ -16,7 +16,7 @@ class _ChildSubCategoryState extends State<ChildSubCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: homeAppBar(
-          true, false, context, true, 'Sub Categories', searchAction()),
+          true, false, context, true, 'Sub Categories', searchAction(context)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<dynamic>(
