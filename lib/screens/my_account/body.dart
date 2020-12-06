@@ -7,6 +7,9 @@ import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 
+import 'package:hodhod_mart/screens/aboutUs_PrivacyPolicy/about_us.dart';
+import 'package:hodhod_mart/screens/aboutUs_PrivacyPolicy/privacy_policy.dart';
+
 import 'package:hodhod_mart/screens/my_account/account_information/account_information.dart';
 import 'package:hodhod_mart/screens/my_account/updatePassword.dart';
 import 'package:hodhod_mart/screens/my_orders/my_orders.dart';
@@ -247,13 +250,18 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                   color: Color(0xFFf9c967),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return AboutUs();
+                                    }));
+                                  },
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Terms Of use',
+                                        'About Us',
                                         style:
                                             TextStyle(color: signInStartColor),
                                       ),
@@ -279,7 +287,12 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                       BorderSide(color: signInStartColor),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return PrivacyPolicy();
+                                    }));
+                                  },
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -348,20 +361,20 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    color: Colors.deepPurple,
-                    child: Center(
-                        child: Text(
-                      'SHARE THE APP',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    )),
-                  )
+                  // Container(
+                  //   width: MediaQuery.of(context).size.width,
+                  //   height: 50,
+                  //   color: Colors.deepPurple,
+                  //   child: Center(
+                  //       child: Text(
+                  //     'SHARE THE APP',
+                  //     style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontWeight: FontWeight.bold,
+                  //       fontSize: 16,
+                  //     ),
+                  //   )),
+                  // )
                 ],
               ),
             ),

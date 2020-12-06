@@ -15,7 +15,7 @@ class SearchResultItem extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
-        height: MediaQuery.of(context).size.height / 6,
+        height: 120,
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
@@ -55,7 +55,7 @@ class SearchResultItem extends StatelessWidget {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, letterSpacing: 0.4),
+                            fontWeight: FontWeight.normal, letterSpacing: 0.4),
                       ),
                     ),
                     // SizedBox(
