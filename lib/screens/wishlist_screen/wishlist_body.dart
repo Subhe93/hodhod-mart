@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/whoshlist_model.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
-import 'package:hodhod_mart/presentation/my_flutter_app_icons.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 
 import 'package:hodhod_mart/screens/wishlist_screen/wishList_card.dart';
