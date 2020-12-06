@@ -688,18 +688,11 @@ class HttpServices {
   static Future<SearchResponse> search(
       String keyword, String cat, String page, BuildContext context) async {
     try {
-      String token = Provider.of<ModelsProvider>(context, listen: false).token;
-      await Manager.getAuthToken().then((val) => {token = val});
       if (cat == "0") {
         cat = "";
       }
-      var response = await http.post(baseUrl + "searchProducts", body: {
-        'category': cat,
-        'search': keyword,
-        'page': page
-      }, headers: {
-        'Authorization': 'Bearer ' + token,
-      });
+      var response = await http.post(baseUrl + "searchProducts",
+          body: {'category': cat, 'search': keyword, 'page': page});
       if (response.statusCode == 200) {
         var result = SearchResponse.fromJson(convert.jsonDecode(response.body));
 

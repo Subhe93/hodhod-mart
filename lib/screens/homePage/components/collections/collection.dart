@@ -14,7 +14,7 @@ class Collection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30.0, bottom: 5),
+      padding: const EdgeInsets.only(top: 20.0, bottom: 5),
       child: Container(
         height: 400,
         color: Colors.blue[50],
@@ -33,7 +33,7 @@ class Collection extends StatelessWidget {
                     style: TextStyle(
                       color: kTextColor,
                       fontSize: 15,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   InkWell(
@@ -47,6 +47,7 @@ class Collection extends StatelessWidget {
                     child: Text(
                       'MORE',
                       style: TextStyle(
+                        fontFamily: 'Anago',
                         color: kTextPurpleColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

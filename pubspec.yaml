@@ -72,4 +72,8 @@ flutter:
     - family:  MyFlutterApp
       fonts:
         - asset: fonts/MyFlutterApp.ttf
-  
+    
+    - family: Anago
+      fonts:
+        - asset: assets/fonts/Anago-Medium.ttf
+

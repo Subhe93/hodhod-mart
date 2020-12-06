@@ -66,9 +66,10 @@ class _CollectionCardState extends State<CollectionCard> {
                 maxLines: 2,
                 overflow: TextOverflow.fade,
                 style: TextStyle(
+                  fontFamily: 'Anago',
                   fontSize: 15,
                   letterSpacing: 0.5,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -91,7 +92,9 @@ class _CollectionCardState extends State<CollectionCard> {
               text: TextSpan(
                   text: 'Price Starting From ',
                   style: TextStyle(
-                      color: Colors.black87, fontWeight: FontWeight.w500),
+                      fontFamily: 'Anago',
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w500),
                   children: <TextSpan>[
                     TextSpan(
                         text: widget.product.price.toString(),
@@ -114,6 +117,7 @@ class _CollectionCardState extends State<CollectionCard> {
                         : 'Not available',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: 'Anago',
                       fontSize: 10,
                     ),
                   ),

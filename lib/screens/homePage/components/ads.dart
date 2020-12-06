@@ -40,7 +40,7 @@ class _AdsState extends State<Ads> {
         itemCount: _isLoading ? 3 : widget.banners.length,
         pagination: SwiperPagination(
           builder: DotSwiperPaginationBuilder(
-              color: Colors.amber, activeColor: kTextPurpleColor),
+              color: signInStartColor, activeColor: signInEndColor),
           alignment: Alignment.bottomCenter,
         ),
         control: new SwiperControl(

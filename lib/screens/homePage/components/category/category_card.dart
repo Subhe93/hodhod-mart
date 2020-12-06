@@ -6,19 +6,19 @@ import '../../../../constants.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryRepository category;
-  
+
   const CategoryCard({Key key, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       margin: EdgeInsets.only(left: 15, top: 15, right: 10),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(bottom: 7.0),
             child: CircleAvatar(
               radius: 28,
               backgroundColor: signInStartColor,
@@ -37,12 +37,19 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            category.name,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              color: kTextColor,
-              fontSize: 14,
+          Container(
+            width: 60,
+            height: 40,
+            child: Text(
+              category.name,
+              maxLines: 2,
+              overflow: TextOverflow.fade,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: kTextColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
             ),
           ),
         ],

@@ -56,7 +56,7 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
           Column(
             children: [
               Container(
-                  height: 100,
+                  height: 130,
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,

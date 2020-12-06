@@ -75,7 +75,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                             ? Icon(FontAwesomeIcons.home)
                             : Icon(
                                 FontAwesomeIcons.home,
-                                color: Colors.orange[300],
+                                color: signInEndColor,
                               )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
@@ -103,7 +103,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                             ? Icon(FontAwesomeIcons.search)
                             : Icon(
                                 FontAwesomeIcons.search,
-                                color: Colors.orange[300],
+                                color: signInEndColor,
                               )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
@@ -134,7 +134,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                             ? Icon(FontAwesomeIcons.heart)
                             : Icon(
                                 FontAwesomeIcons.heart,
-                                color: Colors.orange[300],
+                                color: signInEndColor,
                               )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
@@ -162,7 +162,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                             ? Icon(FontAwesomeIcons.cartArrowDown)
                             : Icon(
                                 FontAwesomeIcons.cartArrowDown,
-                                color: Colors.orange[300],
+                                color: signInEndColor,
                               )),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),

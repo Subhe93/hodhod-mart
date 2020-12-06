@@ -13,6 +13,7 @@ void main() {
         ),
       ],
       child: MaterialApp(
+        theme: ThemeData(fontFamily: 'Anago'),
         debugShowCheckedModeBanner: false,
         color: Colors.white,
         home: StartPage(),

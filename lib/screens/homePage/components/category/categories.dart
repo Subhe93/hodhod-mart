@@ -40,7 +40,7 @@ class _CategoriesState extends State<Categories> {
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
-        height: 120,
+        height: 140,
         color: Colors.blue[50],
         width: MediaQuery.of(context).size.width,
         child: Column(
