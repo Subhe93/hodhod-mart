@@ -17,7 +17,7 @@ class Collection extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20.0, bottom: 5),
       child: Container(
         height: 400,
-        color: Colors.blue[50],
+        // color: Colors.blue[50],
         width: MediaQuery.of(context).size.width,
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,

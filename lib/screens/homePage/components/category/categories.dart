@@ -41,7 +41,6 @@ class _CategoriesState extends State<Categories> {
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
         height: 140,
-        color: Colors.blue[50],
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

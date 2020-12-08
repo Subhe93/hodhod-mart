@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/screens/homePage/components/bottom_app_bar.dart';
 import 'package:hodhod_mart/screens/start_page.dart';

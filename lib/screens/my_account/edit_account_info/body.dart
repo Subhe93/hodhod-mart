@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:image_picker/image_picker.dart';
 

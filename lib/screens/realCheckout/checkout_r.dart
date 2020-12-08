@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';

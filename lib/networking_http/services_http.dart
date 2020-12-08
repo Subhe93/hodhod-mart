@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
@@ -415,7 +415,7 @@ class HttpServices {
       int id, BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
-      await Manager.getAuthToken().then((val) => {token = val});
+
       var response = await http.post(baseUrl + "getProductData", headers: {
         'Authorization': 'Bearer ' + token,
       }, body: {
@@ -443,7 +443,6 @@ class HttpServices {
   static Future<List<CartItem>> getCartProducts(BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
-      await Manager.getAuthToken().then((val) => {token = val});
 
       if (token == "") {
         Provider.of<ModelsProvider>(context, listen: false).setCartItems([]);
@@ -559,7 +558,7 @@ class HttpServices {
       int productID, BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
-      await Manager.getAuthToken().then((val) => {token = val});
+
       var response = await http.post(baseUrl + "wishlist", body: {
         'product_id': productID.toString()
       }, headers: {
@@ -585,8 +584,8 @@ class HttpServices {
   ///Get Product wishList
   static Future<bool> getWishList(BuildContext context) async {
     try {
-      String token = "";
-      await Manager.getAuthToken().then((val) => {token = val});
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+
       if (token == "") {
         Provider.of<ModelsProvider>(context, listen: false)
             .setWishListItems([]);

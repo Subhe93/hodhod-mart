@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';

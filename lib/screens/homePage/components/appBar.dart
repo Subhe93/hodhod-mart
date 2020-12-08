@@ -43,16 +43,16 @@ Widget homeAppBar(bool search, bool notification, BuildContext context,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/mini_logo.png',
+                    'assets/logo.png',
                     height: 30,
                     width: 30,
                   ),
-                  Text(
-                    'HODHOD MART',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
+                  // Text(
+                  //   'HODHOD MART',
+                  //   style: TextStyle(
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
                 ],
               ),
             )
@@ -60,16 +60,16 @@ Widget homeAppBar(bool search, bool notification, BuildContext context,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/mini_logo.png',
-                  height: 30,
-                  width: 30,
+                  'assets/logo.png',
+                  height: 45,
+                  width: 100,
                 ),
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
+                // Text(
+                //   title,
+                //   style: TextStyle(
+                //     color: Colors.black,
+                //   ),
+                // ),
               ],
             ),
       leading: notification

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
@@ -25,16 +25,20 @@ class _NewCartBodyState extends State<NewCartBody> {
 
   @override
   void initState() {
-    loading = true;
     deletingIndicator = false;
     cart = [];
     super.initState();
-    HttpServices.getCartProducts(context).then((value) => {
-          if (mounted)
-            {
-              setState(() => {loading = false})
-            }
-        });
+    if (Provider.of<ModelsProvider>(context, listen: false).isLoggedin()) {
+      loading = true;
+      HttpServices.getCartProducts(context).then((value) => {
+            if (mounted)
+              {
+                setState(() => {loading = false})
+              }
+          });
+    } else {
+      loading = false;
+    }
   }
 
   @override

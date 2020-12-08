@@ -20,13 +20,17 @@ class _WishListBodyState extends State<WishListBody> {
   @override
   void initState() {
     super.initState();
-    loading = true;
-    HttpServices.getWishList(context).then((value) => {
-          if (mounted)
-            {
-              setState(() => {loading = false})
-            }
-        });
+    if (Provider.of<ModelsProvider>(context, listen: false).isLoggedin()) {
+      loading = true;
+      HttpServices.getWishList(context).then((value) => {
+            if (mounted)
+              {
+                setState(() => {loading = false})
+              }
+          });
+    } else {
+      loading = false;
+    }
   }
 
   @override

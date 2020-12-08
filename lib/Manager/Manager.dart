@@ -54,6 +54,8 @@ class Manager {
     pref.setString('token', '');
     Provider.of<ModelsProvider>(context, listen: false).setToken('');
     Provider.of<ModelsProvider>(context, listen: false).setUser(User());
+    Provider.of<ModelsProvider>(context, listen: false).setCartItems([]);
+    Provider.of<ModelsProvider>(context, listen: false).setWishListItems([]);
 
     return true;
   }

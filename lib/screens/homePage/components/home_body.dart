@@ -24,7 +24,7 @@ class _HomeBodyState extends State<HomeBody> {
 
     return SingleChildScrollView(
       child: Container(
-        color: Colors.blue[50],
+        color: Colors.grey.withOpacity(0.2),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -42,7 +42,6 @@ class _HomeBodyState extends State<HomeBody> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: 420 * categoriesToShow.length.toDouble(),
-              color: Colors.blue[50],
               child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: Provider.of<ModelsProvider>(context, listen: true)

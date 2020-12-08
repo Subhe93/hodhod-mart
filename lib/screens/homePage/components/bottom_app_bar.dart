@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
@@ -180,7 +180,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
       ),
       backgroundColor: Colors.white,
       appBar: homeAppBar(
-          true, false, context, false, 'HODHOD MART', searchAction(context)),
+          true, false, context, false, 'HodHod MART', searchAction(context)),
       body: PageView(
         controller: _myPage,
         onPageChanged: (int) {

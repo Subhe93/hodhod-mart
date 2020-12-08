@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:hodhod_mart/Manager/Manage.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/presentation/my_flutter_app_icons.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'dart:convert';
+
 import 'package:hodhod_mart/screens/product/components/app_bar.dart';
+import 'package:html/parser.dart';
 import 'package:provider/provider.dart';
 
 class ProductBody extends StatefulWidget {
@@ -198,7 +200,9 @@ class _ProductBodyState extends State<ProductBody> {
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Text(product.description),
+                                  Text(parse(product.description)
+                                      .documentElement
+                                      .text),
                                   SizedBox(
                                     height: 10,
                                   ),
@@ -220,13 +224,18 @@ class _ProductBodyState extends State<ProductBody> {
                                               'Discount Description',
                                               style: TextStyle(fontSize: 17),
                                             ),
-                                            Text(product.discountDescription),
+                                            Text(parse(
+                                                    product.discountDescription)
+                                                .documentElement
+                                                .text),
                                             SizedBox(
                                               height: 10,
                                             ),
                                             Text('Offer Description',
                                                 style: TextStyle(fontSize: 17)),
-                                            Text(product.offerDescription),
+                                            Text(parse(product.offerDescription)
+                                                .documentElement
+                                                .text),
                                             SizedBox(
                                               height: 10,
                                             )

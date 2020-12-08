@@ -17,7 +17,7 @@ class _CollectionListState extends State<CollectionList> {
   Widget build(BuildContext context) {
     return Container(
       height: 350,
-      color: Colors.blue[50],
+      // color: Colors.blue[50],
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: widget.products.map((Product value) {
