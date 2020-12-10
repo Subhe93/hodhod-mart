@@ -25,7 +25,7 @@ class _SubCategoryChildGridState extends State<SubCategoryChildGrid> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 300,
+      height: 450,
       child: GridView.builder(
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

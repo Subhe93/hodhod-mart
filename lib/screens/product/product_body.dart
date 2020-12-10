@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -11,6 +13,8 @@ import 'dart:convert';
 
 import 'package:hodhod_mart/screens/product/components/app_bar.dart';
 import 'package:html/parser.dart';
+import 'package:http/http.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
 class ProductBody extends StatefulWidget {
@@ -30,16 +34,22 @@ class _ProductBodyState extends State<ProductBody> {
   bool addingItemToCart;
   bool added;
   bool addingToWishList;
+  bool _showPreview;
+  String _image;
+  int total;
   List<int> options;
   List<List<Attribute>> attributes;
   List<String> attributesNames;
   @override
   void initState() {
+    _showPreview = false;
+    _image = "";
     addingToWishList = false;
     loadingScreen = true;
     addingItemToCart = false;
     quantity = 0;
     options = [];
+    total = 0;
 
     attributes = [];
     attributesNames = [];
@@ -52,6 +62,11 @@ class _ProductBodyState extends State<ProductBody> {
                 {
                   attributesNames = value.attributes.keys.toList(),
                   attributes = value.attributes.values.toList(),
+                  for (var attribute in attributes)
+                    {
+                      attribute[0].selected = true,
+                      total + attribute[0].addToPrice
+                    }
                 }
             }
         });
@@ -116,6 +131,24 @@ class _ProductBodyState extends State<ProductBody> {
                                             return new Image.network(
                                               baseUrl + product.images[index],
                                               fit: BoxFit.fill,
+                                              loadingBuilder:
+                                                  (BuildContext context,
+                                                      Widget child,
+                                                      ImageChunkEvent
+                                                          loadingProgress) {
+                                                if (loadingProgress == null)
+                                                  return child;
+                                                return Center(
+                                                  child: Container(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child: LoadingIndicator(
+                                                        indicatorType:
+                                                            Indicator.ballScale,
+                                                        color: signInEndColor,
+                                                      )),
+                                                );
+                                              },
                                             );
                                           },
                                           itemCount: product.images.length,
@@ -460,6 +493,7 @@ class _ProductBodyState extends State<ProductBody> {
                                                 onTap: () => {
                                                   setState(() => {
                                                         quantity = quantity + 1,
+                                                        getTotal()
                                                       })
                                                 },
                                                 child: Icon(
@@ -489,7 +523,8 @@ class _ProductBodyState extends State<ProductBody> {
                                                             quantity =
                                                                 quantity - 1
                                                           },
-                                                      })
+                                                      }),
+                                                  getTotal()
                                                 },
                                                 child: Icon(
                                                   Icons
@@ -500,6 +535,31 @@ class _ProductBodyState extends State<ProductBody> {
                                               ),
                                             ],
                                           )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    height: 70,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Quantity",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: signInStartColor,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(total.toString(),
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: signInEndColor,
+                                                  fontWeight: FontWeight.bold))
                                         ],
                                       ),
                                     ),
@@ -516,6 +576,29 @@ class _ProductBodyState extends State<ProductBody> {
                     ),
                   ),
                   productAppBar(context),
+                  if (_showPreview) ...[
+                    BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 5.0,
+                        sigmaY: 5.0,
+                      ),
+                      child: Container(
+                        color: Colors.white.withOpacity(0.6),
+                      ),
+                    ),
+                    Container(
+                      child: Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.network(
+                            _image,
+                            height: 300,
+                            width: 300,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                   addingItemToCart
                       ? Center(
                           child: CircularProgressIndicator(),
@@ -561,6 +644,10 @@ class _ProductBodyState extends State<ProductBody> {
     );
   }
 
+  ///
+  ///
+  ///
+  ///
 //validation and processing selected attributes
   void addToCart() {
     if (quantity > 0) {
@@ -571,7 +658,6 @@ class _ProductBodyState extends State<ProductBody> {
           }
         }
       }
-
       setState(
         () => addingItemToCart = true,
       );
@@ -591,6 +677,14 @@ class _ProductBodyState extends State<ProductBody> {
     }
   }
 
+////
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
   Widget productAppBar(BuildContext context) {
     double containerHeight = 40;
     double containerWidth = 40;
@@ -694,19 +788,61 @@ class _ProductBodyState extends State<ProductBody> {
     );
   }
 
+/////
+  ///
+  ///
+  ///
+  /// Calculating Total
+  void getTotal() {
+    if (quantity != 0) {
+      total = product.price;
+      for (var attributeType in attributes) {
+        for (var subattribute in attributeType) {
+          if (subattribute.selected) {
+            total = total + subattribute.addToPrice;
+          }
+        }
+      }
+      total = total * quantity;
+    } else {
+      setState(() {
+        total = 0;
+      });
+    }
+  }
+
+////
+  ///
+  ///
+  ///
+  ///   Attribute Card
   Widget AttributeCard(Attribute attribute, int collectionIndex) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () => {
-          for (int i = 0; i < attributes[collectionIndex].length; i++)
-            {attributes[collectionIndex][i].selected = false},
-          setState(() => {
-                attribute.selected
-                    ? attribute.selected = false
-                    : attribute.selected = true,
-              })
-        },
+    return GestureDetector(
+      onTap: () => {
+        for (int i = 0; i < attributes[collectionIndex].length; i++)
+          {attributes[collectionIndex][i].selected = false},
+        setState(() => {
+              // attribute.selected
+              //     ? attribute.selected = false
+              //     :
+
+              attribute.selected = true,
+              getTotal()
+            })
+      },
+      onLongPress: () {
+        setState(() {
+          _showPreview = true;
+          _image = baseUrl + attribute.image;
+        });
+      },
+      onLongPressEnd: (details) {
+        setState(() {
+          _showPreview = false;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Container(
           height: 100,
           width: 100,
@@ -733,6 +869,11 @@ class _ProductBodyState extends State<ProductBody> {
     );
   }
 
+////
+  ///
+  ///
+  ///
+  ///   Attribute Card
   Widget AttributeCollection(
       List<Attribute> attributesCollection, String title, int collectionIndex) {
     return Column(

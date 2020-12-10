@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../../../constants.dart';
 
@@ -29,6 +30,19 @@ class CategoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(35),
                   child: Image.network(
                     baseUrl + category.image,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: Container(
+                            width: 20,
+                            height: 20,
+                            child: LoadingIndicator(
+                              indicatorType: Indicator.ballScale,
+                              color: signInEndColor,
+                            )),
+                      );
+                    },
                     width: 80,
                     height: 80,
                     fit: BoxFit.fill,

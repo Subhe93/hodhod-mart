@@ -19,14 +19,14 @@ class StaticBanners extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 200,
+      height: 150,
       child: Swiper(
         autoplay: true,
         itemBuilder: (BuildContext context, int index) {
           return false
               ? Image.asset(
                   'assets/' + swiperList[index],
-                  fit: BoxFit.fill,
+                  fit: BoxFit.fitHeight,
                 )
               : Image.network(
                   baseUrl + banners[index].image,

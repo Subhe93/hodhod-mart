@@ -45,12 +45,18 @@ class _SearchBodyState extends State<SearchBody> {
           child: Row(
             children: [
               Container(
-                  width: 50,
-                  height: 50,
-                  child: Image.network(
-                    baseUrl + cat.image,
-                    fit: BoxFit.fill,
-                  )),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    image: DecorationImage(
+                        image: NetworkImage(baseUrl + cat.image),
+                        fit: BoxFit.cover)),
+                // child: Image.network(
+                //   baseUrl + cat.image,
+                //   fit: BoxFit.fill,
+                // )
+              ),
               SizedBox(
                 width: 5,
               ),
@@ -104,8 +110,8 @@ class _SearchBodyState extends State<SearchBody> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButton(
-                    dropdownColor: signInEndColor,
                     underline: SizedBox(),
+                    // dropdownColor: Colors.grey,
                     hint: Text(
                       'No Category Choosen',
                       textAlign: TextAlign.center,

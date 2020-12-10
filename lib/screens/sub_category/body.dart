@@ -96,6 +96,9 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                       (selectedCatID == 0) ? widget.catID : selectedCatID,
                   subCategories: subCategories,
                 ),
+          SizedBox(
+            height: 100,
+          )
         ],
       ),
     );

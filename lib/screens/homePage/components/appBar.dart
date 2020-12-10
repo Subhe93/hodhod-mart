@@ -44,8 +44,8 @@ Widget homeAppBar(bool search, bool notification, BuildContext context,
                 children: [
                   Image.asset(
                     'assets/logo.png',
-                    height: 30,
-                    width: 30,
+                    height: 45,
+                    width: 100,
                   ),
                   // Text(
                   //   'HODHOD MART',

@@ -146,7 +146,8 @@ class Attribute {
       this.attributeValueKey,
       this.createdAt,
       this.updatedAt,
-      this.selected = false});
+      this.selected = false,
+      this.addToPrice});
 
   int id;
   int attributeId;
@@ -157,23 +158,25 @@ class Attribute {
   DateTime createdAt;
   DateTime updatedAt;
   bool selected;
+  int addToPrice;
 
-  Attribute copyWith({
-    int id,
-    int attributeId,
-    int productId,
-    String value,
-    String image,
-    String attributeValueKey,
-    DateTime createdAt,
-    DateTime updatedAt,
-  }) =>
+  Attribute copyWith(
+          {int id,
+          int attributeId,
+          int productId,
+          String value,
+          String image,
+          String attributeValueKey,
+          DateTime createdAt,
+          DateTime updatedAt,
+          int addToPrice}) =>
       Attribute(
         id: id ?? this.id,
         attributeId: attributeId ?? this.attributeId,
         productId: productId ?? this.productId,
         value: value ?? this.value,
         image: image ?? this.image,
+        addToPrice: addToPrice ?? this.addToPrice,
         attributeValueKey: attributeValueKey ?? this.attributeValueKey,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
@@ -189,6 +192,7 @@ class Attribute {
         productId: json["product_id"] == null ? null : json["product_id"],
         value: json["value"] == null ? null : json["value"],
         image: json["image"] == null ? null : json["image"],
+        addToPrice: json["add_to_price"] == null ? null : json["add_to_price"],
         attributeValueKey: json["attribute_value_key"] == null
             ? null
             : json["attribute_value_key"],
@@ -206,6 +210,7 @@ class Attribute {
         "product_id": productId == null ? null : productId,
         "value": value == null ? null : value,
         "image": image == null ? null : image,
+        "add_to_price": image == null ? null : image,
         "attribute_value_key":
             attributeValueKey == null ? null : attributeValueKey,
         "created_at": createdAt == null ? null : createdAt.toIso8601String(),

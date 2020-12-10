@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/AdBanners.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class Ads extends StatefulWidget {
   final double adHeight;
@@ -34,6 +35,19 @@ class _AdsState extends State<Ads> {
                 )
               : Image.network(
                   baseUrl + widget.banners[index].image,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: Container(
+                          width: 20,
+                          height: 20,
+                          child: LoadingIndicator(
+                            indicatorType: Indicator.ballScale,
+                            color: signInEndColor,
+                          )),
+                    );
+                  },
                   fit: BoxFit.fill,
                 );
         },

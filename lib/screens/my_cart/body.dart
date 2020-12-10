@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
-import 'package:hodhod_mart/screens/checkout/checkout.dart';
 import 'package:hodhod_mart/screens/my_cart/cart_card.dart';
-import 'package:hodhod_mart/screens/my_cart/edit_order.dart';
+
 import 'package:hodhod_mart/screens/realCheckout/checkout_r.dart';
 import 'package:provider/provider.dart';
 
@@ -106,7 +105,7 @@ class _NewCartBodyState extends State<NewCartBody> {
                       ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  color: Colors.blue[50],
+                  // color: Colors.blue[50],
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -129,7 +128,7 @@ class _NewCartBodyState extends State<NewCartBody> {
                           ),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 20,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
