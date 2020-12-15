@@ -33,7 +33,7 @@ class _SubCategoryChildGridState extends State<SubCategoryChildGrid> {
           onTap: () => Navigator.push(context, MaterialPageRoute(
             builder: (context) {
               return ChildSubCategory(
-                subCatId: widget.subCategoryID,
+                subCatId: widget.subCategories[index].id,
               );
             },
           )),

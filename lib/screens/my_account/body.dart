@@ -14,6 +14,7 @@ import 'package:hodhod_mart/screens/my_account/account_information/account_infor
 import 'package:hodhod_mart/screens/my_account/updatePassword.dart';
 import 'package:hodhod_mart/screens/my_orders/my_orders.dart';
 import 'package:hodhod_mart/screens/start_page.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
 class MyAccountBody extends StatefulWidget {
@@ -97,6 +98,24 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                               width: 80,
                                               height: 80,
                                               fit: BoxFit.fill,
+                                              loadingBuilder:
+                                                  (BuildContext context,
+                                                      Widget child,
+                                                      ImageChunkEvent
+                                                          loadingProgress) {
+                                                if (loadingProgress == null)
+                                                  return child;
+                                                return Center(
+                                                  child: Container(
+                                                      width: 20,
+                                                      height: 20,
+                                                      child: LoadingIndicator(
+                                                        indicatorType:
+                                                            Indicator.ballScale,
+                                                        color: signInEndColor,
+                                                      )),
+                                                );
+                                              },
                                             ),
                                     ),
                                   ),

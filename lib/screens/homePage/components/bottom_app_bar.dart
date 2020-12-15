@@ -183,9 +183,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
           true, false, context, false, 'HodHod MART', searchAction(context)),
       body: PageView(
         controller: _myPage,
-        onPageChanged: (int) {
-          print('Page Changes to index $int');
-        },
+        onPageChanged: (int) {},
         children: <Widget>[HomePage(), SearchPage(), WhishList(), MyCart()],
         physics: NeverScrollableScrollPhysics(),
       ),

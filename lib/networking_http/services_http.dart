@@ -98,7 +98,6 @@ class HttpServices {
   }
 
   static Future<List<SubCategory>> getSubCategoriesById(int id) async {
-    print(id);
     try {
       var response = await http.get(baseUrl + "getCategorySubs/$id");
       if (response.statusCode == 200) {
@@ -510,7 +509,10 @@ class HttpServices {
             'Authorization': 'Bearer ' + token,
           });
       if (response.statusCode == 201) {
+        Manager.successDialog('Added to Cart', context);
         return true;
+      } else if (response.statusCode == 300) {
+        Manager.toastMessage('Already taken', Colors.red);
       } else {
         Manager.toastMessage('Something Went Wrong ', Colors.red);
         return false;
@@ -565,7 +567,8 @@ class HttpServices {
         'Authorization': 'Bearer ' + token,
       });
       if (response.statusCode == 201) {
-        Manager.toastMessage('Added to wishlist', signInStartColor);
+        Manager.successDialog('Added to Wishlist', context);
+
         return true;
       } else {
         Manager.toastMessage('Something Went Wrong ', Colors.red);
@@ -732,6 +735,40 @@ class HttpServices {
 
       print(e);
       return [];
+    }
+  }
+
+  ///
+  ///
+  ///
+  ///Apply Cupon
+
+  static Future<bool> applyCoupon(
+      double total, String couponCode, BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+
+      var response = await http.post(baseUrl + "auth/applyCoupon", body: {
+        'coupon_code': couponCode,
+        'cart_total': total
+      }, headers: {
+        'Authorization': 'Bearer ' + token,
+      });
+      if (response.statusCode == 200) {
+        Manager.successDialog('Coupon has Been Applied', context);
+        HttpServices.getCartProducts(context);
+
+        return true;
+      } else {
+        Manager.toastMessage('Something Went Wrong ', Colors.red);
+        return false;
+      }
+    } catch (e) {
+      Manager.toastMessage('Something Went Wrong ', Colors.red);
+
+      print(e);
+      return false;
     }
   }
 }

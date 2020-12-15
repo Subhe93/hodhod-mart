@@ -18,14 +18,17 @@ class NewCartBody extends StatefulWidget {
 
 class _NewCartBodyState extends State<NewCartBody> {
   bool loading;
+  bool loadingCoupon;
   bool deletingIndicator;
   int _value = 1;
+  String coupon;
   List<CartItem> cart;
-
+  final TextEditingController _coupon = TextEditingController();
   @override
   void initState() {
     deletingIndicator = false;
     cart = [];
+    loadingCoupon = false;
     super.initState();
     if (Provider.of<ModelsProvider>(context, listen: false).isLoggedin()) {
       loading = true;
@@ -110,18 +113,59 @@ class _NewCartBodyState extends State<NewCartBody> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
+                        false
+                            ? Text(
+                                'You have Apllied a Coupon, if you to Apply new Coupon please int the code Below',
+                                style: TextStyle(
+                                    color: signInStartColor, fontSize: 15),
+                                textAlign: TextAlign.center,
+                              )
+                            : Text(
+                                'No Coupon Applied!!' +
+                                    '\n' +
+                                    'Enter Coupon Code to get a discount',
+                                style: TextStyle(
+                                    color: signInStartColor, fontSize: 15),
+                                textAlign: TextAlign.center,
+                              ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Center(
                           child: Container(
                             width: MediaQuery.of(context).size.width / 1.5,
                             child: TextField(
+                              controller: _coupon,
                               decoration: InputDecoration(
-                                  suffixIcon: FlatButton(
-                                    child: Text(
-                                      'Enter',
-                                      style: TextStyle(color: signInStartColor),
-                                    ),
-                                    color: Colors.transparent,
-                                  ),
+                                  suffixIcon: loadingCoupon
+                                      ? Container(
+                                          height: 5,
+                                          width: 5,
+                                          child: CircularProgressIndicator())
+                                      : FlatButton(
+                                          onPressed: () => {
+                                            setState(
+                                                () => {loadingCoupon = true}),
+                                            HttpServices.applyCoupon(
+                                                    Provider.of<ModelsProvider>(
+                                                            context)
+                                                        .total,
+                                                    _coupon.text.trim(),
+                                                    context)
+                                                .then((value) => {
+                                                      setState(() => {
+                                                            loadingCoupon =
+                                                                false
+                                                          })
+                                                    })
+                                          },
+                                          child: Text(
+                                            'Enter',
+                                            style: TextStyle(
+                                                color: signInStartColor),
+                                          ),
+                                          color: Colors.transparent,
+                                        ),
                                   border: OutlineInputBorder(),
                                   hintText: 'Enter Coupon Code'),
                             ),

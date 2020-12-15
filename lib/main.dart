@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 
 import 'package:hodhod_mart/screens/start_page.dart';
@@ -15,6 +18,14 @@ void main() {
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'Anago'),
         debugShowCheckedModeBanner: false,
+        supportedLocales: [Locale('en', 'US'), Locale('ar', 'AE')],
+        localizationsDelegates: [
+          Applocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          DefaultCupertinoLocalizations.delegate
+        ],
         color: Colors.white,
         home: StartPage(),
       ),

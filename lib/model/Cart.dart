@@ -4,68 +4,70 @@
 
 import 'dart:convert';
 
-List<CartItem> cartItemFromJson(String str) => List<CartItem>.from(json.decode(str).map((x) => CartItem.fromJson(x)));
+List<CartItem> cartItemFromJson(String str) =>
+    List<CartItem>.from(json.decode(str).map((x) => CartItem.fromJson(x)));
 
-String cartItemToJson(List<CartItem> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String cartItemToJson(List<CartItem> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class CartItem {
-    CartItem({
-        this.id,
-        this.subCatagoryId,
-        this.providerId,
-        this.name,
-        this.brand,
-        this.discount,
-        this.discountDescription,
-        this.offer,
-        this.offerDescription,
-        this.tags,
-        this.shortDescription,
-        this.description,
-        this.status,
-        this.imagePath,
-        this.price,
-        this.createdAt,
-        this.updatedAt,
-        this.mainImage,
-        this.offerId,
-        this.quantity,
-        this.maxPrice,
-        this.rating,
-        this.userId,
-        this.productId,
-        this.options,
-        this.totalPrice,
-    });
+  CartItem({
+    this.id,
+    this.subCatagoryId,
+    this.providerId,
+    this.name,
+    this.brand,
+    this.discount,
+    this.discountDescription,
+    this.offer,
+    this.offerDescription,
+    this.tags,
+    this.shortDescription,
+    this.description,
+    this.status,
+    this.imagePath,
+    this.price,
+    this.createdAt,
+    this.updatedAt,
+    this.mainImage,
+    this.offerId,
+    this.quantity,
+    this.maxPrice,
+    this.rating,
+    this.userId,
+    this.productId,
+    this.options,
+    this.totalPrice,
+  });
 
-    int id;
-    int subCatagoryId;
-    int providerId;
-    String name;
-    String brand;
-    String discount;
-    String discountDescription;
-    String offer;
-    String offerDescription;
-    String tags;
-    String shortDescription;
-    String description;
-    String status;
-    String imagePath;
-    int price;
-    DateTime createdAt;
-    DateTime updatedAt;
-    String mainImage;
-    int offerId;
-    int quantity;
-    String maxPrice;
-    int rating;
-    int userId;
-    int productId;
-    String options;
-    int totalPrice;
+  int id;
+  int subCatagoryId;
+  int providerId;
+  String name;
+  String brand;
+  String discount;
+  String discountDescription;
+  String offer;
+  String offerDescription;
+  String tags;
+  String shortDescription;
+  String description;
+  String status;
+  String imagePath;
+  int price;
+  DateTime createdAt;
+  DateTime updatedAt;
+  String mainImage;
+  int offerId;
+  int quantity;
+  int maxPrice;
+  int rating;
+  int userId;
+  int productId;
+  String options;
+  int totalPrice;
 
-    factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
+  factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
         id: json["id"],
         subCatagoryId: json["sub_catagory_id"],
         providerId: json["provider_id"],
@@ -92,9 +94,9 @@ class CartItem {
         productId: json["product_id"],
         options: json["options"],
         totalPrice: json["total_price"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "sub_catagory_id": subCatagoryId,
         "provider_id": providerId,
@@ -121,5 +123,5 @@ class CartItem {
         "product_id": productId,
         "options": options,
         "total_price": totalPrice,
-    };
+      };
 }

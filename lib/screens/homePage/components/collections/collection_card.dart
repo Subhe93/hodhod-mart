@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/model/whoshlist_model.dart';
 
@@ -90,7 +91,8 @@ class _CollectionCardState extends State<CollectionCard> {
             padding: const EdgeInsets.fromLTRB(5.0, 6.0, 0, 0),
             child: RichText(
               text: TextSpan(
-                  text: 'Price Starting From ',
+                  text: Applocalizations.of(context)
+                      .translate("Price Starting From "),
                   style: TextStyle(
                       fontFamily: 'Anago',
                       color: Colors.black87,
@@ -113,8 +115,10 @@ class _CollectionCardState extends State<CollectionCard> {
                   backgroundColor: signInEndColor,
                   label: Text(
                     widget.product.status == 'active'
-                        ? 'Always in stock'
-                        : 'Not available',
+                        ? Applocalizations.of(context)
+                            .translate("Always in stock")
+                        : Applocalizations.of(context)
+                            .translate("Not available"),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Anago',

@@ -5,15 +5,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/presentation/my_flutter_app_icons.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
-import 'dart:convert';
 
-import 'package:hodhod_mart/screens/product/components/app_bar.dart';
 import 'package:html/parser.dart';
-import 'package:http/http.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
@@ -245,7 +243,8 @@ class _ProductBodyState extends State<ProductBody> {
                                     child: ExpansionTile(
                                       expandedAlignment: Alignment.centerLeft,
                                       title: Text(
-                                        'Offers and Discounts',
+                                        Applocalizations.of(context)
+                                            .translate("Offers and Discounts"),
                                         style: TextStyle(color: signInEndColor),
                                       ),
                                       children: [
@@ -254,7 +253,9 @@ class _ProductBodyState extends State<ProductBody> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Discount Description',
+                                              Applocalizations.of(context)
+                                                  .translate(
+                                                      "Discount Description"),
                                               style: TextStyle(fontSize: 17),
                                             ),
                                             Text(parse(
@@ -264,7 +265,10 @@ class _ProductBodyState extends State<ProductBody> {
                                             SizedBox(
                                               height: 10,
                                             ),
-                                            Text('Offer Description',
+                                            Text(
+                                                Applocalizations.of(context)
+                                                    .translate(
+                                                        "Offer Description"),
                                                 style: TextStyle(fontSize: 17)),
                                             Text(parse(product.offerDescription)
                                                 .documentElement
@@ -284,7 +288,8 @@ class _ProductBodyState extends State<ProductBody> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Options :',
+                                        Applocalizations.of(context)
+                                            .translate("Options :"),
                                         style: TextStyle(
                                             color: signInStartColor,
                                             fontWeight: FontWeight.bold,
@@ -302,7 +307,9 @@ class _ProductBodyState extends State<ProductBody> {
                                 ? Container(
                                     height: 20,
                                     child: Center(
-                                      child: Text('No Options for this item'),
+                                      child: Text(Applocalizations.of(context)
+                                          .translate(
+                                              "No Options for this item")),
                                     ),
                                   )
                                 : Padding(
@@ -482,7 +489,9 @@ class _ProductBodyState extends State<ProductBody> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Quantity",
+                                          Text(
+                                              Applocalizations.of(context)
+                                                  .translate("Quantity"),
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: signInStartColor,
@@ -550,7 +559,9 @@ class _ProductBodyState extends State<ProductBody> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Quantity",
+                                          Text(
+                                              Applocalizations.of(context)
+                                                  .translate("Total"),
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: signInStartColor,
@@ -628,7 +639,8 @@ class _ProductBodyState extends State<ProductBody> {
                               color: Colors.deepPurple,
                               child: Center(
                                   child: Text(
-                                'Add To Cart',
+                                Applocalizations.of(context)
+                                    .translate("Add To Cart"),
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -650,6 +662,7 @@ class _ProductBodyState extends State<ProductBody> {
   ///
 //validation and processing selected attributes
   void addToCart() {
+    options = [];
     if (quantity > 0) {
       for (var i = 0; i < attributes.length; i++) {
         for (var sub in attributes[i]) {
@@ -664,16 +677,14 @@ class _ProductBodyState extends State<ProductBody> {
       HttpServices.addItemToCart(
               options.toString(), product.id, quantity, context)
           .then((value) => {
-                addingItemToCart = false,
-                added = value,
-                Manager.toastMessage(
-                    'one Item Added to cart', signInStartColor),
                 setState(
                   () => addingItemToCart = false,
                 )
               });
     } else {
-      Manager.toastMessage('Please choose a Quantity', Colors.red);
+      Manager.toastMessage(
+          Applocalizations.of(context).translate("Please choose a Quantity"),
+          Colors.red);
     }
   }
 

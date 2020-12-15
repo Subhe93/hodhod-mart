@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hodhod_mart/model/User.dart';
@@ -21,6 +22,20 @@ class Manager {
         textColor: Colors.white,
         backgroundColor: color,
         fontSize: 16.0);
+  }
+
+  static void successDialog(String message, BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.SUCCES,
+      animType: AnimType.BOTTOMSLIDE,
+      btnCancelOnPress: () {
+        print('s');
+      },
+      btnOkOnPress: () {
+        print('s');
+      },
+    )..show();
   }
 
   //set data into shared preferences like this

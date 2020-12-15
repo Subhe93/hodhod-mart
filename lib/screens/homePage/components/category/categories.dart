@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
 
 import 'package:hodhod_mart/repositories/category_repository.dart';
@@ -52,7 +53,8 @@ class _CategoriesState extends State<Categories> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'BROWSE BY CATEGORY',
+                    Applocalizations.of(context)
+                        .translate("BROWSE BY CATEGORY"),
                     style: TextStyle(
                       color: kTextColor,
                       fontSize: 15,
@@ -68,7 +70,7 @@ class _CategoriesState extends State<Categories> {
                       },
                     )),
                     child: Text(
-                      'MORE',
+                      Applocalizations.of(context).translate("MORE"),
                       style: TextStyle(
                         color: kTextPurpleColor,
                         fontSize: 12,

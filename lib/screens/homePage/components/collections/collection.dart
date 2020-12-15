@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/repositories/collection_repository.dart';
@@ -45,7 +46,7 @@ class Collection extends StatelessWidget {
                       },
                     )),
                     child: Text(
-                      'MORE',
+                      Applocalizations.of(context).translate("MORE"),
                       style: TextStyle(
                         fontFamily: 'Anago',
                         color: kTextPurpleColor,
