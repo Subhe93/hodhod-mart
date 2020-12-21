@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../constants.dart';
 import 'edit_order.dart';
@@ -113,14 +115,32 @@ class _CartCardState extends State<CartCard> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                baseUrl + widget.item.mainImage,
-                                height: MediaQuery.of(context).size.height / 15,
-                                width: MediaQuery.of(context).size.width * .20,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                                borderRadius: BorderRadius.circular(8),
+                                child: CachedNetworkImage(
+                                  height:
+                                      MediaQuery.of(context).size.height / 15,
+                                  width:
+                                      MediaQuery.of(context).size.width * .20,
+                                  fit: BoxFit.fill,
+                                  imageUrl: baseUrl + widget.item.mainImage,
+                                  placeholder: (context, url) => Container(
+                                    height: 20,
+                                    width: 20,
+                                    child: LoadingIndicator(
+                                      indicatorType: Indicator.ballScale,
+                                      color: signInEndColor,
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                )
+                                // Image.network(
+                                //   baseUrl + widget.item.mainImage,
+                                //   height: MediaQuery.of(context).size.height / 15,
+                                //   width: MediaQuery.of(context).size.width * .20,
+                                //   fit: BoxFit.cover,
+                                // ),
+                                ),
                           ),
                         ],
                       ),

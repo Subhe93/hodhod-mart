@@ -20,14 +20,16 @@ class _NewCartBodyState extends State<NewCartBody> {
   bool loading;
   bool loadingCoupon;
   bool deletingIndicator;
-  int _value = 1;
   String coupon;
+
   List<CartItem> cart;
+
   final TextEditingController _coupon = TextEditingController();
   @override
   void initState() {
     deletingIndicator = false;
     cart = [];
+
     loadingCoupon = false;
     super.initState();
     if (Provider.of<ModelsProvider>(context, listen: false).isLoggedin()) {
@@ -113,9 +115,9 @@ class _NewCartBodyState extends State<NewCartBody> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        false
+                        Provider.of<ModelsProvider>(context).cuoponApplyed
                             ? Text(
-                                'You have Apllied a Coupon, if you to Apply new Coupon please int the code Below',
+                                'You have Apllied a Coupon, if you to want Apply new Coupon please inter the code Below',
                                 style: TextStyle(
                                     color: signInStartColor, fontSize: 15),
                                 textAlign: TextAlign.center,
@@ -138,18 +140,22 @@ class _NewCartBodyState extends State<NewCartBody> {
                               controller: _coupon,
                               decoration: InputDecoration(
                                   suffixIcon: loadingCoupon
-                                      ? Container(
-                                          height: 5,
-                                          width: 5,
-                                          child: CircularProgressIndicator())
+                                      ? Center(
+                                          child: Container(
+                                              height: 10,
+                                              width: 10,
+                                              child:
+                                                  CircularProgressIndicator()),
+                                        )
                                       : FlatButton(
                                           onPressed: () => {
                                             setState(
                                                 () => {loadingCoupon = true}),
                                             HttpServices.applyCoupon(
                                                     Provider.of<ModelsProvider>(
-                                                            context)
-                                                        .total,
+                                                            context,
+                                                            listen: false)
+                                                        .cartTotal,
                                                     _coupon.text.trim(),
                                                     context)
                                                 .then((value) => {
@@ -160,7 +166,11 @@ class _NewCartBodyState extends State<NewCartBody> {
                                                     })
                                           },
                                           child: Text(
-                                            'Enter',
+                                            Provider.of<ModelsProvider>(context,
+                                                        listen: false)
+                                                    .cuoponApplyed
+                                                ? 'Replace'
+                                                : 'Enter',
                                             style: TextStyle(
                                                 color: signInStartColor),
                                           ),
@@ -254,7 +264,7 @@ class _NewCartBodyState extends State<NewCartBody> {
                               'SAR ' +
                                   Provider.of<ModelsProvider>(context,
                                           listen: true)
-                                      .total
+                                      .cartTotal
                                       .toString(),
                               style: TextStyle(
                                   fontSize: 17,

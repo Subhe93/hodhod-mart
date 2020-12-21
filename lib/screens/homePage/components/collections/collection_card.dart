@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/model/whoshlist_model.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import 'package:provider/provider.dart';
 
@@ -34,16 +36,39 @@ class _CollectionCardState extends State<CollectionCard> {
           Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  widget.product.mainImage != ""
-                      ? baseUrl + widget.product.mainImage
-                      : 'https://picsum.photos/200/300.jpg',
-                  width: 240,
-                  height: 200,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(10),
+                  child: CachedNetworkImage(
+                    width: 240,
+                    height: 200,
+                    fit: BoxFit.fill,
+                    imageUrl: widget.product.mainImage != ""
+                        ? baseUrl + widget.product.mainImage
+                        : 'https://picsum.photos/200/300.jpg',
+                    placeholder: (context, url) => Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 20,
+                          width: 20,
+                          child: LoadingIndicator(
+                            indicatorType: Indicator.ballScale,
+                            color: signInStartColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+
+                  //  Image.network(
+                  //   widget.product.mainImage != ""
+                  //       ? baseUrl + widget.product.mainImage
+                  //       : 'https://picsum.photos/200/300.jpg',
+                  //   width: 240,
+                  //   height: 200,
+                  //   fit: BoxFit.cover,
+                  // ),
+                  ),
               Positioned(
                 top: 2,
                 right: 2,

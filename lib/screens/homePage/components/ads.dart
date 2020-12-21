@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:hodhod_mart/constants.dart';
@@ -33,23 +34,43 @@ class _AdsState extends State<Ads> {
                   'assets/' + swiperList[index],
                   fit: BoxFit.fitHeight,
                 )
-              : Image.network(
-                  baseUrl + widget.banners[index].image,
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: Container(
-                          width: 20,
-                          height: 20,
-                          child: LoadingIndicator(
-                            indicatorType: Indicator.ballScale,
-                            color: signInEndColor,
-                          )),
-                    );
-                  },
+              : CachedNetworkImage(
+                  width: 80,
+                  height: 80,
                   fit: BoxFit.fill,
+                  imageUrl: baseUrl + widget.banners[index].image,
+                  placeholder: (context, url) => Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        child: LoadingIndicator(
+                          indicatorType: Indicator.ballScale,
+                          color: signInStartColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 );
+          // Image.network(
+          //     baseUrl + widget.banners[index].image,
+          //     loadingBuilder: (BuildContext context, Widget child,
+          //         ImageChunkEvent loadingProgress) {
+          //       if (loadingProgress == null) return child;
+          //       return Center(
+          //         child: Container(
+          //             width: 20,
+          //             height: 20,
+          //             child: LoadingIndicator(
+          //               indicatorType: Indicator.ballScale,
+          //               color: signInEndColor,
+          //             )),
+          //       );
+          //     },
+          //     fit: BoxFit.fill,
+          //   );
         },
         itemCount: _isLoading ? 3 : widget.banners.length,
         pagination: SwiperPagination(

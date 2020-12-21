@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 
@@ -16,7 +17,7 @@ void main() {
         ),
       ],
       child: MaterialApp(
-        theme: ThemeData(fontFamily: 'Anago'),
+        theme: ThemeData(fontFamily: 'Anago', accentColor: signInEndColor),
         debugShowCheckedModeBanner: false,
         supportedLocales: [Locale('en', 'US'), Locale('ar', 'AE')],
         localizationsDelegates: [

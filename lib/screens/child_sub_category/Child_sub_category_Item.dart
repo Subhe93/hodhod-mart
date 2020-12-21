@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/screens/product/product_page.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../constants.dart';
 
@@ -35,14 +37,29 @@ class _SubCategoryItemCardState extends State<SubCategoryItemCard> {
           children: [
             Flexible(
               flex: 3,
-              child: Image.network(
-                widget.item.mainImage != ""
+              child: CachedNetworkImage(
+                width: MediaQuery.of(context).size.width / 2,
+                height: MediaQuery.of(context).size.width / 2,
+                fit: BoxFit.fill,
+                imageUrl: widget.item.mainImage != ""
                     ? baseUrl + widget.item.mainImage
                     : 'https://picsum.photos/200/300.jpg',
-                width: (MediaQuery.of(context).size.width / 2) - 2,
-                height: MediaQuery.of(context).size.width / 1.2,
-                fit: BoxFit.contain,
+                placeholder: (context, url) => Container(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
+
+              //  Image.network(
+              //   widget.item.mainImage != ""
+              //       ? baseUrl + widget.item.mainImage
+              //       : 'https://picsum.photos/200/300.jpg',
+              //   width: (MediaQuery.of(context).size.width / 2) - 2,
+              //   height: MediaQuery.of(context).size.width / 1.2,
+              //   fit: BoxFit.contain,
+              // ),
             ),
             Flexible(
               flex: 1,

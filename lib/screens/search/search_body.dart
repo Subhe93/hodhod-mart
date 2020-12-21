@@ -139,19 +139,24 @@ class _SearchBodyState extends State<SearchBody> {
                                     _value.toString(), "1", context)
                                 .then((value) => {
                                       setState(() => {loading = false}),
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return SearchResults(
-                                              searchResults: value,
-                                              searchKeyWord:
-                                                  _search.text.trim(),
-                                              catID: _value,
-                                            );
-                                          },
-                                        ),
-                                      )
+                                      if (Provider.of<ModelsProvider>(context,
+                                              listen: false)
+                                          .internetAccess)
+                                        {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return SearchResults(
+                                                  searchResults: value,
+                                                  searchKeyWord:
+                                                      _search.text.trim(),
+                                                  catID: _value,
+                                                );
+                                              },
+                                            ),
+                                          )
+                                        }
                                     })
                           },
                           child: Container(

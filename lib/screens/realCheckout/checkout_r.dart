@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/homePage/components/appBar.dart';
+import 'package:hodhod_mart/screens/my_account/add_address/add_address.dart';
 import 'package:hodhod_mart/screens/my_account/component/app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -21,27 +23,46 @@ class _CheckoutState extends State<Checkout> {
   String exp_year;
   String cvc;
   String exp_month;
+  var _address;
   var _paymentValue;
   var _monthValue;
   var _currencyValue;
   var _yearValue;
   bool loading;
+  List<Address> addresses;
   List<DropdownMenuItem> years;
+  List<DropdownMenuItem> userAddress;
   @override
   void initState() {
     super.initState();
+    userAddress = [];
     years = [];
-    loading = false;
+    addresses = [];
+    loading = true;
     for (var i = 0; i < 10; i++) {
       years.add(DropdownMenuItem(
         child: Text('${2020 + i}'),
         value: i,
       ));
     }
+    HttpServices.getUserAddress(context).then((value) => {
+          setState(() => {
+                loading = false,
+                addresses = value,
+                for (var i = 0; i < addresses.length; i++)
+                  {
+                    userAddress.add(DropdownMenuItem(
+                      child: Text(addresses[i].addressLine1),
+                      value: i + 1,
+                    ))
+                  }
+              })
+        });
     _yearValue = 1;
     _monthValue = 1;
     _paymentValue = 1;
     _currencyValue = 1;
+    _address = 1;
   }
 
   final TextEditingController _cardNumber = TextEditingController();
@@ -104,8 +125,12 @@ class _CheckoutState extends State<Checkout> {
                                 value: _paymentValue,
                                 items: [
                                   DropdownMenuItem(
-                                    child: Text("PayPal"),
+                                    child: Text("Credit Card"),
                                     value: 1,
+                                  ),
+                                  DropdownMenuItem(
+                                    child: Text("Cash on delivery"),
+                                    value: 2,
                                   ),
                                 ],
                                 onChanged: (value) {
@@ -116,6 +141,97 @@ class _CheckoutState extends State<Checkout> {
                           ],
                         ),
                       ),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Address :',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: signInStartColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          addresses.isEmpty
+                              ? InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return AddAddress();
+                                        },
+                                      ),
+                                    ).then((value) => {
+                                          HttpServices.getUserAddress(context)
+                                              .then((value) => {
+                                                    setState(() => {
+                                                          loading = false,
+                                                          addresses = value,
+                                                          for (var i = 0;
+                                                              i <
+                                                                  addresses
+                                                                      .length;
+                                                              i++)
+                                                            {
+                                                              userAddress.add(
+                                                                  DropdownMenuItem(
+                                                                child: Text(
+                                                                    addresses[i]
+                                                                        .addressLine1),
+                                                                value: i + 1,
+                                                              ))
+                                                            }
+                                                        })
+                                                  })
+                                        });
+                                  },
+                                  child: Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1, color: signInEndColor)),
+                                      child: Center(
+                                        child: Text(
+                                          'Your Addresses are empty Press to Add Address',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      )),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Icon(
+                                        FontAwesomeIcons.creditCard,
+                                        color: signInEndColor,
+                                      ),
+                                      DropdownButton(
+                                          hint: Text(
+                                            'Choose Payment Method',
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          value: _address,
+                                          items: userAddress,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              _paymentValue = _address;
+                                            });
+                                          }),
+                                    ],
+                                  ),
+                                ),
+                        ],
+                      ),
+
                       SizedBox(
                         height: 20,
                       ),

@@ -20,11 +20,25 @@ class ModelsProvider extends ChangeNotifier {
   String token;
   List<MainCategory> categoriesToShow = [];
   List<CartItem> cartItems = [];
-  double total;
+  double calculatedTotal = 0;
+  double cartTotal = 0;
   List<WishListItem> wishlistItems = [];
+  bool internetAccess = true;
+  bool cuoponApplyed = false;
+  List<Address> userAddresses = [];
 
   void setWishListItems(List<WishListItem> items) {
     wishlistItems = items;
+    notifyListeners();
+  }
+
+  void setAddresses(List<Address> items) {
+    userAddresses = items;
+    notifyListeners();
+  }
+
+  void setInternetAccess(bool status) {
+    internetAccess = status;
     notifyListeners();
   }
 
@@ -41,13 +55,22 @@ class ModelsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setCartTotal(double t) {
+    cartTotal = t;
+    cartTotal == calculatedTotal ? cuoponApplyed = false : cuoponApplyed = true;
+    if (cartTotal == 0) {
+      cuoponApplyed = false;
+    }
+    notifyListeners();
+  }
+
   void setCartItems(List<CartItem> items) {
     cartItems = items;
     var t = 0.0;
     for (var item in items) {
       t = t + item.price * item.quantity;
     }
-    total = t;
+    calculatedTotal = t;
     notifyListeners();
   }
 

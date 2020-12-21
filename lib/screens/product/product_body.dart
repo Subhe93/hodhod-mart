@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -126,28 +127,52 @@ class _ProductBodyState extends State<ProductBody> {
                                           autoplay: true,
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            return new Image.network(
-                                              baseUrl + product.images[index],
+                                            return CachedNetworkImage(
                                               fit: BoxFit.fill,
-                                              loadingBuilder:
-                                                  (BuildContext context,
-                                                      Widget child,
-                                                      ImageChunkEvent
-                                                          loadingProgress) {
-                                                if (loadingProgress == null)
-                                                  return child;
-                                                return Center(
-                                                  child: Container(
-                                                      width: 50,
-                                                      height: 50,
-                                                      child: LoadingIndicator(
-                                                        indicatorType:
-                                                            Indicator.ballScale,
-                                                        color: signInEndColor,
-                                                      )),
-                                                );
-                                              },
+                                              imageUrl: baseUrl +
+                                                  product.images[index],
+                                              placeholder: (context, url) =>
+                                                  Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    height: 50,
+                                                    width: 50,
+                                                    child: LoadingIndicator(
+                                                      indicatorType:
+                                                          Indicator.ballScale,
+                                                      color: signInEndColor,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Icon(Icons.error),
                                             );
+                                            // return new Image.network(
+                                            //   baseUrl + product.images[index],
+                                            //   fit: BoxFit.fill,
+                                            //   loadingBuilder:
+                                            //       (BuildContext context,
+                                            //           Widget child,
+                                            //           ImageChunkEvent
+                                            //               loadingProgress) {
+                                            //     if (loadingProgress == null)
+                                            //       return child;
+                                            //     return Center(
+                                            //       child: Container(
+                                            //           width: 50,
+                                            //           height: 50,
+                                            //           child: LoadingIndicator(
+                                            //             indicatorType:
+                                            //                 Indicator.ballScale,
+                                            //             color: signInEndColor,
+                                            //           )),
+                                            //     );
+                                            //   },
+                                            // );
                                           },
                                           itemCount: product.images.length,
                                           pagination: SwiperPagination(

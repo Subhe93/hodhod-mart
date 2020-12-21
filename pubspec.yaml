@@ -51,6 +51,8 @@ dependencies:
   html: ^0.14.0+4
   loading_indicator: ^1.2.0
   awesome_dialog: ^1.2.1
+  connectivity: ^2.0.2
+  cached_network_image: ^2.4.1
 
 
 dev_dependencies:

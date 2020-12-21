@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
+
 import 'package:hodhod_mart/screens/register/createAccount.dart';
 import 'package:hodhod_mart/screens/register/signIn.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:connectivity/connectivity.dart';
+import 'dart:io';
 import '../constants.dart';
 
 class Manager {
@@ -24,18 +27,49 @@ class Manager {
         fontSize: 16.0);
   }
 
-  static void successDialog(String message, BuildContext context) {
+  static void successDialog(
+      String message, String title, BuildContext context) {
     AwesomeDialog(
-      context: context,
-      dialogType: DialogType.SUCCES,
-      animType: AnimType.BOTTOMSLIDE,
-      btnCancelOnPress: () {
-        print('s');
-      },
-      btnOkOnPress: () {
-        print('s');
-      },
-    )..show();
+        context: context,
+        dialogType: DialogType.SUCCES,
+        animType: AnimType.BOTTOMSLIDE,
+        title: title,
+        desc: message,
+        autoHide: Duration(seconds: 2))
+      ..show();
+  }
+
+  static void errorDialog(String message, String title, BuildContext context) {
+    AwesomeDialog(
+        context: context,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: title,
+        desc: message,
+        autoHide: Duration(seconds: 2))
+      ..show();
+  }
+
+  static void noConnectionAlert(BuildContext context) {
+    AwesomeDialog(
+        context: context,
+        animType: AnimType.SCALE,
+        dialogType: DialogType.NO_HEADER,
+        body: Center(
+            child: Column(
+          children: [
+            Icon(
+              Icons.wifi_off,
+              size: 100,
+              color: signInEndColor,
+            ),
+            Text('No Internet Access')
+          ],
+        )),
+        title: 'No Internet Access',
+        desc: 'Please Connect to internet and try again',
+        autoHide: Duration(seconds: 2))
+      ..show();
   }
 
   //set data into shared preferences like this
@@ -73,6 +107,31 @@ class Manager {
     Provider.of<ModelsProvider>(context, listen: false).setWishListItems([]);
 
     return true;
+  }
+
+  static Future<bool> checkInternet(BuildContext context) async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      try {
+        final result = await InternetAddress.lookup('google.com');
+        if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+          Provider.of<ModelsProvider>(context, listen: false)
+              .setInternetAccess(true);
+        }
+      } on SocketException catch (_) {
+        Provider.of<ModelsProvider>(context, listen: false)
+            .setInternetAccess(false);
+        return false;
+      }
+
+      return true;
+    } else {
+      Provider.of<ModelsProvider>(context, listen: false)
+          .setInternetAccess(false);
+    }
+
+    return false;
   }
 
   static void openRegisterSheet(context) async {

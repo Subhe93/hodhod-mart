@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
 import 'package:hodhod_mart/repositories/collection_card_repository.dart';
 import 'package:hodhod_mart/screens/homePage/components/collections/collection_card.dart';
@@ -22,14 +23,20 @@ class _CollectionListState extends State<CollectionList> {
         scrollDirection: Axis.horizontal,
         children: widget.products.map((Product value) {
           return InkWell(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return ProductPage(
-                  id: value.id,
-                );
-              }),
-            ),
+            onTap: () => {
+              Manager.checkInternet(context).then((access) => {
+                    access
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return ProductPage(
+                                id: value.id,
+                              );
+                            }),
+                          )
+                        : Manager.noConnectionAlert(context)
+                  })
+            },
             child: CollectionCard(
               product: value,
             ),

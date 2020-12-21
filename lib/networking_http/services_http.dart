@@ -4,10 +4,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
 import 'package:hodhod_mart/model/Order.dart';
 import 'package:hodhod_mart/model/ProductDetails.dart';
+import 'package:hodhod_mart/model/ResponsModels/AddressResponse.dart';
 import 'package:hodhod_mart/model/ResponsModels/homePage.dart';
 import 'package:hodhod_mart/model/ResponsModels/loginResponse.dart';
 import 'package:hodhod_mart/model/ResponsModels/Startup.dart';
@@ -97,7 +99,15 @@ class HttpServices {
     }
   }
 
-  static Future<List<SubCategory>> getSubCategoriesById(int id) async {
+  static Future<List<SubCategory>> getSubCategoriesById(
+      BuildContext context, int id) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return [];
+    }
+
     try {
       var response = await http.get(baseUrl + "getCategorySubs/$id");
       if (response.statusCode == 200) {
@@ -112,7 +122,15 @@ class HttpServices {
     }
   }
 
-  static Future<List<Product>> getSubCategoryProducts(int id) async {
+  static Future<List<Product>> getSubCategoryProducts(
+      BuildContext context, int id) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return [];
+    }
+
     try {
       var response = await http.get(baseUrl + "getSubCategoryProducts/$id");
 
@@ -129,6 +147,13 @@ class HttpServices {
   ///login
   static Future<LoginResponse> login(
       String password, String email, BuildContext context) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return LoginResponse(accessToken: '');
+    }
+
     try {
       var response = await http.post(baseUrl + "auth/login",
           body: {"email": email, "password": password});
@@ -153,6 +178,13 @@ class HttpServices {
       String lastName,
       String phone,
       BuildContext context) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return 0;
+    }
+
     try {
       var response = await http.post(baseUrl + "auth/signup", body: {
         "email": email,
@@ -196,6 +228,12 @@ class HttpServices {
   ///////////
   static Future<UserInfo> GetUserInfo(BuildContext context) async {
     UserInfo result;
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return UserInfo();
+    }
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
@@ -231,6 +269,12 @@ class HttpServices {
     String lastName,
   ) async {
     User result;
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return false;
+    }
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
@@ -259,6 +303,14 @@ class HttpServices {
   static Future<bool> updateProfileImage(
       File image, BuildContext context) async {
     String token = Provider.of<ModelsProvider>(context, listen: false).token;
+
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return false;
+    }
+
     await Manager.getAuthToken().then((val) => {token = val});
     var req = http.MultipartRequest(
         'POST', Uri.parse(baseUrl + 'auth/updateUserImage'));
@@ -294,6 +346,13 @@ class HttpServices {
       String state,
       String email,
       String country) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return false;
+    }
+
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
@@ -328,6 +387,13 @@ class HttpServices {
   ///Update Password
   static Future<bool> updatePassword(
       BuildContext context, String password) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return false;
+    }
+
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
@@ -352,7 +418,7 @@ class HttpServices {
     }
   }
 
-  static Future<HomeInfo> getHomeData(BuildContext context) async {
+  static Future<bool> getHomeData(BuildContext context) async {
     try {
       var response = await http.get(baseUrl + "GetHomePage", headers: {});
 
@@ -368,13 +434,13 @@ class HttpServices {
         Provider.of<ModelsProvider>(context, listen: false)
             .setCategoriesToShow(results.categoriesToShow);
 
-        return results;
+        return true;
       } else {
-        return HomeInfo();
+        return false;
       }
     } catch (e) {
       print(e);
-      return HomeInfo();
+      return false;
     }
   }
 
@@ -386,6 +452,14 @@ class HttpServices {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
+
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return false;
+      }
+
       var response =
           await http.post(baseUrl + "auth/deleteUserAddress", headers: {
         'Authorization': 'Bearer ' + token,
@@ -409,11 +483,57 @@ class HttpServices {
   ////
   ///
   ///
+  ///Delete Address
+  static Future<List<Address>> getUserAddress(BuildContext context) async {
+    try {
+      String token = Provider.of<ModelsProvider>(context, listen: false).token;
+      await Manager.getAuthToken().then((val) => {token = val});
+
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return [];
+      }
+
+      var response = await http.get(
+        baseUrl + "auth/getUserAddresses",
+        headers: {
+          'Authorization': 'Bearer ' + token,
+        },
+      );
+      if (response.statusCode == 200) {
+        var resluts = addressFromJson(response.body);
+
+        Provider.of<ModelsProvider>(context, listen: false)
+            .setAddresses(resluts.addresses);
+        return resluts.addresses;
+      } else {
+        Manager.toastMessage('Address was not deleted ', Colors.red);
+        return [];
+      }
+    } catch (e) {
+      Manager.toastMessage('Address was not deleted ', Colors.red);
+      print(e);
+      return [];
+    }
+  }
+
+  ////
+  ///
+  ///
   ///Products Details
   static Future<ProductDetails> getProductDetails(
       int id, BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
+
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return ProductDetails();
+      }
 
       var response = await http.post(baseUrl + "getProductData", headers: {
         'Authorization': 'Bearer ' + token,
@@ -439,31 +559,40 @@ class HttpServices {
   ///
   ///
   ///Get Cart Items
-  static Future<List<CartItem>> getCartProducts(BuildContext context) async {
+  static Future<Cart> getCartProducts(BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
 
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return Cart();
+      }
+
       if (token == "") {
         Provider.of<ModelsProvider>(context, listen: false).setCartItems([]);
-        return [];
+        return Cart();
       }
 
       var response = await http.get(baseUrl + "cart", headers: {
         'Authorization': 'Bearer ' + token,
       });
       if (response.statusCode == 200) {
-        final results = cartItemFromJson(response.body);
+        final results = cartFromJson(response.body);
         Provider.of<ModelsProvider>(context, listen: false)
-            .setCartItems(results);
+            .setCartItems(results.cart);
+        Provider.of<ModelsProvider>(context, listen: false)
+            .setCartTotal(double.parse('${results.cartTotal}'));
         return results;
       } else {
         Manager.toastMessage('Something Went Wrong ', Colors.red);
-        return [];
+        return Cart();
       }
     } catch (e) {
       Manager.toastMessage('Something Went Wrong ', Colors.red);
       print(e);
-      return [];
+      return Cart();
     }
   }
 
@@ -474,13 +603,23 @@ class HttpServices {
   static Future<bool> deleteItemFromCart(int id, BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
+
       await Manager.getAuthToken().then((val) => {token = val});
+
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return false;
+      }
+
       var response = await http.delete(baseUrl + "cart/$id", headers: {
         'Authorization': 'Bearer ' + token,
       });
       if (response.statusCode == 204) {
         Provider.of<ModelsProvider>(context, listen: false)
             .removeItemFromCart(id);
+        HttpServices.getCartProducts(context);
 
         return true;
       } else {
@@ -500,6 +639,13 @@ class HttpServices {
   ///Add Cart Items
   static Future<bool> addItemToCart(
       String options, int id, int quantity, BuildContext context) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return false;
+    }
+
     try {
       String token = "";
       await Manager.getAuthToken().then((val) => {token = val});
@@ -509,7 +655,7 @@ class HttpServices {
             'Authorization': 'Bearer ' + token,
           });
       if (response.statusCode == 201) {
-        Manager.successDialog('Added to Cart', context);
+        Manager.successDialog('One Item Added to Cart', 'Cart', context);
         return true;
       } else if (response.statusCode == 300) {
         Manager.toastMessage('Already taken', Colors.red);
@@ -530,6 +676,13 @@ class HttpServices {
   ///Upadte Cart Item
   static Future<bool> updateCartItem(int id, int productID, int quantity,
       BuildContext context, String options) async {
+////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return false;
+    }
+
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
@@ -559,6 +712,13 @@ class HttpServices {
   static Future<bool> addItemToWishlist(
       int productID, BuildContext context) async {
     try {
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return false;
+      }
+
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
 
       var response = await http.post(baseUrl + "wishlist", body: {
@@ -567,7 +727,8 @@ class HttpServices {
         'Authorization': 'Bearer ' + token,
       });
       if (response.statusCode == 201) {
-        Manager.successDialog('Added to Wishlist', context);
+        Manager.successDialog(
+            'One Item Added to Wishlist', 'Wishlist', context);
 
         return true;
       } else {
@@ -588,6 +749,13 @@ class HttpServices {
   static Future<bool> getWishList(BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
+
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return false;
+      }
 
       if (token == "") {
         Provider.of<ModelsProvider>(context, listen: false)
@@ -620,6 +788,13 @@ class HttpServices {
   ///Delete itme from wishlist
   static Future<bool> deleteItemFromWishList(
       int id, BuildContext context, int index) async {
+    ////Checking Internet Access
+    Manager.checkInternet(context);
+    if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+      Manager.noConnectionAlert(context);
+      return false;
+    }
+
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
@@ -654,6 +829,13 @@ class HttpServices {
       String cvc,
       BuildContext context) async {
     try {
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return false;
+      }
+
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
       var response = await http.post(baseUrl + "order", body: {
@@ -690,6 +872,13 @@ class HttpServices {
   static Future<SearchResponse> search(
       String keyword, String cat, String page, BuildContext context) async {
     try {
+      ////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return SearchResponse();
+      }
+
       if (cat == "0") {
         cat = "";
       }
@@ -720,6 +909,13 @@ class HttpServices {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
 
+////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return [];
+      }
+
       var response = await http.get(baseUrl + "order", headers: {
         'Authorization': 'Bearer ' + token,
       });
@@ -749,17 +945,27 @@ class HttpServices {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
       await Manager.getAuthToken().then((val) => {token = val});
 
+////Checking Internet Access
+      Manager.checkInternet(context);
+      if (!Provider.of<ModelsProvider>(context, listen: false).internetAccess) {
+        Manager.noConnectionAlert(context);
+        return false;
+      }
+
       var response = await http.post(baseUrl + "auth/applyCoupon", body: {
         'coupon_code': couponCode,
-        'cart_total': total
+        'cart_total': total.toString()
       }, headers: {
         'Authorization': 'Bearer ' + token,
       });
       if (response.statusCode == 200) {
-        Manager.successDialog('Coupon has Been Applied', context);
         HttpServices.getCartProducts(context);
-
+        Manager.successDialog('Coupon has Been Applied', 'Coupon', context);
         return true;
+      } else if (response.statusCode == 422) {
+        var res = json.decode(response.body);
+
+        Manager.errorDialog(res['error'], 'Coupon', context);
       } else {
         Manager.toastMessage('Something Went Wrong ', Colors.red);
         return false;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
@@ -86,13 +87,17 @@ class _CategoriesState extends State<Categories> {
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.categories.length,
                 itemBuilder: (context, index) => InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return SubCategoryPage(
-                        catID: widget.categories[index].id,
-                      );
-                    },
-                  )),
+                  onTap: () => {
+                    Manager.checkInternet(context).then((access) => access
+                        ? Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return SubCategoryPage(
+                                catID: widget.categories[index].id,
+                              );
+                            },
+                          ))
+                        : Manager.noConnectionAlert(context))
+                  },
                   child: CategoryCard(
                       category: CategoryRepository(
                           id: widget.categories[index].id,

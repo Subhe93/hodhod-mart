@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/repositories/category_repository.dart';
@@ -28,25 +29,40 @@ class CategoryCard extends StatelessWidget {
                 radius: 35,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(35),
-                  child: Image.network(
-                    baseUrl + category.image,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: Container(
-                            width: 20,
-                            height: 20,
-                            child: LoadingIndicator(
-                              indicatorType: Indicator.ballScale,
-                              color: signInEndColor,
-                            )),
-                      );
-                    },
+                  child: CachedNetworkImage(
                     width: 80,
                     height: 80,
                     fit: BoxFit.fill,
+                    imageUrl: baseUrl + category.image,
+                    placeholder: (context, url) => Container(
+                      height: 20,
+                      width: 20,
+                      child: LoadingIndicator(
+                        indicatorType: Indicator.ballScale,
+                        color: signInEndColor,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
+                  // Image.network(
+                  //   baseUrl + category.image,
+                  //   loadingBuilder: (BuildContext context, Widget child,
+                  //       ImageChunkEvent loadingProgress) {
+                  //     if (loadingProgress == null) return child;
+                  //     return Center(
+                  //       child: Container(
+                  //           width: 20,
+                  //           height: 20,
+                  //           child: LoadingIndicator(
+                  //             indicatorType: Indicator.ballScale,
+                  //             color: signInEndColor,
+                  //           )),
+                  //     );
+                  //   },
+                  //   width: 80,
+                  //   height: 80,
+                  //   fit: BoxFit.fill,
+                  // ),
                 ),
               ),
             ),

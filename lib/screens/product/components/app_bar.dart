@@ -34,48 +34,48 @@ Widget productAppBar(BuildContext context, int product_id) {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                width: containerWidth,
-                height: containerHeight,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(imageRadius),
-                ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    MyFlutterApp.cart_04,
-                    color: appBarIconsColor,
-                    size: 20,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Container(
-                width: containerWidth,
-                height: containerHeight,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(imageRadius),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    HttpServices.addItemToWishlist(product_id, context);
-                  },
-                  icon: Icon(
-                    MyFlutterApp.love_02,
-                    color: appBarIconsColor,
-                    size: 20,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   children: [
+          //     Container(
+          //       width: containerWidth,
+          //       height: containerHeight,
+          //       decoration: BoxDecoration(
+          //         color: Colors.white,
+          //         borderRadius: BorderRadius.circular(imageRadius),
+          //       ),
+          //       child: IconButton(
+          //         onPressed: () {},
+          //         icon: Icon(
+          //           MyFlutterApp.cart_04,
+          //           color: appBarIconsColor,
+          //           size: 20,
+          //         ),
+          //       ),
+          //     ),
+          //     SizedBox(
+          //       width: 10,
+          //     ),
+          //     Container(
+          //       width: containerWidth,
+          //       height: containerHeight,
+          //       decoration: BoxDecoration(
+          //         color: Colors.white,
+          //         borderRadius: BorderRadius.circular(imageRadius),
+          //       ),
+          //       child: IconButton(
+          //         onPressed: () {
+          //           HttpServices.addItemToWishlist(product_id, context);
+          //         },
+          //         icon: Icon(
+          //           MyFlutterApp.love_02,
+          //           color: appBarIconsColor,
+          //           size: 20,
+          //         ),
+          //       ),
+          // //     ),
+          //   ],
+          // ),
         ],
       ),
     ),

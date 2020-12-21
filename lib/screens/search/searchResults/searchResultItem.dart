@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class SearchResultItem extends StatelessWidget {
   final Product item;
@@ -24,14 +26,29 @@ class SearchResultItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  baseUrl + item.mainImage,
-                  width: MediaQuery.of(context).size.width / 4,
-                  height: MediaQuery.of(context).size.height / 5,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(15),
+                  child: CachedNetworkImage(
+                    width: MediaQuery.of(context).size.width / 4,
+                    height: MediaQuery.of(context).size.height / 5,
+                    fit: BoxFit.fill,
+                    imageUrl: baseUrl + item.mainImage,
+                    placeholder: (context, url) => Container(
+                      height: 50,
+                      width: 50,
+                      child: LoadingIndicator(
+                        indicatorType: Indicator.ballScale,
+                        color: signInEndColor,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                  // Image.network(
+                  //   baseUrl + item.mainImage,
+                  //   width: MediaQuery.of(context).size.width / 4,
+                  //   height: MediaQuery.of(context).size.height / 5,
+                  //   fit: BoxFit.cover,
+                  // ),
+                  ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

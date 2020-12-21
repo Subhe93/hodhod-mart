@@ -5,6 +5,7 @@ import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 
 class AddAddressBody extends StatefulWidget {
@@ -13,7 +14,7 @@ class AddAddressBody extends StatefulWidget {
 }
 
 class _AddAddressBodyState extends State<AddAddressBody> {
-  bool loaded;
+  bool loading;
   String address1;
   String address2;
   String city;
@@ -23,6 +24,12 @@ class _AddAddressBodyState extends State<AddAddressBody> {
   String fullname;
   String phoneNumber;
   User user;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loading = false;
+  }
 
   final TextEditingController _address1 = TextEditingController();
   final TextEditingController _address2 = TextEditingController();
@@ -270,6 +277,7 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                                       padding: const EdgeInsets.all(2.0),
                                       child: TextFormField(
                                         controller: _phoneNumber,
+                                        keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
                                             prefixIcon: Icon(
                                               Icons.phone,
@@ -291,69 +299,75 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: InkWell(
-                  onTap: () => {
-                    address1 = _address1.text.trim(),
-                    address2 = _address2.text.trim(),
-                    city = _city.text.trim(),
-                    state = _state.text.trim(),
-                    fullname = _fullName.text.trim(),
-                    phoneNumber = _phoneNumber.text.trim(),
-                    country = _country.text.trim(),
-                    if (address1.isEmpty ||
-                        address2.isEmpty ||
-                        city.isEmpty ||
-                        state.isEmpty ||
-                        fullname.isEmpty ||
-                        phoneNumber.isEmpty)
-                      {Manager.toastMessage('Empty Fields', signInStartColor)}
-                    else
-                      {
-                        HttpServices.addAddress(
-                                context,
-                                address1,
-                                address2,
-                                city,
-                                fullname,
-                                phoneNumber,
-                                state,
-                                " user.email",
-                                country)
-                            .then((done) => {
-                                  if (done)
-                                    {
-                                      Provider.of<ModelsProvider>(context,
-                                              listen: false)
-                                          .addAddress(Address(
-                                              fullName: fullname,
-                                              addressLine1: address1,
-                                              addressLine2: address2,
-                                              state: state,
-                                              city: city,
-                                              country: country)),
-                                      Navigator.pop(context),
-                                    }
-                                })
-                      }
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    color: Colors.deepPurple,
-                    child: Center(
-                        child: Text(
-                      'Add Address',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+              loading
+                  ? Center(child: CircularProgressIndicator())
+                  : Align(
+                      alignment: Alignment.bottomCenter,
+                      child: InkWell(
+                        onTap: () => {
+                          address1 = _address1.text.trim(),
+                          address2 = _address2.text.trim(),
+                          city = _city.text.trim(),
+                          state = _state.text.trim(),
+                          fullname = _fullName.text.trim(),
+                          phoneNumber = _phoneNumber.text.trim(),
+                          country = _country.text.trim(),
+                          if (address1.isEmpty ||
+                              address2.isEmpty ||
+                              city.isEmpty ||
+                              state.isEmpty ||
+                              fullname.isEmpty ||
+                              phoneNumber.isEmpty)
+                            {
+                              Manager.toastMessage(
+                                  'Empty Fields', signInStartColor)
+                            }
+                          else
+                            {
+                              setState(() => {loading = true}),
+                              HttpServices.addAddress(
+                                      context,
+                                      address1,
+                                      address2,
+                                      city,
+                                      fullname,
+                                      phoneNumber,
+                                      state,
+                                      " user.email",
+                                      country)
+                                  .then((done) => {
+                                        if (done)
+                                          {
+                                            Provider.of<ModelsProvider>(context,
+                                                    listen: false)
+                                                .addAddress(Address(
+                                                    fullName: fullname,
+                                                    addressLine1: address1,
+                                                    addressLine2: address2,
+                                                    state: state,
+                                                    city: city,
+                                                    country: country)),
+                                            Navigator.pop(context),
+                                          }
+                                      })
+                            }
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          color: Colors.deepPurple,
+                          child: Center(
+                              child: Text(
+                            'Add Address',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          )),
+                        ),
                       ),
-                    )),
-                  ),
-                ),
-              )
+                    )
             ],
           )),
     );

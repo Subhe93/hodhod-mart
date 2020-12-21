@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/SubCategory.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class SubCategoryChildCard extends StatefulWidget {
   final SubCategory category;
@@ -22,12 +24,27 @@ class _SubCategoryChildCardState extends State<SubCategoryChildCard> {
       height: MediaQuery.of(context).size.width / 2,
       child: Stack(
         children: [
-          Image.network(
-            baseUrl + widget.category.image,
+          CachedNetworkImage(
             width: MediaQuery.of(context).size.width / 2,
             height: MediaQuery.of(context).size.width / 2,
             fit: BoxFit.fill,
+            imageUrl: baseUrl + widget.category.image,
+            placeholder: (context, url) => Container(
+              height: 20,
+              width: 20,
+              child: LoadingIndicator(
+                indicatorType: Indicator.ballScale,
+                color: signInEndColor,
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
+          // Image.network(
+          //   baseUrl + widget.category.image,
+          //   width: MediaQuery.of(context).size.width / 2,
+          //   height: MediaQuery.of(context).size.width / 2,
+          //   fit: BoxFit.fill,
+          // ),
           Container(
             width: MediaQuery.of(context).size.width / 2,
             height: MediaQuery.of(context).size.width / 2,

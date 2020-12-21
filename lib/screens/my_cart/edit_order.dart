@@ -1,15 +1,18 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 
 import 'package:hodhod_mart/screens/product/components/app_bar.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
 class EditOrder extends StatefulWidget {
@@ -32,7 +35,7 @@ class _EditOrderState extends State<EditOrder> {
   bool loading;
   List<int> options;
   ProductDetails product;
-
+  int total;
   List<List<Attribute>> attributes;
   List<String> attributesNames;
 
@@ -42,14 +45,15 @@ class _EditOrderState extends State<EditOrder> {
     attributesNames = [];
     loading = true;
     quantity = widget.item.quantity;
-
+    total = 0;
     super.initState();
     options = [];
     HttpServices.getProductDetails(widget.item.productId, context)
         .then((value) => {
               if (mounted)
                 {
-                  setState(() => {loading = false, product = value}),
+                  setState(
+                      () => {loading = false, product = value, getTotal()}),
 
                   ///this code to convert the dictionary to lists to be able to display them
                   if (value.attributes != null)
@@ -71,7 +75,11 @@ class _EditOrderState extends State<EditOrder> {
                               for (var j = 0; j < attributes[i].length; j++)
                                 {
                                   if (value['id'] == attributes[i][j].id)
-                                    {attributes[i][j].selected = true}
+                                    {
+                                      attributes[i][j].selected = true,
+                                      total =
+                                          total + attributes[i][j].addToPrice
+                                    }
                                 }
                             }
                         }
@@ -130,13 +138,37 @@ class _EditOrderState extends State<EditOrder> {
                                   background: Stack(
                                     children: [
                                       Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        child: Image.network(
-                                          baseUrl + widget.item.mainImage,
-                                          fit: BoxFit.fitWidth,
-                                        ),
-                                      ),
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          child: CachedNetworkImage(
+                                            fit: BoxFit.fill,
+                                            imageUrl:
+                                                baseUrl + widget.item.mainImage,
+                                            placeholder: (context, url) =>
+                                                Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  child: LoadingIndicator(
+                                                    indicatorType:
+                                                        Indicator.ballScale,
+                                                    color: signInStartColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
+                                          )
+                                          // Image.network(
+                                          //   baseUrl + widget.item.mainImage,
+                                          //   fit: BoxFit.fitWidth,
+                                          // ),
+                                          ),
                                     ],
                                   ),
                                 ),
@@ -385,7 +417,8 @@ class _EditOrderState extends State<EditOrder> {
                                                 onTap: () => {
                                                   setState(() => {
                                                         quantity = quantity + 1,
-                                                      })
+                                                      }),
+                                                  getTotal()
                                                 },
                                                 child: Icon(
                                                   Icons
@@ -414,7 +447,8 @@ class _EditOrderState extends State<EditOrder> {
                                                             quantity =
                                                                 quantity - 1
                                                           },
-                                                      })
+                                                      }),
+                                                  getTotal()
                                                 },
                                                 child: Icon(
                                                   Icons
@@ -429,6 +463,55 @@ class _EditOrderState extends State<EditOrder> {
                                       ),
                                     ),
                                   ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  // Container(
+                                  //   height: 70,
+                                  //   child: Padding(
+                                  //     padding: const EdgeInsets.all(8.0),
+                                  //     child: Row(
+                                  //       mainAxisAlignment:
+                                  //           MainAxisAlignment.spaceBetween,
+                                  //       children: [
+                                  //         Column(
+                                  //           crossAxisAlignment:
+                                  //               CrossAxisAlignment.start,
+                                  //           children: [
+                                  //             Text(
+                                  //                 Applocalizations.of(context)
+                                  //                     .translate("Total"),
+                                  //                 style: TextStyle(
+                                  //                     fontSize: 20,
+                                  //                     color: signInStartColor,
+                                  //                     fontWeight:
+                                  //                         FontWeight.bold)),
+                                  //             // SizedBox(height: 10),
+                                  //             // Provider.of<ModelsProvider>(
+                                  //             //             context,
+                                  //             //             listen: false)
+                                  //             //         .cuoponApplyed
+                                  //             //     ? Text(
+                                  //             //         'Coupon Applyed',
+                                  //             //         style: TextStyle(
+                                  //             //             color:
+                                  //             //                 signInStartColor),
+                                  //             //       )
+                                  //             //     : Text('No Coupon Applyed',
+                                  //             //         style: TextStyle(
+                                  //             //             color:
+                                  //             //                 signInStartColor))
+                                  //           ],
+                                  //         ),
+                                  //         Text(widget.item.price.toString(),
+                                  //             style: TextStyle(
+                                  //                 fontSize: 20,
+                                  //                 color: signInEndColor,
+                                  //                 fontWeight: FontWeight.bold))
+                                  //       ],
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   SizedBox(
                                     height: 50,
                                   )
@@ -506,6 +589,29 @@ class _EditOrderState extends State<EditOrder> {
     );
   }
 
+  /////
+  ///
+  ///
+  ///
+  /// Calculating Total
+  void getTotal() {
+    if (quantity != 0) {
+      total = product.price;
+      for (var attributeType in attributes) {
+        for (var subattribute in attributeType) {
+          if (subattribute.selected) {
+            total = total + subattribute.addToPrice;
+          }
+        }
+      }
+      total = total * quantity;
+    } else {
+      setState(() {
+        total = 0;
+      });
+    }
+  }
+
   showDeleteAlert(int id, BuildContext dialogContext) {
     // set up the buttons
     Widget cancelButton = FlatButton(
@@ -555,6 +661,7 @@ class _EditOrderState extends State<EditOrder> {
                 attribute.selected
                     ? attribute.selected = false
                     : attribute.selected = true,
+                getTotal()
               })
         },
         child: Container(

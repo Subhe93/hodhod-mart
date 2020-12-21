@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
 import 'package:hodhod_mart/model/Address.dart';
@@ -6,6 +7,7 @@ import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 import 'package:hodhod_mart/screens/my_account/add_address/add_address.dart';
 import 'package:hodhod_mart/screens/my_account/edit_account_info/edit_account_info.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:provider/provider.dart';
 
 import 'addresses.dart';
@@ -50,21 +52,38 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                       borderRadius: BorderRadius.circular(70),
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(70),
-                      child: user.image == null
-                          ? Image.asset(
-                              'assets/profile.png',
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.fill,
-                            )
-                          : Image.network(
-                              baseUrl + user.image,
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.fill,
-                            ),
-                    ),
+                        borderRadius: BorderRadius.circular(70),
+                        child: user.image == null
+                            ? Image.asset(
+                                'assets/profile.png',
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.fill,
+                              )
+                            : CachedNetworkImage(
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.fill,
+                                imageUrl: baseUrl + user.image,
+                                placeholder: (context, url) => Container(
+                                  height: 20,
+                                  width: 20,
+                                  child: LoadingIndicator(
+                                    indicatorType: Indicator.ballScale,
+                                    color: signInEndColor,
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              )
+
+                        // Image.network(
+                        //     baseUrl + user.image,
+                        //     width: 80,
+                        //     height: 80,
+                        //     fit: BoxFit.fill,
+                        //   ),
+                        ),
                   ),
                 ),
                 Text(

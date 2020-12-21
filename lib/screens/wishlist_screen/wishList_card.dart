@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hodhod_mart/model/whoshlist_model.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/screens/product/product_page.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../constants.dart';
 
@@ -66,13 +68,31 @@ class _WishListCardState extends State<WishListCard> {
                                   borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(15.0),
                                       topLeft: Radius.circular(15.0)),
-                                  child: Image.network(
-                                    baseUrl + widget.item.mainImage,
+                                  child: CachedNetworkImage(
                                     alignment: Alignment.centerLeft,
-                                    fit: BoxFit.fitHeight,
                                     height: 100,
                                     width: 100,
-                                  )),
+                                    fit: BoxFit.fitHeight,
+                                    imageUrl: baseUrl + widget.item.mainImage,
+                                    placeholder: (context, url) => Container(
+                                      height: 20,
+                                      width: 20,
+                                      child: LoadingIndicator(
+                                        indicatorType: Indicator.ballScale,
+                                        color: signInEndColor,
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  )
+                                  //  Image.network(
+                                  //   baseUrl + widget.item.mainImage,
+                                  //   alignment: Alignment.centerLeft,
+                                  //   fit: BoxFit.fitHeight,
+                                  //   height: 100,
+                                  //   width: 100,
+                                  // )
+                                  ),
                               SizedBox(
                                 width: 6,
                               ),
