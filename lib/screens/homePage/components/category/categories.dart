@@ -42,7 +42,7 @@ class _CategoriesState extends State<Categories> {
     return Padding(
       padding: const EdgeInsets.only(top: 30.0),
       child: Container(
-        height: 140,
+        height: 150,
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -101,7 +101,7 @@ class _CategoriesState extends State<Categories> {
                   child: CategoryCard(
                       category: CategoryRepository(
                           id: widget.categories[index].id,
-                          image: widget.categories[index].image,
+                          image: widget.categories[index].icon,
                           name: widget.categories[index].name)),
                 ),
               ),

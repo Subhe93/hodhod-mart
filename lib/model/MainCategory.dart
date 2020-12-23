@@ -7,16 +7,16 @@ String mainCategoryToJson(List<MainCategory> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MainCategory {
-  MainCategory({
-    this.id,
-    this.name,
-    this.image,
-    this.status,
-    this.createdAt,
-    this.updatedAt,
-    this.subCategories,
-    this.catagoryId,
-  });
+  MainCategory(
+      {this.id,
+      this.name,
+      this.image,
+      this.status,
+      this.createdAt,
+      this.updatedAt,
+      this.subCategories,
+      this.catagoryId,
+      this.icon});
 
   int id;
   String name;
@@ -26,6 +26,7 @@ class MainCategory {
   DateTime updatedAt;
   List<MainCategory> subCategories;
   int catagoryId;
+  String icon;
 
   MainCategory copyWith({
     int id,
@@ -38,21 +39,22 @@ class MainCategory {
     int catagoryId,
   }) =>
       MainCategory(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        image: image ?? this.image,
-        status: status ?? this.status,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-        subCategories: subCategories ?? this.subCategories,
-        catagoryId: catagoryId ?? this.catagoryId,
-      );
+          id: id ?? this.id,
+          name: name ?? this.name,
+          image: image ?? this.image,
+          status: status ?? this.status,
+          createdAt: createdAt ?? this.createdAt,
+          updatedAt: updatedAt ?? this.updatedAt,
+          subCategories: subCategories ?? this.subCategories,
+          catagoryId: catagoryId ?? this.catagoryId,
+          icon: icon ?? this.icon);
 
   factory MainCategory.fromJson(Map<String, dynamic> json) => MainCategory(
         id: json["id"],
         name: json["name"],
         image: json["image"],
         status: json["status"],
+        icon: json["icon"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         subCategories: json["sub__categories"] == null
@@ -67,6 +69,7 @@ class MainCategory {
         "name": name,
         "image": image,
         "status": status,
+        "icon": icon,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "sub__categories": subCategories == null

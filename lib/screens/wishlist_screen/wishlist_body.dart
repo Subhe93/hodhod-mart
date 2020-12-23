@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/whoshlist_model.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
@@ -20,17 +21,13 @@ class _WishListBodyState extends State<WishListBody> {
   @override
   void initState() {
     super.initState();
-    if (Provider.of<ModelsProvider>(context, listen: false).isLoggedin()) {
-      loading = true;
-      HttpServices.getWishList(context).then((value) => {
-            if (mounted)
-              {
-                setState(() => {loading = false})
-              }
-          });
-    } else {
-      loading = false;
-    }
+    loading = true;
+    HttpServices.getWishList(context).then((value) => {
+          if (mounted)
+            {
+              setState(() => {loading = false})
+            }
+        });
   }
 
   @override
@@ -57,7 +54,9 @@ class _WishListBodyState extends State<WishListBody> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Your WishList is Empty',
+                              Applocalizations.of(context).translate(
+                                "Your WishList is Empty",
+                              ),
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

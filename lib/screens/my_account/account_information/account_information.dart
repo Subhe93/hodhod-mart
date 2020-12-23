@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/screens/my_account/account_information/body.dart';
@@ -17,7 +18,8 @@ class _AccountInfoState extends State<AccountInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AccountInfoBody(),
-      appBar: accountAppBar(context, true, 'MY ACCOUNT', false),
+      appBar: accountAppBar(context, true,
+          Applocalizations.of(context).translate("Profile"), false),
     );
   }
 }

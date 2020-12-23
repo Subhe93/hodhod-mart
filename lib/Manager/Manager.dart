@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
 
@@ -63,11 +64,12 @@ class Manager {
               size: 100,
               color: signInEndColor,
             ),
-            Text('No Internet Access')
+            Text(Applocalizations.of(context).translate("No Internet Access"))
           ],
         )),
-        title: 'No Internet Access',
-        desc: 'Please Connect to internet and try again',
+        title: Applocalizations.of(context).translate("No Internet Access"),
+        desc: Applocalizations.of(context)
+            .translate("Please Connect to internet and try again"),
         autoHide: Duration(seconds: 2))
       ..show();
   }
@@ -154,7 +156,8 @@ class Manager {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Your not Registerd Please login or create a new Account',
+                      Applocalizations.of(context).translate(
+                          "Your not Registerd Please login or create a new Account"),
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
@@ -188,7 +191,7 @@ class Manager {
                       ),
                       child: Center(
                         child: Text(
-                          'Sign In',
+                          Applocalizations.of(context).translate("Sign In"),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -225,7 +228,8 @@ class Manager {
                       ),
                       child: Center(
                         child: Text(
-                          'Create Account',
+                          Applocalizations.of(context)
+                              .translate("Create Account"),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -255,7 +259,7 @@ class Manager {
                       ),
                       child: Center(
                         child: Text(
-                          'Cancel',
+                          Applocalizations.of(context).translate("Cancel"),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
@@ -116,7 +117,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                     },
                     child: Center(
                         child: Text(
-                      'Edit',
+                      Applocalizations.of(context).translate("Edit"),
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.normal,
@@ -147,7 +148,7 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'INFORMATION',
+                              Applocalizations.of(context).translate("Info"),
                               maxLines: 1,
                               style: TextStyle(
                                 color: kTextColor,
@@ -225,20 +226,20 @@ class _AccountInfoBodyState extends State<AccountInfoBody> {
               ),
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50,
-            color: Colors.deepPurple,
-            child: Center(
-                child: Text(
-              'DELETE ACCOUNT',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            )),
-          ),
+          // Container(
+          //   width: MediaQuery.of(context).size.width,
+          //   height: 50,
+          //   color: Colors.deepPurple,
+          //   child: Center(
+          //       child: Text(
+          //     'DELETE ACCOUNT',
+          //     style: TextStyle(
+          //       color: Colors.white,
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 16,
+          //     ),
+          //   )),
+          // ),
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 
 import 'component/app_bar.dart';
@@ -17,7 +18,8 @@ class UpDatePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: accountAppBar(context, true, 'MY ACCOUNT', false),
+      appBar: accountAppBar(context, true,
+          Applocalizations.of(context).translate("Profile"), false),
       body: Stack(
         children: [
           InkWell(
@@ -25,7 +27,11 @@ class UpDatePassword extends StatelessWidget {
               password = _password.text.trim(),
               confirmPassword = _confirmPassword.text.trim(),
               if (password.isEmpty || confirmPassword.isEmpty)
-                {Manager.toastMessage('Empty Fields', Colors.red)}
+                {
+                  Manager.toastMessage(
+                      Applocalizations.of(context).translate("Empty Fields"),
+                      Colors.red)
+                }
               else
                 {
                   if (password == confirmPassword)
@@ -33,14 +39,20 @@ class UpDatePassword extends StatelessWidget {
                       HttpServices.updatePassword(context, password).then(
                           (success) => success
                               ? Manager.toastMessage(
-                                  'Password changed', Colors.green)
+                                  Applocalizations.of(context)
+                                      .translate("Password changed"),
+                                  Colors.green)
                               : Manager.toastMessage(
-                                  'Something went wrong', Colors.grey))
+                                  Applocalizations.of(context)
+                                      .translate("Something went wrong"),
+                                  Colors.grey))
                     }
                   else
                     {
                       Manager.toastMessage(
-                          'Password Mismatch', signInStartColor)
+                          Applocalizations.of(context)
+                              .translate("Password Mismatch"),
+                          signInStartColor)
                     }
                 }
             },
@@ -52,7 +64,7 @@ class UpDatePassword extends StatelessWidget {
                 color: Colors.deepPurple,
                 child: Center(
                     child: Text(
-                  'Update Password',
+                  Applocalizations.of(context).translate("Update Password"),
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -72,7 +84,7 @@ class UpDatePassword extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Update Password',
+                      Applocalizations.of(context).translate("Update Password"),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -98,7 +110,8 @@ class UpDatePassword extends StatelessWidget {
                                 color: signInStartColor,
                               ),
                               border: InputBorder.none,
-                              hintText: 'New Password'),
+                              hintText: Applocalizations.of(context)
+                                  .translate("New Password")),
                         ),
                       ),
                     ),
@@ -122,7 +135,8 @@ class UpDatePassword extends StatelessWidget {
                                 color: signInStartColor,
                               ),
                               border: InputBorder.none,
-                              hintText: 'Confirm Password'),
+                              hintText: Applocalizations.of(context)
+                                  .translate("Confirm Password")),
                         ),
                       ),
                     ),

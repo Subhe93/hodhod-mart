@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/screens/my_account/add_address/body.dart';
 import 'package:hodhod_mart/screens/my_account/component/app_bar.dart';
 
@@ -11,7 +12,7 @@ class _AddAddressState extends State<AddAddress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: accountAppBar(context, false, 'ADD NEW ADDRESS', false),
+      appBar: accountAppBar(context, false,   Applocalizations.of(context).translate("Add New Address"), false),
       body: AddAddressBody(),
     );
   }

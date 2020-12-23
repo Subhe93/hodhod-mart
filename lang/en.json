@@ -3,5 +3,25 @@
   "Price Starting From ":"Price Starting From ","Always in stock":"Always in stock","Not available":"Not available", "Offers and Discounts": "Offers and Discounts"
   ,"Discount Description":"Discount Description","Offer Description":"Offer Description"
   ,"Options :":"Options :","No Options for this item":"No Options for this item","Quantity":"Quantity"
-  , "Add To Cart": "Add To Cart","one Item Added to cart":"one Item Added to cart","Please choose a Quantity":"Please choose a Quantity","Total":"Total"
-}
+  , "Add To Cart": "Add To Cart","one Item Added to cart":"one Item Added to cart","Please choose a Quantity":"Please choose a Quantity","Total":"Total","Home":"Home"
+, "Search": "Search",
+"Cart":"Cart","Profile":"Profile","Addresses":"Addresses","City :":"City :","Country:":"Country:","Add New Address":"Add New Address", "Edit": "Edit"
+,"Info":"Info","Shipping Address":"Shipping Address","City":"City","State":"State","Country":"Country", "Contact Informaion": "Contact Informaion"
+, "Enter Your First Name - Last Name": "Enter Your First Name - Last Name", "Enter Your Phone Number": "Enter Your Phone Number"
+,"Empty Fields":"Empty Fields",  "Add Address":  "Add Address","Update Account":"Update Account",   "Information"
+:     "Information","Edit Information":"Edit Information","My Account":"My Account","My Orders":"My Orders","Change Password":"Change Password"
+,  "About Us":  "About Us","Privacy Policy":"Privacy Policy","Logout":"Logout","Password changed":"Password changed", "Something went wrong": "Something went wrong"
+,    "Password Mismatch":    "Password Mismatch", "Update Password": "Update Password","New Password":"New Password","Confirm Password":"Confirm Password"
+,"Your Cart is Empty":"Your Cart is Empty","You have Apllied a Coupon, if you to want Apply new Coupon please inter the code Below":"You have Apllied a Coupon, if you to want Apply new Coupon please inter the code Below"
+,"No Coupon Applied!!":"No Coupon Applied!!","Enter Coupon Code to get a discount":"Enter Coupon Code to get a discount","Replace":"Replace","Enter":"Enter",
+"Coupon Code":"Coupon Code","Total Items":"Total Items","SAR ":"SAR ","Your Cart is empty":"Your Cart is empty",
+"Procced to checkout":"Procced to checkout","Remove":"Remove","Cancel":"Cancel","Are you sure you want to remove product":"Are you sure you want to remove product",
+"Order Now And get ":"Order Now And get ","Free Shipping":"Free Shipping", "Remove From Cart": "Remove From Cart",
+"Update Cart": "Update Cart","My Cart":"My Cart","Checkout":"Checkout","Payment Method:":"Payment Method:"
+,"Choose Payment Method":"Choose Payment Method","Credit Card":"Credit Card","Cash on delivery":"Cash on delivery", "Your Addresses are empty Press to Add Address": "Your Addresses are empty Press to Add Address",    "Card Number :":    "Card Number :"
+,"Card Number":"Card Number","Expiration Year :":"Expiration Year :",  "Expiration Month :":  "Expiration Month :"
+,"Currency":"Currency", "Card Number must be 24 charecter long": "Card Number must be 24 charecter long","Wishlist":"Wishlist"
+,"Your WishList is Empty":"Your WishList is Empty", "No Category Chosen": "No Category Chosen","Search within a specific category":"Search within a specific category"
+,"Page":"Page","Price :":"Price: ","No Internet Access":"No Internet Access","Please Connect to internet and try again":"Please Connect to internet and try again","Your not Registerd Please login or create a new Account":"Your not Registerd Please login or create a new Account"
+, "Sign In": "Sign In","Create Account":"Create Account","One Item Added to Wishlist":"One Item Added to Wishlist"
+,"One Item Added to Cart" :"One Item Added to Cart" }

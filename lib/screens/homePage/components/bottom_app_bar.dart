@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
@@ -24,6 +25,15 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   PageController _myPage = PageController(initialPage: 0);
   var iconWidth = 25.0;
   var iconHeight = 25.0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    HttpServices.GetUserInfo(context).then((value) => {
+          if (mounted) {setState(() => {})}
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +90,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
-                        'Home',
+                        Applocalizations.of(context).translate("Home"),
                         style: TextStyle(fontSize: 12),
                       ),
                     )
@@ -108,7 +118,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
-                        'Search',
+                        Applocalizations.of(context).translate("Search"),
                         style: TextStyle(fontSize: 12),
                       ),
                     ),
@@ -139,7 +149,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
-                        'Wishlist',
+                        Applocalizations.of(context).translate("Wishlist"),
                         style: TextStyle(fontSize: 12),
                       ),
                     )
@@ -167,7 +177,7 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Text(
-                        'Cart',
+                        Applocalizations.of(context).translate("Cart"),
                         style: TextStyle(fontSize: 12),
                       ),
                     )

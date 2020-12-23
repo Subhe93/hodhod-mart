@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:loading_indicator/loading_indicator.dart';
@@ -165,14 +166,16 @@ class _CartCardState extends State<CartCard> {
                                 text: TextSpan(
                                   children: <TextSpan>[
                                     TextSpan(
-                                      text: 'Order Now And get ',
+                                      text: Applocalizations.of(context)
+                                          .translate("Order Now And get "),
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                       ),
                                     ),
                                     TextSpan(
-                                      text: 'Free Shipping',
+                                      text: Applocalizations.of(context)
+                                          .translate("Free Shipping"),
                                       style: TextStyle(
                                         color: signInStartColor,
                                         fontSize: 18,

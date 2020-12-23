@@ -243,7 +243,8 @@ class _EditOrderState extends State<EditOrder> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Options :',
+                                        Applocalizations.of(context)
+                                            .translate("Options :"),
                                         style: TextStyle(
                                             color: signInStartColor,
                                             fontWeight: FontWeight.bold,
@@ -261,7 +262,9 @@ class _EditOrderState extends State<EditOrder> {
                                 ? Container(
                                     height: 20,
                                     child: Center(
-                                      child: Text('No Options for this item'),
+                                      child: Text(Applocalizations.of(context)
+                                          .translate(
+                                              "No Options for this item")),
                                     ),
                                   )
                                 : Padding(
@@ -406,7 +409,9 @@ class _EditOrderState extends State<EditOrder> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Quantity",
+                                          Text(
+                                              Applocalizations.of(context)
+                                                  .translate("Quantity"),
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: signInStartColor,
@@ -525,10 +530,11 @@ class _EditOrderState extends State<EditOrder> {
                                 child: Container(
                                   width: 200,
                                   height: 40,
-                                  color: Colors.red,
+                                  color: signInEndColor,
                                   child: Center(
                                       child: Text(
-                                    'Remove From Cart',
+                                    Applocalizations.of(context)
+                                        .translate("Remove From Cart"),
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -573,7 +579,7 @@ class _EditOrderState extends State<EditOrder> {
                         color: Colors.deepPurple,
                         child: Center(
                             child: Text(
-                          'Update Cart',
+                          Applocalizations.of(context).translate("Update Cart"),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -615,7 +621,7 @@ class _EditOrderState extends State<EditOrder> {
   showDeleteAlert(int id, BuildContext dialogContext) {
     // set up the buttons
     Widget cancelButton = FlatButton(
-      child: Text("Remove"),
+      child: Text(Applocalizations.of(context).translate("Remove")),
       onPressed: () {
         Navigator.pop(context);
         setState(() => {loading = true});
@@ -625,7 +631,7 @@ class _EditOrderState extends State<EditOrder> {
       },
     );
     Widget continueButton = FlatButton(
-      child: Text("Cancel"),
+      child: Text(Applocalizations.of(context).translate("Cancel")),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -633,8 +639,9 @@ class _EditOrderState extends State<EditOrder> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Delete"),
-      content: Text("Are you sure you want to remove product"),
+      title: Text(Applocalizations.of(context).translate("Remove")),
+      content: Text(Applocalizations.of(context)
+          .translate("Are you sure you want to remove product")),
       actions: [
         cancelButton,
         continueButton,

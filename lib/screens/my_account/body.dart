@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
@@ -162,7 +163,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'My Account',
+                                        Applocalizations.of(context)
+                                            .translate("My Account"),
                                         style:
                                             TextStyle(color: signInStartColor),
                                       ),
@@ -204,7 +206,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'My Orders',
+                                        Applocalizations.of(context)
+                                            .translate("My Orders"),
                                         style:
                                             TextStyle(color: signInStartColor),
                                       ),
@@ -242,7 +245,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Change Password',
+                                        Applocalizations.of(context)
+                                            .translate("Change Password"),
                                         style:
                                             TextStyle(color: signInStartColor),
                                       ),
@@ -280,7 +284,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'About Us',
+                                        Applocalizations.of(context)
+                                            .translate("About Us"),
                                         style:
                                             TextStyle(color: signInStartColor),
                                       ),
@@ -317,7 +322,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Privacy Policy',
+                                        Applocalizations.of(context)
+                                            .translate("Privacy Policy"),
                                         style:
                                             TextStyle(color: signInStartColor),
                                       ),
@@ -359,7 +365,8 @@ class _MyAccountBodyState extends State<MyAccountBody> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Logout',
+                                        Applocalizations.of(context)
+                                            .translate("Logout"),
                                         style:
                                             TextStyle(color: signInStartColor),
                                       ),

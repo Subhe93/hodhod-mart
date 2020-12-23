@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
@@ -590,7 +591,6 @@ class HttpServices {
         return Cart();
       }
     } catch (e) {
-      Manager.toastMessage('Something Went Wrong ', Colors.red);
       print(e);
       return Cart();
     }
@@ -619,7 +619,13 @@ class HttpServices {
       if (response.statusCode == 204) {
         Provider.of<ModelsProvider>(context, listen: false)
             .removeItemFromCart(id);
-        HttpServices.getCartProducts(context);
+        if (Provider.of<ModelsProvider>(context, listen: false)
+            .cartItems
+            .isEmpty) {
+          Provider.of<ModelsProvider>(context, listen: false).setCartTotal(0);
+        } else {
+          HttpServices.getCartProducts(context);
+        }
 
         return true;
       } else {
@@ -655,7 +661,10 @@ class HttpServices {
             'Authorization': 'Bearer ' + token,
           });
       if (response.statusCode == 201) {
-        Manager.successDialog('One Item Added to Cart', 'Cart', context);
+        Manager.successDialog(
+            Applocalizations.of(context).translate("One Item Added to Cart"),
+            'Cart',
+            context);
         return true;
       } else if (response.statusCode == 300) {
         Manager.toastMessage('Already taken', Colors.red);
@@ -728,7 +737,10 @@ class HttpServices {
       });
       if (response.statusCode == 201) {
         Manager.successDialog(
-            'One Item Added to Wishlist', 'Wishlist', context);
+            Applocalizations.of(context)
+                .translate("One Item Added to Wishlist"),
+            'Wishlist',
+            context);
 
         return true;
       } else {
@@ -749,6 +761,10 @@ class HttpServices {
   static Future<bool> getWishList(BuildContext context) async {
     try {
       String token = Provider.of<ModelsProvider>(context, listen: false).token;
+
+      if (!Provider.of<ModelsProvider>(context, listen: false).isLoggedin()) {
+        return false;
+      }
 
       ////Checking Internet Access
       Manager.checkInternet(context);
@@ -778,6 +794,7 @@ class HttpServices {
     } catch (e) {
       Manager.toastMessage('Something Went Wrong ', Colors.red);
       print(e);
+
       return false;
     }
   }

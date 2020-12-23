@@ -28,7 +28,7 @@ class _CollectionCardState extends State<CollectionCard> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: EdgeInsets.only(left: 15, top: 15, right: 10, bottom: 3),
+      margin: EdgeInsets.only(left: 15, top: 15, right: 5, bottom: 3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,

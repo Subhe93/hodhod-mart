@@ -3,5 +3,28 @@
     "MORE":"عرض الكل",
 "Price Starting From ":"السعر يبدأ من ","Always in stock":"متوافر حاليا","Not available":"غير متوفر", "Offers and Discounts":"العروض والتنزيلات"
 ,"Discount Description":"تفاصيل التخفيض","Offer Description":"تفاصيل العرض",
-"Options :":"الخيارات","No Options for this item":"لايوجد خيارات لهذا المنتج","Quantity":"الكمية", "Add To Cart":"أضف الى السلة","one Item Added to cart":"تم اضافة عنصر إلى السلة","Total":"Total"
-}
+"Options :":"الخيارات","No Options for this item":"لايوجد خيارات لهذا المنتج","Quantity":"الكمية", "Add To Cart":"أضف الى السلة","one Item Added to cart":"تم اضافة عنصر إلى السلة","Total":"المجموع"
+,"Cart":"السلة","Addresses":"Addresses"
+,"Home":"الرئيسية", "Search":"بحث","Profile":"الحساب الشخصي","City :":"المدينة :","Country:":"البلد :","Add New Address":"اضافة عنوان جديد"
+, "Edit":"تعديل","Info":"المعلومات الشخصية","Shipping Address":"عنوان الشحن","City":"المدينة","State":"المنطقة","Country":"البلد"
+, "Contact Informaion":"معلومات الإتصال", "Enter Your First Name - Last Name":"الاسم الكامل هنا", "Enter Your Phone Number":"رقم الهاتف",
+"Empty Fields":"يوجد حقول فارغة",  "Add Address":"إضافة عنوان","Update Account":"تعديل الحساب"
+,   "Information":"المعلومات","Edit Information":"تعديل المعلومات","My Account":"حسابي","My Orders":"الطلبات المنتهية","Change Password":"تعديل كلمة المرور"
+,  "About Us":"من نحن؟","Privacy Policy":"سياسة الخصوصية","Logout":"تسجيل الخروج","Password changed":"تم التعديل", "Something went wrong":"حدث خطأ ما"
+,    "Password Mismatch":"كلمات غير متطابقة", "Update Password":"تعديل كلمة المرور","New Password":"كلمة السر الجديدة"
+,"Confirm Password":"تأكيد كلمة المرور","Your Cart is Empty":"سلتك الشرائية فارغة"
+,"You have Apllied a Coupon, if you to want Apply new Coupon please inter the code Below":"لقد قمت بتفعيل كوبون،اذا كنت ترغب بتفعيل كوبون آخر ادخل الكود الجديد هنا"
+,"No Coupon Applied!!":"لم تقم بتفعيل اي كوبون","Enter Coupon Code to get a discount":"قم بإدخال كود الكوبون لتحصل على تخفيض","Replace":"استبدال"
+,"Enter":"تفعيل","Coupon Code":"كود الكوبون هنا","Total Items":"مجموع العتاصر","SAR ":"ريال سعودي","Your Cart is empty":"سلتك فارغة"
+,"Procced to checkout":"إتمام عملية الدفع","Remove":"إزالة","Cancel":"إلغاء"
+,"Are you sure you want to remove product":"هل انت متأكد انك تريد حذف هذا المنتج"
+,"Order Now And get ":"اطلب الان واحصل على","Free Shipping":"شحن مجاني", "Remove From Cart":"إزالة من السلة" 
+, "Update Cart":"تعديل السلة","My Cart":"سلتي","Checkout":"الدفع","Payment Method:":"طريقة الدفع","Choose Payment Method":"اختر طريقة","Credit Card":"البطاقة"
+,"Cash on delivery":"الدفع عند التوصيل","Address :":"العنوان", "Your Addresses are empty Press to Add Address":"قائمة العناوين الخاصة بك فارغة اضغط للإضافة"
+,    "Card Number :":"رقم البطاقة","Card Number":"رقم البطاقة","Expiration Year :":"تاريخ انتهاء الصلاحية",  "Expiration Month :":"شهر انتهاء الصلاحية",
+"Card Number must be 24 charecter long":"رقم البطاقة يجب ان يكون ١٦ محرف",
+"Currency":"العملة","Wishlist":"المفضلة","Your WishList is Empty":"ليس لديك عناصر ضمن المفضلة", "No Category Chosen":"لم يتم اختيار أي صنف","Search within a specific category":"البحث ضمن صنف معين"
+,"Page":"الصفحة","Price :":": السعر","No Internet Access":"لايوجد اتصال بالانترنت","Please Connect to internet and try again":"الرجاءالتحقق من الاتصال والمحاولة مرة اخرى"
+,"Your not Registerd Please login or create a new Account":"الرجاء تسجيل الدخول أو تسجيل حساب جديد"
+, "Sign In":"تسجيل الدخول","Create Account":"ليس لدي حساب","One Item Added to Wishlist":"تم إضافة عنصر الى المفضلة"
+,"One Item Added to Cart" :"تم إضافة عنصر جديد الى السلة"}

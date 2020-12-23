@@ -36,7 +36,7 @@ class StaticBanners extends StatelessWidget {
         itemCount: false ? 3 : banners.length,
         pagination: SwiperPagination(
           builder: DotSwiperPaginationBuilder(
-              color: Colors.amber, activeColor: kTextPurpleColor),
+              color: signInStartColor, activeColor: signInEndColor),
           alignment: Alignment.bottomCenter,
         ),
         control: new SwiperControl(

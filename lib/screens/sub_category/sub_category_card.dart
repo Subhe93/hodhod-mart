@@ -20,48 +20,43 @@ class _SubCategoryChildCardState extends State<SubCategoryChildCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          color: signInStartColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(15)),
       width: MediaQuery.of(context).size.width / 2,
-      height: MediaQuery.of(context).size.width / 2,
-      child: Stack(
-        children: [
-          CachedNetworkImage(
-            width: MediaQuery.of(context).size.width / 2,
-            height: MediaQuery.of(context).size.width / 2,
-            fit: BoxFit.fill,
-            imageUrl: baseUrl + widget.category.image,
-            placeholder: (context, url) => Container(
-              height: 20,
-              width: 20,
-              child: LoadingIndicator(
-                indicatorType: Indicator.ballScale,
-                color: signInEndColor,
+      height: 100,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: new Container(
+                  decoration: new BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: new DecorationImage(
+                      fit: BoxFit.fill,
+                      image: new NetworkImage(baseUrl + widget.category.image),
+                    ),
+                  ),
+                ),
               ),
             ),
-            errorWidget: (context, url, error) => Icon(Icons.error),
-          ),
-          // Image.network(
-          //   baseUrl + widget.category.image,
-          //   width: MediaQuery.of(context).size.width / 2,
-          //   height: MediaQuery.of(context).size.width / 2,
-          //   fit: BoxFit.fill,
-          // ),
-          Container(
-            width: MediaQuery.of(context).size.width / 2,
-            height: MediaQuery.of(context).size.width / 2,
-            color: Colors.grey.withOpacity(0.2),
-          ),
-          Center(
-            child: Text(
+            SizedBox(
+              height: 15,
+            ),
+            Text(
               widget.category.name,
               maxLines: 2,
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black.withOpacity(0.6),
                 fontSize: 17,
                 fontWeight: FontWeight.w700,
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

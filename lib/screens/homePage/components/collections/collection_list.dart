@@ -17,7 +17,7 @@ class _CollectionListState extends State<CollectionList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: 355,
       // color: Colors.blue[50],
       child: ListView(
         scrollDirection: Axis.horizontal,

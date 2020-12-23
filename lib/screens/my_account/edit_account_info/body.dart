@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:hodhod_mart/Manager/Manager.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -66,7 +67,11 @@ class _EditAccountInfoBodyState extends State<EditAccountInfoBody> {
                 _name = firstName.text.trim(),
                 _lastname = lastName.text.trim(),
                 if (_name.isEmpty || _lastname.isEmpty)
-                  {Manager.toastMessage('Empty Fields', Colors.red)}
+                  {
+                    Manager.toastMessage(
+                        Applocalizations.of(context).translate("Empty Fields"),
+                        Colors.red)
+                  }
                 else
                   {
                     setState(() => loading = true),
@@ -91,7 +96,7 @@ class _EditAccountInfoBodyState extends State<EditAccountInfoBody> {
                   color: Colors.deepPurple,
                   child: Center(
                       child: Text(
-                    'UPDATE ACCOUNT',
+                    Applocalizations.of(context).translate("Update Account"),
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -235,7 +240,8 @@ class _EditAccountInfoBodyState extends State<EditAccountInfoBody> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'INFORMATION',
+                                    Applocalizations.of(context)
+                                        .translate("Information"),
                                     maxLines: 1,
                                     style: TextStyle(
                                       color: kTextColor,

@@ -45,9 +45,15 @@ class _SubCategoryItemCardState extends State<SubCategoryItemCard> {
                     ? baseUrl + widget.item.mainImage
                     : 'https://picsum.photos/200/300.jpg',
                 placeholder: (context, url) => Container(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          height: 50,
+                          width: 50,
+                          child: Center(child: CircularProgressIndicator())),
+                    ],
+                  ),
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),

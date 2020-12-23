@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/screens/my_account/component/app_bar.dart';
 import 'package:hodhod_mart/screens/my_account/edit_account_info/body.dart';
@@ -16,7 +17,8 @@ class _EditAccountInfoState extends State<EditAccountInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: EditAccountInfoBody(user: widget.user),
-      appBar: accountAppBar(context, false, 'Edit Information', false),
+      appBar: accountAppBar(context, false,
+          Applocalizations.of(context).translate("Edit Information"), false),
     );
   }
 }

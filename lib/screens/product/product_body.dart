@@ -878,11 +878,12 @@ class _ProductBodyState extends State<ProductBody> {
         });
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(5.0),
         child: Container(
-          height: 100,
-          width: 100,
+          height: 120,
+          width: 120,
           decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
               border: Border.all(
                   width: attribute.selected ? 2 : 0.5,
                   color: attribute.selected ? signInStartColor : Colors.grey)),
@@ -890,14 +891,19 @@ class _ProductBodyState extends State<ProductBody> {
             children: [
               Text(
                 attribute.value,
-                style: TextStyle(color: signInStartColor, fontSize: 16),
+                style: TextStyle(color: signInStartColor, fontSize: 15),
               ),
               Expanded(
                 child: Image.network(
                   baseUrl + attribute.image,
                   fit: BoxFit.scaleDown,
                 ),
-              )
+              ),
+              Text(
+                  Applocalizations.of(context).translate("Price:") +
+                      "${attribute.addToPrice}",
+                  style: TextStyle(
+                      color: signInStartColor.withOpacity(0.8), fontSize: 12))
             ],
           ),
         ),

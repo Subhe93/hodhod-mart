@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:hodhod_mart/Manager/Manager.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Cart.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
@@ -34,6 +35,7 @@ class _NewCartBodyState extends State<NewCartBody> {
     super.initState();
     if (Provider.of<ModelsProvider>(context, listen: false).isLoggedin()) {
       loading = true;
+
       HttpServices.getCartProducts(context).then((value) => {
             if (mounted)
               {
@@ -76,7 +78,8 @@ class _NewCartBodyState extends State<NewCartBody> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Your Cart is Empty',
+                                Applocalizations.of(context)
+                                    .translate("Your Cart is Empty"),
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -117,15 +120,18 @@ class _NewCartBodyState extends State<NewCartBody> {
                       children: [
                         Provider.of<ModelsProvider>(context).cuoponApplyed
                             ? Text(
-                                'You have Apllied a Coupon, if you to want Apply new Coupon please inter the code Below',
+                                Applocalizations.of(context).translate(
+                                    "You have Apllied a Coupon, if you to want Apply new Coupon please inter the code Below"),
                                 style: TextStyle(
                                     color: signInStartColor, fontSize: 15),
                                 textAlign: TextAlign.center,
                               )
                             : Text(
-                                'No Coupon Applied!!' +
+                                Applocalizations.of(context)
+                                        .translate("No Coupon Applied!!") +
                                     '\n' +
-                                    'Enter Coupon Code to get a discount',
+                                    Applocalizations.of(context).translate(
+                                        "Enter Coupon Code to get a discount"),
                                 style: TextStyle(
                                     color: signInStartColor, fontSize: 15),
                                 textAlign: TextAlign.center,
@@ -169,15 +175,18 @@ class _NewCartBodyState extends State<NewCartBody> {
                                             Provider.of<ModelsProvider>(context,
                                                         listen: false)
                                                     .cuoponApplyed
-                                                ? 'Replace'
-                                                : 'Enter',
+                                                ? Applocalizations.of(context)
+                                                    .translate("Replace")
+                                                : Applocalizations.of(context)
+                                                    .translate("Enter"),
                                             style: TextStyle(
                                                 color: signInStartColor),
                                           ),
                                           color: Colors.transparent,
                                         ),
                                   border: OutlineInputBorder(),
-                                  hintText: 'Enter Coupon Code'),
+                                  hintText: Applocalizations.of(context)
+                                      .translate("Coupon Code")),
                             ),
                           ),
                         ),
@@ -189,7 +198,8 @@ class _NewCartBodyState extends State<NewCartBody> {
                           children: [
                             Row(
                               children: [
-                                Text('Total Items'),
+                                Text(Applocalizations.of(context)
+                                    .translate("Total Items")),
                                 SizedBox(
                                   width: 10,
                                 ),
@@ -248,7 +258,8 @@ class _NewCartBodyState extends State<NewCartBody> {
                             Row(
                               children: [
                                 Text(
-                                  'Total',
+                                  Applocalizations.of(context)
+                                      .translate("Total"),
                                   style: TextStyle(
                                       fontSize: 17,
                                       color: Colors.grey[900],
@@ -261,7 +272,7 @@ class _NewCartBodyState extends State<NewCartBody> {
                               ],
                             ),
                             Text(
-                              'SAR ' +
+                              Applocalizations.of(context).translate("SAR ") +
                                   Provider.of<ModelsProvider>(context,
                                           listen: true)
                                       .cartTotal
@@ -280,7 +291,9 @@ class _NewCartBodyState extends State<NewCartBody> {
                             onPressed: () {
                               if (cart.isEmpty) {
                                 Manager.toastMessage(
-                                    'Your Cart is empty', signInEndColor);
+                                    Applocalizations.of(context)
+                                        .translate("Your Cart is empty"),
+                                    signInEndColor);
                               } else {
                                 Navigator.push(
                                   context,
@@ -294,7 +307,8 @@ class _NewCartBodyState extends State<NewCartBody> {
                             },
                             color: Colors.blue,
                             child: Text(
-                              'Procced to checkout',
+                              Applocalizations.of(context)
+                                  .translate("Procced to checkout"),
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -314,18 +328,19 @@ class _NewCartBodyState extends State<NewCartBody> {
   showDeleteAlert(BuildContext context) {
     // set up the buttons
     Widget cancelButton = FlatButton(
-      child: Text("remove"),
+      child: Text(Applocalizations.of(context).translate("Remove")),
       onPressed: () {},
     );
     Widget continueButton = FlatButton(
-      child: Text("cancel"),
+      child: Text(Applocalizations.of(context).translate("Cancel")),
       onPressed: () {},
     );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Delete"),
-      content: Text("Are you sure you want to remove product"),
+      title: Text(Applocalizations.of(context).translate("Remove")),
+      content: Text(Applocalizations.of(context)
+          .translate("Are you sure you want to remove product")),
       actions: [
         cancelButton,
         continueButton,

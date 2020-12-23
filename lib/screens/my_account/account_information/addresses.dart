@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/screens/my_account/add_address/add_address.dart';
@@ -43,7 +44,7 @@ class _AddressesWidgetState extends State<AddressesWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'ADDRESSES',
+                  Applocalizations.of(context).translate("Addresses"),
                   maxLines: 1,
                   style: TextStyle(
                     color: kTextColor,
@@ -121,9 +122,11 @@ class _AddressesWidgetState extends State<AddressesWidget> {
                                               style: TextStyle(
                                                   fontSize: 17,
                                                   color: signInStartColor)),
-                                          Text('City :' +
+                                          Text(Applocalizations.of(context)
+                                                  .translate("City :") +
                                               widget.addresses[index].city),
-                                          Text('Country:' +
+                                          Text(Applocalizations.of(context)
+                                                  .translate("Country:") +
                                               widget.addresses[index].country)
                                         ],
                                       ),
@@ -176,7 +179,7 @@ class _AddressesWidgetState extends State<AddressesWidget> {
                   }));
                 },
                 child: Text(
-                  'ADD NEW ADDRESS',
+                  Applocalizations.of(context).translate("Add New Address"),
                   style: TextStyle(
                     color: Colors.white,
                   ),

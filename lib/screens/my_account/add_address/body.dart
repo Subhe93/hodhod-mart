@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/model/User.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
@@ -65,7 +66,8 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'SHIPPING ADDRESS',
+                              Applocalizations.of(context)
+                                  .translate("Shipping Address"),
                               maxLines: 1,
                               style: TextStyle(
                                 color: kTextColor,
@@ -141,12 +143,14 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                                       child: TextFormField(
                                         controller: _city,
                                         decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              Icons.pin_drop,
-                                              color: signInStartColor,
-                                            ),
-                                            border: InputBorder.none,
-                                            hintText: 'City'),
+                                          prefixIcon: Icon(
+                                            Icons.pin_drop,
+                                            color: signInStartColor,
+                                          ),
+                                          border: InputBorder.none,
+                                          hintText: Applocalizations.of(context)
+                                              .translate("City"),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -173,7 +177,9 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                                               color: signInStartColor,
                                             ),
                                             border: InputBorder.none,
-                                            hintText: 'State'),
+                                            hintText:
+                                                Applocalizations.of(context)
+                                                    .translate("State")),
                                       ),
                                     ),
                                   ),
@@ -205,7 +211,9 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                                               color: signInStartColor,
                                             ),
                                             border: InputBorder.none,
-                                            hintText: 'Country'),
+                                            hintText:
+                                                Applocalizations.of(context)
+                                                    .translate("Country")),
                                       ),
                                     ),
                                   ),
@@ -230,7 +238,8 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'CONTACT INFORMATION',
+                                    Applocalizations.of(context)
+                                        .translate("Contact Informaion"),
                                     maxLines: 1,
                                     style: TextStyle(
                                       color: kTextColor,
@@ -258,8 +267,10 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                                               color: signInStartColor,
                                             ),
                                             border: InputBorder.none,
-                                            hintText:
-                                                'Enter Your First Name - Last Name'),
+                                            hintText: Applocalizations.of(
+                                                    context)
+                                                .translate(
+                                                    "Enter Your First Name - Last Name")),
                                       ),
                                     ),
                                   ),
@@ -284,8 +295,10 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                                               color: signInStartColor,
                                             ),
                                             border: InputBorder.none,
-                                            hintText:
-                                                'Enter Your Phone Number'),
+                                            hintText: Applocalizations.of(
+                                                    context)
+                                                .translate(
+                                                    "Enter Your Phone Number")),
                                       ),
                                     ),
                                   ),
@@ -320,7 +333,9 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                               phoneNumber.isEmpty)
                             {
                               Manager.toastMessage(
-                                  'Empty Fields', signInStartColor)
+                                  Applocalizations.of(context)
+                                      .translate("Empty Fields"),
+                                  signInStartColor)
                             }
                           else
                             {
@@ -358,7 +373,8 @@ class _AddAddressBodyState extends State<AddAddressBody> {
                           color: Colors.deepPurple,
                           child: Center(
                               child: Text(
-                            'Add Address',
+                            Applocalizations.of(context)
+                                .translate("Add Address"),
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

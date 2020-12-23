@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/Manager/Manager.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/Address.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
@@ -73,7 +74,7 @@ class _CheckoutState extends State<Checkout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: homeAppBar(
-          false, false, context, false, 'HODHOD MART', searchAction(context)),
+          false, false, context, false, 'HOD HOD MART', searchAction(context)),
       body: SafeArea(
         child: loading
             ? Center(
@@ -89,7 +90,7 @@ class _CheckoutState extends State<Checkout> {
                         height: 10,
                       ),
                       Text(
-                        'Checkout',
+                        Applocalizations.of(context).translate("Checkout"),
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -100,7 +101,8 @@ class _CheckoutState extends State<Checkout> {
                         height: 30,
                       ),
                       Text(
-                        'Payment Method:',
+                        Applocalizations.of(context)
+                            .translate("Payment Method:"),
                         style: TextStyle(
                           fontSize: 18,
                           color: signInStartColor,
@@ -119,17 +121,20 @@ class _CheckoutState extends State<Checkout> {
                             ),
                             DropdownButton(
                                 hint: Text(
-                                  'Choose Payment Method',
+                                  Applocalizations.of(context)
+                                      .translate("Choose Payment Method"),
                                   textAlign: TextAlign.center,
                                 ),
                                 value: _paymentValue,
                                 items: [
                                   DropdownMenuItem(
-                                    child: Text("Credit Card"),
+                                    child: Text(Applocalizations.of(context)
+                                        .translate("Credit Card")),
                                     value: 1,
                                   ),
                                   DropdownMenuItem(
-                                    child: Text("Cash on delivery"),
+                                    child: Text(Applocalizations.of(context)
+                                        .translate("Cash on delivery")),
                                     value: 2,
                                   ),
                                 ],
@@ -146,7 +151,7 @@ class _CheckoutState extends State<Checkout> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Address :',
+                            Applocalizations.of(context).translate("Address :"),
                             style: TextStyle(
                               fontSize: 18,
                               color: signInStartColor,
@@ -199,7 +204,8 @@ class _CheckoutState extends State<Checkout> {
                                               width: 1, color: signInEndColor)),
                                       child: Center(
                                         child: Text(
-                                          'Your Addresses are empty Press to Add Address',
+                                          Applocalizations.of(context).translate(
+                                              "Your Addresses are empty Press to Add Address"),
                                           textAlign: TextAlign.center,
                                         ),
                                       )),
@@ -236,7 +242,7 @@ class _CheckoutState extends State<Checkout> {
                         height: 20,
                       ),
                       Text(
-                        'Card Number :',
+                        Applocalizations.of(context).translate("Card Number :"),
                         style: TextStyle(
                           fontSize: 18,
                           color: signInStartColor,
@@ -264,7 +270,8 @@ class _CheckoutState extends State<Checkout> {
                             ],
                             decoration: InputDecoration(
                                 border: InputBorder.none,
-                                hintText: 'Card Number'),
+                                hintText: Applocalizations.of(context)
+                                    .translate("Card Number")),
                           ),
                         ),
                       ),
@@ -340,7 +347,8 @@ class _CheckoutState extends State<Checkout> {
                       ),
 
                       Text(
-                        'Expiration Year :',
+                        Applocalizations.of(context)
+                            .translate("Expiration Year :"),
                         style: TextStyle(
                           fontSize: 18,
                           color: signInStartColor,
@@ -372,7 +380,8 @@ class _CheckoutState extends State<Checkout> {
                         ),
                       ),
                       Text(
-                        'Expiration Month :',
+                        Applocalizations.of(context)
+                            .translate("Expiration Month :"),
                         style: TextStyle(
                           fontSize: 18,
                           color: signInStartColor,
@@ -407,7 +416,8 @@ class _CheckoutState extends State<Checkout> {
                           children: [
                             DropdownButton(
                                 hint: Text(
-                                  'Expiary month',
+                                  Applocalizations.of(context)
+                                      .translate("Expiration Month :"),
                                   textAlign: TextAlign.center,
                                 ),
                                 value: _monthValue,
@@ -474,7 +484,7 @@ class _CheckoutState extends State<Checkout> {
                         height: 10,
                       ),
                       Text(
-                        'Currency',
+                        Applocalizations.of(context).translate("Currency"),
                         style: TextStyle(
                           fontSize: 18,
                           color: signInStartColor,
@@ -524,12 +534,16 @@ class _CheckoutState extends State<Checkout> {
                           cvc = _cvc.text.trim();
 
                           if (cvc == "" || cardNumber == "") {
-                            Manager.toastMessage('Empty Fields', Colors.red);
+                            Manager.toastMessage(
+                                Applocalizations.of(context)
+                                    .translate("Empty Fields"),
+                                Colors.red);
                             return;
                           }
                           if (cardNumber.length != 16) {
                             Manager.toastMessage(
-                                'Card Number must be 24 charecter long',
+                                Applocalizations.of(context).translate(
+                                    "Card Number must be 24 charecter long"),
                                 Colors.red);
                             return;
                           }
@@ -559,7 +573,8 @@ class _CheckoutState extends State<Checkout> {
                           decoration: BoxDecoration(color: signInEndColor),
                           child: Center(
                             child: Text(
-                              'Checkout',
+                              Applocalizations.of(context)
+                                  .translate("Checkout"),
                               style: TextStyle(
                                   fontSize: 17,
                                   color: Colors.white,

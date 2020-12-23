@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/MainCategory.dart';
 import 'package:hodhod_mart/networking_http/services_http.dart';
 import 'package:hodhod_mart/provider/modelsProvider.dart';
@@ -33,7 +35,8 @@ class _SearchBodyState extends State<SearchBody> {
     categories = Provider.of<ModelsProvider>(context, listen: true).categories;
     items = [
       DropdownMenuItem(
-        child: Text('No Category Chosen'),
+        child:
+            Text(Applocalizations.of(context).translate("No Category Chosen")),
         value: 0,
       )
     ];
@@ -48,10 +51,55 @@ class _SearchBodyState extends State<SearchBody> {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    image: DecorationImage(
-                        image: NetworkImage(baseUrl + cat.image),
-                        fit: BoxFit.cover)),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(35),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.network(
+                        baseUrl + cat.icon,
+                        width: 80,
+                        color: signInStartColor,
+                        height: 80,
+                      ),
+                    )
+                    //  CachedNetworkImage(
+                    //   width: 80,
+                    //   height: 80,
+                    //   fit: BoxFit.fill,
+                    //   imageUrl: baseUrl + category.image,
+                    //   placeholder: (context, url) => Container(
+                    //     height: 20,
+                    //     width: 20,
+                    //     child: LoadingIndicator(
+                    //       indicatorType: Indicator.ballScale,
+                    //       color: signInEndColor,
+                    //     ),
+                    //   ),
+                    //   errorWidget: (context, url, error) => Icon(Icons.error),
+                    // ),
+                    // Image.network(
+                    //   baseUrl + category.image,
+                    //   loadingBuilder: (BuildContext context, Widget child,
+                    //       ImageChunkEvent loadingProgress) {
+                    //     if (loadingProgress == null) return child;
+                    //     return Center(
+                    //       child: Container(
+                    //           width: 20,
+                    //           height: 20,
+                    //           child: LoadingIndicator(
+                    //             indicatorType: Indicator.ballScale,
+                    //             color: signInEndColor,
+                    //           )),
+                    //     );
+                    //   },
+                    //   width: 80,
+                    //   height: 80,
+                    //   fit: BoxFit.fill,
+                    // ),
+                    ),
+
                 // child: Image.network(
                 //   baseUrl + cat.image,
                 //   fit: BoxFit.fill,
@@ -95,7 +143,8 @@ class _SearchBodyState extends State<SearchBody> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Search within a specific category',
+                  Applocalizations.of(context)
+                      .translate("Search within a specific category"),
                   style: TextStyle(
                       color: signInStartColor,
                       fontSize: 20,
@@ -113,7 +162,8 @@ class _SearchBodyState extends State<SearchBody> {
                     underline: SizedBox(),
                     // dropdownColor: Colors.grey,
                     hint: Text(
-                      'No Category Choosen',
+                      Applocalizations.of(context)
+                          .translate("No Category Chosen"),
                       textAlign: TextAlign.center,
                     ),
                     value: _value,
@@ -171,7 +221,8 @@ class _SearchBodyState extends State<SearchBody> {
                                   color: Colors.white,
                                 ),
                                 Text(
-                                  "Search",
+                                  Applocalizations.of(context)
+                                      .translate("Search"),
                                   style: TextStyle(
                                       fontSize: 17, color: Colors.white),
                                 ),

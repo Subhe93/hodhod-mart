@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hodhod_mart/constants.dart';
+import 'package:hodhod_mart/localization/app_localization.dart';
 import 'package:hodhod_mart/model/ProductDetails.dart';
 import 'package:hodhod_mart/model/ResponsModels/searchResponse.dart';
 import 'package:hodhod_mart/model/SubCategoryProducts.dart';
@@ -45,7 +46,7 @@ class _SearchResultsState extends State<SearchResults> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: homeAppBar(
-          false, false, context, false, 'HODHOD MART', searchAction(context)),
+          false, false, context, false, 'HOD HOD MART', searchAction(context)),
       body: SafeArea(
           child: Column(
         children: [
@@ -81,7 +82,8 @@ class _SearchResultsState extends State<SearchResults> {
                       ),
                     ),
               Text(
-                'Page $currentPage Of $pageCount',
+                Applocalizations.of(context).translate("Page") +
+                    '$currentPage Of $pageCount',
                 style: TextStyle(fontSize: 17, color: signInStartColor),
               ),
               currentPage == pageCount

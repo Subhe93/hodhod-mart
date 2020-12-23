@@ -82,7 +82,7 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                       child: CategoryCard(
                           category: CategoryRepository(
                               id: categories[index].id,
-                              image: categories[index].image,
+                              image: categories[index].icon,
                               name: categories[index].name)),
                     ),
                   )),
